@@ -1,0 +1,1 @@
+AJS.toInit(function(a){a(".confluence-thumbnail-link").click(function(c){var b=this.className.match(/(^|\s)(\d+)x(\d+)(\s|$)/);window.open(this.href,"thumbnail_popup","width="+(+b[2]+20)+",height="+(+b[3]+20)+",menubar=no,status=no,toolbar=no");return AJS.stopEvent(c)})});

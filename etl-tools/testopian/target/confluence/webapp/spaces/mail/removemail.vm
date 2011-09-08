@@ -1,0 +1,69 @@
+<html>
+	<head>
+		<title>$action.getActionName($action.getClass().getName())</title>
+
+
+     </head>
+
+     #applyDecorator("root")
+         #decoratorParam("helper" $action.mailHelper)
+         #decoratorParam("mode" "remove")
+         #decoratorParam("context" "mail")
+         #decoratorParam("mailpanel-width" "200px")
+
+
+
+            <body>
+
+                #if ($mail)
+
+                    #applyDecorator ("confirm")
+                        #decoratorParam ("formName" "removemailform")
+                        #decoratorParam ("formAction" "doremovemail.action?id=$id")
+
+
+                    <input type="hidden" name="key" value="$action.key">
+                    $action.getText("alert.remove.message")
+                    <p>
+                    <table>
+                        <tr>
+                            <td><strong>$action.getText("alert.remove.sender")</strong></td>
+                            <td width="3">&nbsp;</td>
+                            <td>$action.getSender($mail.getFrom())</td>
+                        </tr>
+                        <tr>
+                            <td><strong>$action.getText("alert.remove.subject")</strong></td>
+                            <td width="3">&nbsp;</td>
+                            <td>$mail.getTitle()</td>
+                        </tr>
+                        <tr>
+                            <td><strong>$action.getText("alert.remove.date")</strong></td>
+                            <td width="3">&nbsp;</td>
+                            <td>$dateFormatter.format( $mail.getCreationDate() )</td>
+                        </tr>
+                    </table>
+                    </p>
+
+                    #set ($currentBreadcrumb = $mail.title)
+
+                    #end
+                #else
+                    #applyDecorator ("confirm")
+                        #decoratorParam ("formName" "removespacemailform")
+                        #decoratorParam ("formAction" "doremovespacemail.action")
+
+                        <input type="hidden" name="key" value="$action.key">
+                           $action.getText("alert.remove.space.mail.message")
+                           <br/>
+                            #applyDecorator ("warning" "WARNING")
+                                $action.getText("remove.mail.operation.cannot.be.undone")
+                            #end
+                        </p>
+
+                        #set ($currentBreadcrumb = $action.getActionName($action.getClass().getName()))
+                #end
+            #end
+        </body>
+
+    #end
+</html>

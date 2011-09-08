@@ -1,0 +1,27 @@
+<html>
+	<head>
+		<title>$action.getText("title.snipsnap")</title>
+		<meta name="help-path" content="/importexport/help/import-snipsnap.vm"/>
+	</head>
+
+	<body>
+        <content tag="selectedWebItem">snipsnap</content>
+		#parse ( "/template/includes/actionerrors.vm" )
+
+        <p>
+		<table class="grid" width=100%>
+			<form method="POST" action="snipsnapimport.action" enctype="multipart/form-data">
+			    #form_xsrfToken()
+				#tag ("File" "label='file'" "name='file'")
+                #tag ("Select" "label='import.space'" "name='spaceId'" "list=spaces" "listKey=id" "listValue=name")
+				<tr>
+					<td colspan="2" align="center">
+						#tag ("Submit" "value=getText('import-action')" "theme='notable'")
+					</td>
+				</tr>
+			</form>
+		</table>
+
+		#parse ( "/breadcrumbs.vm" )
+	</body>
+</html>

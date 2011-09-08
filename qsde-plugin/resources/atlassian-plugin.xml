@@ -1,0 +1,12 @@
+<atlassian-plugin name="QSDE Plugin" key="confluence-macro-qsde">
+    <plugin-info>
+        <description>QSDE plugin for Confluence</description>
+        <vendor name="Vladimir Ruzhansky"/>
+        <version>0.01</version>
+    </plugin-info>
+    
+    <macro name="qsde" key="com.wr.confluence.macro.qsde" class="com.wr.confluence.macro.QsdeMacro" state="enabled">
+		<description>Creates UML sequence diagrams using QSDE syntax (requires Quick Sequence Diagram Editor - http://sdedit.sourceforge.net). Configure path to sdedit.jar in qsde.properties.</description>
+	</macro>
+
+</atlassian-plugin>

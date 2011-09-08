@@ -1,0 +1,54 @@
+<html>
+    <head>
+        <title>$action.getPage().getTitle()</title>
+	    <meta name="help-path" content="/pages/help/editcomment-preview.vm"/>
+    </head>
+
+    <body>
+    #applyDecorator("root")
+        #decoratorParam("helper" $action.helper)
+        #decoratorParam("context" "page")
+        #decoratorParam("mode" "view")
+
+        #parse ( "/template/includes/actionerrors.vm" )
+
+        <div style="padding: 5px">
+
+        #if ($fieldErrors.isEmpty())
+            #parse ("/pages/includes/alert-preview-start.vm")
+            #tag( "Hidden" "name='parentId'" "value=parentId" )
+            <div class="wiki-content wiki-content-preview">
+                $xHtmlContent
+            </div>
+            #parse ("/pages/includes/alert-preview-end.vm")
+        #else
+            #fielderror('content')
+        #end
+
+        <form method="POST" name="inlinecommentform"
+              action="doeditcomment.action?pageId=$page.id&amp;commentId=$comment.id">
+            #form_xsrfToken()
+            <div class="tabletitle"><h2>$action.getText("edit.comment")</h2></div>
+
+            #bodytag ("Component" "name='content'" "theme='notable'" "template='wiki-textarea.vm'")
+                #param ("formname" "inlinecommentform")
+                #param ("spaceKey" "$generalUtil.urlEncode($spaceKey)")
+                #param ("rows" 20)
+                #param ("width" "100%")
+                #param ("tabindex" "4")
+                #param ("tdcolor" "f0f0f0")
+                #param ("edit" "true")
+                #param ("heartbeat" "true")
+                #param ("contentId" "0")
+                #param ("contentType" "comment")
+            #end
+
+            #commentSubmission()
+        </form>
+
+        </div>
+
+    #end
+
+    </body>
+</html>

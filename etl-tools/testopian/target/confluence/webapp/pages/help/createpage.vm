@@ -1,0 +1,3 @@
+$action.getText('createpage.help.text')
+
+#parse ("/includes/notation-quick-help.vm")

@@ -1,0 +1,23 @@
+/**
+ * AUI Overrides
+ *
+ * As new versions of AUI are implemented, these styles
+ * should be reviewed and adjusted as appropriate.
+ */
+
+/**
+ * Consistency for behavior and affordance of AUI toolbar buttons
+ *
+ * @workaround
+ * @affected aui-3.2.1
+ * @see https://studio.atlassian.com/browse/AJS-559
+ */
+/* @group CONFDEV-1963 */
+.aui-toolbar .toolbar-trigger {
+    cursor: default;
+}
+
+.aui-toolbar .toolbar-item-link .toolbar-trigger {
+    cursor: pointer;
+}
+/* @end */

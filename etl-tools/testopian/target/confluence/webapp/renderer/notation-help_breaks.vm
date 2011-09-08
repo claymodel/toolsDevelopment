@@ -1,0 +1,20 @@
+            <tr bgcolor=ffffff>
+                <td>$action.getText('emptyline.name')</td>
+                <td>$action.getText('emptyline.desc')</td>
+            </tr>
+            <tr bgcolor=ffffff>
+                <td>\\</td>
+                <td>$action.getText('doubleslash.desc')</td>
+            </tr>
+            <tr bgcolor=ffffff>
+                <td>----</td>
+                <td>$action.getText('quaddash.desc')</td>
+            </tr>
+            <tr bgcolor=ffffff>
+                <td>---</td>
+                <td>$action.getText('tripledash.desc')</td>
+            </tr>
+            <tr bgcolor=ffffff>
+                <td>--</td>
+                <td>$action.getText('doubledash.desc')</td>
+            </tr>

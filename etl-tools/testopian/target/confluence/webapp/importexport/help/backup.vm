@@ -1,0 +1,20 @@
+<p>
+    <strong>$i18n.getText('backup.confluence.data')</strong>
+    <br>
+    $i18n.getText('backup.description')
+    $i18n.getText('backup.description2')
+    <br>
+    $i18n.getText('backup.may.take.a.few.minutes')
+    <br>
+    #doc('help.manually.backup.site' $i18n.getText('more.about.backing.up.data'))
+</p>
+
+<p>
+    <strong>$i18n.getText('restoring.data')</strong>
+    <br>
+    $i18n.getText('restoring.data.allows.to.restore.a.site')
+    <br>
+    <strong>$i18n.getText('caution.word.caps'):</strong> $i18n.getText('restore.data.caution')
+    <br>
+    #doc('help.restore.site' $i18n.getText('more.about.restoring.data'))
+</p>

@@ -1,0 +1,21 @@
+<html>
+
+    <!-- This page no longer seems to be used -->
+
+	<head>
+		<title>$action.getText("title.export.page") - $!title</title>
+	</head>
+
+	<body>
+		#parse ( "/template/includes/actionerrors.vm" )
+
+        <p>Export successful. You can download the file <a href="$req.contextPath$downloadPath">here</a>.</p>	
+
+		#parse ( "/pages/page-breadcrumbs.vm" )
+		#parse ( "/pages/page-operations.vm" )
+
+	    <content tag="help-content">
+	    #parse ( "/importexport/help/exportpage.vm" )
+	    </content>
+	</body>
+</html>

@@ -1,0 +1,74 @@
+            <tr bgcolor=ffffff>
+                <td>\X</td>
+                <td>$action.getText('escapechars.desc')</td>
+            </tr>
+            <tr bgcolor=ffffff>
+                <td>
+                    :), :( etc
+                 </td>
+                <td>
+                    $action.getText('graphical.emoticons')<br/>
+
+                        <div align=center>
+                            <table class="wikitable">
+                                <tr align=center>
+                                    <th>$action.getText('heading.notation')</th>
+                                    <td>:)</td>
+                                    <td>:(</td>
+                                    <td>:P</td>
+                                    <td>:D</td>
+                                    <td>;)</td>
+                                    <td>(y)</td>
+                                    <td>(n)</td>
+                                    <td>(i)</td>
+                                    <td>(/)</td>
+                                    <td>(x)</td>
+                                    <td>(!)</td>
+                                </tr>
+                                <tr align=center>
+                                    <th>$action.getText('graphical.image.name')</th>
+                                    <td><img src="$staticResourceUrlPrefix/images/icons/emoticons/smile.gif"></td>
+                                    <td><img src="$staticResourceUrlPrefix/images/icons/emoticons/sad.gif"></td>
+                                    <td><img src="$staticResourceUrlPrefix/images/icons/emoticons/tongue.gif"></td>
+                                    <td><img src="$staticResourceUrlPrefix/images/icons/emoticons/biggrin.gif"></td>
+                                    <td><img src="$staticResourceUrlPrefix/images/icons/emoticons/wink.gif"></td>
+                                    <td><img src="$staticResourceUrlPrefix/images/icons/emoticons/thumbs_up.gif"></td>
+                                    <td><img src="$staticResourceUrlPrefix/images/icons/emoticons/thumbs_down.gif"></td>
+                                    <td><img src="$staticResourceUrlPrefix/images/icons/emoticons/information.gif"></td>
+                                    <td><img src="$staticResourceUrlPrefix/images/icons/emoticons/check.gif"></td>
+                                    <td><img src="$staticResourceUrlPrefix/images/icons/emoticons/error.gif"></td>
+                                    <td><img src="$staticResourceUrlPrefix/images/icons/emoticons/warning.gif"></td>
+                                </tr>
+                             </table>
+                             <table class="wikitable">
+                                <tr align=center>
+                                    <th>$action.getText('heading.notation')</th>
+                                    <td>(+)</td>
+                                    <td>(-)</td>
+                                    <td>(?)</td>
+                                    <td>(on)</td>
+                                    <td>(off)</td>
+                                    <td>(*)</td>
+                                    <td>(*r)</td>
+                                    <td>(*g)</td>
+                                    <td>(*b)</td>
+                                    <td>(*y)</td>
+                                </tr>
+                                <tr align=center>
+                                    <th>$action.getText('graphical.image.name')</th>
+                                    <td><img src="$staticResourceUrlPrefix/images/icons/emoticons/add.gif"></td>
+                                    <td><img src="$staticResourceUrlPrefix/images/icons/emoticons/forbidden.gif"></td>
+                                    <td><img src="$staticResourceUrlPrefix/images/icons/emoticons/help_16.gif"></td>
+                                    <td><img src="$staticResourceUrlPrefix/images/icons/emoticons/lightbulb_on.gif"></td>
+                                    <td><img src="$staticResourceUrlPrefix/images/icons/emoticons/lightbulb.gif"></td>
+                                    <td><img src="$staticResourceUrlPrefix/images/icons/emoticons/star_yellow.gif"></td>
+                                    <td><img src="$staticResourceUrlPrefix/images/icons/emoticons/star_red.gif"></td>
+                                    <td><img src="$staticResourceUrlPrefix/images/icons/emoticons/star_green.gif"></td>
+                                    <td><img src="$staticResourceUrlPrefix/images/icons/emoticons/star_blue.gif"></td>
+                                    <td><img src="$staticResourceUrlPrefix/images/icons/emoticons/star_yellow.gif"></td>
+                                    </tr>
+                            </table>
+                        </div>
+
+                </td>
+            </tr>

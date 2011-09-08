@@ -1,0 +1,59 @@
+#**
+ * Before including this file please specify:
+ * $upload-and-restore-form-action
+ * $restore-local-file-form-action
+ *#
+$action.getText("two.ways.to.restore.backup")
+<div style="width:90%">
+<ul>
+    <li class="steptitle">$action.getText("upload.zipped.backup")
+        <p>
+        <form method="POST" name="uploadexportform" action="$upload-and-restore-form-action?synchronous=$synchronous" enctype="multipart/form-data">
+            #form_xsrfToken()
+            <input type="file" name="file">
+
+            <p>
+            <span class="stepdesc">$action.getText("to.be.able.to.search") </span><br>
+            <input id="buildIndexForRestore" type="checkbox" name="buildIndex" value="true" checked> <label for="buildIndexForRestore">$action.getText("build.index")</label></p>
+            <p><input type="submit" value="$action.getText('upload.and.restore')"></p>
+        </form>
+        </p>
+    </li>
+
+    <p  class="steptitle">$action.getText("or.word")</p></br>
+
+    <li class="steptitle">$action.getText("restore.from.file.system")
+        <p>
+            <div class="stepdesc">$action.getText("recomended.if.large.backup")<br/><br/>$action.getText("backups.must.be.copied.into.directory", ["<code>${bootstrapManager.confluenceHome}${systemFileSeparator}restore</code>"])</div>
+            <table width="60%">
+            <form action="$restore-local-file-form-action" method=POST>
+                #form_xsrfToken()
+                <tr>
+                    <td align="left" width="1%" nowrap>
+                        <select name="localFileName" size="5">
+                            #if ($action.getFilesInRestoreFolder().isEmpty())
+                                <option value="">$action.getText("no.files.in.dir")</option>
+                            #else
+                                #foreach ($file in $action.getFilesInRestoreFolder())
+                                    <option value="$file.name">$file.name</option>
+                                #end
+                            #end
+                        </select>
+                        <p>
+                        
+                        <input id="buildIndexForLocalRestore" type="checkbox" name="buildIndex" value="true" checked> <label for="buildIndexForLocalRestore">$action.getText("build.index")</label></p>
+                        <p><input type="submit" value="$action.getText('restore.word')"></p>
+                    </td>
+                    <td width="250" valign="top" align="left">
+                        #if ($action.getFilesInRestoreFolder().isEmpty())
+                        <span class="stepdesc">$action.getText("currently.no.files.in.dir", ["<code>restore</code>"])</span>
+                        #end
+                    </td>
+                </tr>
+            </form>
+            </table>
+        </p>
+    </li>
+</ul>
+</div>
+<p>

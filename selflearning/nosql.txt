@@ -1,0 +1,204 @@
+BI - NoSQL- Data Mining - Machine Learning
+
+
+Map Reduce support is new. You will need a hadoop cluster to run it. Data will be tranferred from Cassandra cluster to the hadoop cluster. Not suitable for running large data map reduce jobs.	
+
+Map Reduce support is native. HBase is built on 
+Hadoop. Data does not get transferred.
+
+
+Comparatively simpler to maintain if you don't have to have hadoop.
+
+Comparatively complicated as you have it has many moving pieces such as Zookeeper, Hadoop and HBase itself.
+
+No master server, hence no single point of failure.
+
+Although there exists a concept of a master server, HBase itself does not depend on it heavily. HBase cluster can keep serving data even if the master goes down. Hadoop namenode is a single point of failure.
+
+
+
+
+
+------------------------------------
+First log in on A as user a and generate a pair of authentication keys. Do not enter a passphrase:
+
+a@A:~> ssh-keygen -t rsa
+Generating public/private rsa key pair.
+Enter file in which to save the key (/home/a/.ssh/id_rsa): 
+Created directory '/home/a/.ssh'.
+Enter passphrase (empty for no passphrase): 
+Enter same passphrase again: 
+Your identification has been saved in /home/a/.ssh/id_rsa.
+Your public key has been saved in /home/a/.ssh/id_rsa.pub.
+The key fingerprint is:
+3e:4f:05:79:3a:9f:96:7c:3b:ad:e9:58:37:bc:37:e4 a@A
+
+Now use ssh to create a directory ~/.ssh as user b on B. (The directory may already exist, which is fine):
+
+a@A:~> ssh b@B mkdir -p .ssh
+b@B's password: 
+
+Finally append a's new public key to b@B:.ssh/authorized_keys and enter b's password one last time:
+
+a@A:~> cat .ssh/id_rsa.pub | ssh b@B 'cat >> .ssh/authorized_keys'
+b@B's password: 
+
+From now on you can log into B as b from A as a without password:
+
+a@A:~> ssh b@B hostname
+B
+
+--------------------------
+
+
+
+zip -r zipped_file.zip /tmp/something/
+unzip zipped_file.zip
+
+tar -cvzf tared_file.tar.gz /tmp/something/
+tar -zxvf tared_file.tar.gz
+
+-----------------------------------
+
+http://youtu.be/hEqQMLSXQlY
+
+-----------------------------------
+
+
+class jira::params{
+	$home_loc	= "/opt/jira-data-434/" 
+	$ins_loc	= "/opt/atlassian-jira-4.3.4-standalone"
+	$app_loc	= "/opt/atlassian-jira-4.3.4-standalone/atlassian-jira/WEB-INF/classes/"
+	$conf_loc	= "/opt/atlassian-jira-4.3.4-standalone/conf/"
+	$db_name	= "jiradb_4_3_4"
+}
+
+
+------------------------------------
+
+class jira::jirabackup{
+
+	Exec['DB-backup'] -> Exec['HOME-scp']
+
+	exec { "DB-backup":
+		cwd => "{jira::params::ins_loc}",
+		command => "/usr/bin/mysqldump -uroot -phasnat {jira::params::db_name} > {jira::params::db_name}.sql",
+		creates => "{jira::params::ins_loc}/{jira::params::db_name}.sql",
+	}
+
+	exec { "INSTALL-zip":
+        	cwd => "/opt",
+	        command => "/usr/bin/zip -r install.zip {jira::params::ins_loc}/",
+	        creates => "{jira::params::ins_loc}/install.zip",
+	}
+
+	exec { "HOME-zip":
+		cwd => "/opt",
+		command => "/usr/bin/zip -r home.zip {jira::params::home_loc}/",
+    		creates => "{jira::params::home_loc}/home.zip",
+  	}
+
+
+	exec { "INSTALL-scp":
+		cwd => "/opt",
+		command => "/bin/bin/scp /opt/install.zip root@hasnatlnx01:/var/www/nginx-default/",
+	}
+
+	exec { "HOME-scp":
+		cwd => "/opt",
+		command => "/bin/bin/scp /opt/home.zip root@hasnatlnx01:/var/www/nginx-default/",
+	}
+
+}
+
+
+-----------------------------------------------------
+
+
+class jira::jirarestore{
+
+	Exec['INSTALL-down'] -> File['application.jira']
+
+	exec { "INSTALL-down":
+		cwd => "/",
+		command => "/usr/bin/wget http://hasnatlnx01/install.zip",
+		creates => "/install.zip",
+	}
+
+	exec { "HOME-down":
+        	cwd => "/",
+	        command => "/usr/bin/wget http://hasnatlnx01/home.zip",
+	        creates => "/home.zip",
+	}
+
+	exec { "INSTALL-unzip":
+		cwd => "/",
+		command => "/usr/bin/unzip  /install.zip",
+    		creates => "{jira::params::ins_loc}",
+  	}
+
+	exec { "HOME-unzip":
+		cwd => "/",
+		command => "/usr/bin/unzip  /data.zip",
+		creates => "{jira::params::home_loc}",
+	}
+
+	exec { "EXEC-permission":
+		cwd => "{jira::params::ins_loc}/bin",
+		command => "/bin/chmod 777  {jira::params::ins_loc}/bin/*.sh",
+	}
+
+	exec { "mysql-1":
+	    command => "/usr/bin/mysql -uroot -phasnat -e \"create database jiradb_4_3_4 character set utf8;\"",
+	}
+
+	exec { "mysql-2":
+		command => "/usr/bin/mysql -uroot -phasnat -e \"grant all on jiradb_4_3_4.* to 'root'@'localhost' identified by 'hasnat';\"",
+	}
+
+	exec { "mysql-3":
+		command => "/usr/bin/mysql -uroot -phasnat jiradb_4_3_4 < {jira::params::ins_loc}/{jira::params::db_name}.sql",
+	}
+
+	        service { "jira":
+	        name       => "jira",
+	        ensure     => running,
+	        enable     => true,
+		subscribe  => File,
+	        subscribe  => File[["application.jira"],["server.xml"],["init.jira"]],
+	    }
+
+	    file { "init.jira":
+	        path    => "/etc/init.d",
+	        mode    => "755",
+	        owner   => "root",
+	        group   => "root",
+	        ensure  => present,
+	        notify  => Service["jira"],
+		content => template("jira.erb"),
+	    }
+
+	    file { "server.xml":
+	        path    => "{jira::params::conf_loc}",
+	        mode    => "755",
+	        owner   => "root",
+	        group   => "root",
+	        ensure  => present,
+		content => template("server.xml.erb"),
+	    }
+
+	    file { "application.jira":
+	        path    => "{jira::params::app_loc}/jira-application.properties",
+	        mode    => "755",
+	        owner   => "root",
+	        group   => "root",
+	        ensure  => present,
+		content => template("jira-application.properties.erb"),
+	    }
+
+}
+
+
+jira-application.properties.erb
+---------------------------------
+

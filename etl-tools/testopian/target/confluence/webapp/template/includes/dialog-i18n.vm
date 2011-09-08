@@ -1,0 +1,5 @@
+<fieldset class="hidden parameters">
+    <input type="hidden" id="shortcutDialogTip" value="$i18n.getText("keyboard.shortcuts.dialog.tip", "{shortcut}")">
+    #jsI18n('close.name')
+    #jsI18n('cancel.name')
+</fieldset>

@@ -1,0 +1,167 @@
+<html>
+    <head>
+        <title>$action.getActionName($action.getClass().getName())</title>
+        <meta name="help-path" content="/admin/permissions/help/viewglobalperms.vm"/>
+    </head>
+
+    <body>
+        <content tag="selectedWebItem">perms</content>
+        #parse ( "/template/includes/actionerrors.vm" )
+
+        <div style="width: 790px; text-align: left;">
+                <div style="font-size: 16px; font-weight: bold; padding: 4px 0 2px 0;">$action.getText('perms.groups')</div>
+                <div class="stepdesc">
+                    $action.getText("global.group.perms")
+                </div>
+
+                <table id="gPermissionsTable" width="790" border="0" cellpadding=4 cellspacing=0>
+                #set ($groupRows = $action.groupPermissionRows)
+                #if (!$groupRows.empty)
+                    #showGlobalPermissionsHeader()
+                    #foreach ($groupRow in $groupRows)
+                        <tr style=" #if ($velocityCount % 2 == 0) background: #f0f0f0; #end">
+                            <td>
+                                <img src="$staticResourceUrlPrefix/images/icons/group_16.gif" width=16 height=16 border=0 align=absmiddle>
+                                $generalUtil.htmlEncode($groupRow.groupName)
+                                #if (!$groupRow.entityExists())
+                                    <br/><span class="errorMessage">$action.getText("error.group.not.found")</span>
+                                #elseif ($groupRow.caseInvalid)
+                                    <br/><span class="errorMessage">$action.getText('error.permission.incorrect.case', [$generalUtil.htmlEncode($groupRow.group.name)])</span>
+                                #end
+                            </td>
+
+                            #foreach ($permission in $action.permissions)
+                                <td align="center" class="permissionCell"
+                                    data-permission="$generalUtil.htmlEncode($permission)"
+                                    data-permission-group="$generalUtil.htmlEncode($groupRow.groupName)"
+                                    data-permission-set="$groupRow.isTypeAllowed($permission)">
+                                    #if ($groupRow.isTypeAllowed($permission))
+                                        <img src="$staticResourceUrlPrefix/images/icons/emoticons/check.gif" width=16 height=16 align=absmiddle border=0>
+                                        #if ($permission == 'useconfluence') $action.getText('perms.can.use') #end
+                                    #else
+                                        <img src="$staticResourceUrlPrefix/images/icons/emoticons/error.gif" width=16 height=16 align=absmiddle border=0>
+                                        #if ($permission == 'useconfluence') $action.getText('perms.cant.use') #end
+                                    #end
+                                </td>
+                            #end
+                        </tr>
+                    #end
+                #else
+                    <tr><td colspan=5>$action.getText('globalperms.no.group.access')</td></tr>
+                #end
+                </table>
+
+                <br/>
+                <table width="100%">
+                    <tr>
+                        <td align="right">
+                        <form name="editglobalperms" action="editglobalpermissions.action">
+                                <input type="submit" value="$action.getText('globalperms.editpermissions')">
+                            </form>
+                        </td>
+                    </tr>
+                </table>
+
+                <div style="font-size: 16px; font-weight: bold; padding: 4px 0 2px 0;">$action.getText('perms.individuals')</div>
+                <div class="stepdesc">
+                    $action.getText("global.user.perms")
+                </div>
+
+                <table id="uPermissionsTable" width="790" border="0" cellpadding=4 cellspacing=0>
+                #set ($userRows = $action.userPermissionRows)
+                #if (!$userRows.empty)
+                    #showGlobalPermissionsHeader()
+                    #foreach ($userRow in $userRows)
+                        <tr style=" #if ($velocityCount % 2 == 0) background: #f0f0f0; #end">
+                            <td data-key="$generalUtil.htmlEncode($userRow.username)">
+                                <img src="$staticResourceUrlPrefix/images/icons/user_16.gif" width=16 height=16 border=0 align=absmiddle>
+                                #if ($userRow.entityExists())
+                                    $generalUtil.htmlEncode($userRow.user.fullName)
+                                #end
+                                <span class="grey">($generalUtil.htmlEncode($userRow.username))</span>
+                                #if (!$userRow.entityExists())
+                                    <br/><span class="errorMessage">$action.getText("error.user.not.found")</span>
+                                #elseif ($userRow.caseInvalid)
+                                    <br/><span class="errorMessage">$action.getText('error.permission.incorrect.case', [$generalUtil.htmlEncode($userRow.user.name)])</span>
+                                #end
+                            </td>
+        #foreach ($permission in $action.permissions)
+                                <td align="center" class="permissionCell"
+                                    data-permission="$generalUtil.htmlEncode($permission)"
+                                    data-permission-user="$generalUtil.htmlEncode($userRow.username)"
+                                    data-permission-set="$userRow.isTypeAllowed($permission)">
+                                    #if ($userRow.isTypeAllowed($permission))
+                                        <img src="$staticResourceUrlPrefix/images/icons/emoticons/check.gif" width=16 height=16 align=absmiddle border=0>
+                                        #if ($permission == 'useconfluence') $action.getText('perms.can.use') #end
+                                    #else
+                                        <img src="$staticResourceUrlPrefix/images/icons/emoticons/error.gif" width=16 height=16 align=absmiddle border=0>
+                                        #if ($permission == 'useconfluence') $action.getText('perms.cant.use') #end
+                                    #end
+                                </td>
+                            #end
+                        </tr>
+                    #end
+                #else
+                    <tr><td colspan=5>$action.getText('globalperms.no.user.perms')</td></tr>
+                #end
+                </table>
+                <br/>
+                <table width="100%">
+                    <tr>
+                        <td align="right">
+                        <form name="editglobalperms" action="editglobalpermissions.action">
+                                <input type="submit" value="$action.getText('globalperms.editpermissions')">
+                            </form>
+                        </td>
+                    </tr>
+                </table>
+
+
+                <div style="font-size: 16px; font-weight: bold; padding: 4px 0 2px 0;">$action.getText('perms.anonymous')</div>
+                <div class="stepdesc">
+                    $action.getText("global.anonymous.perms")
+                </div>
+
+                <table id="aPermissionsTable" width="790" border="0" cellpadding=4 cellspacing=0>
+                <tr>
+                    <th width="230" class="permissionHeading">&nbsp;</th>
+                    <th width="280" class="permissionTab">$action.getText("permissions.USECONFLUENCE")</th>                    
+                    <th width="280" class="permissionTab">$action.getText("permissions.VIEWUSERPROFILES")</th>
+                </tr>
+                <tr>
+                    <td>
+                        <img src="$staticResourceUrlPrefix/images/icons/group_anyone_16.gif" width=16 height=16 border=0 align=absmiddle>
+                        $action.getText('perms.anonymous.user')
+                    </td>
+                    #set ($anonymousRow = $action.anonymousPermissionRow)
+                    <td align="center" class="permissionCell">
+                        #if ($anonymousRow.isTypeAllowed('useconfluence'))
+                            <img src="$staticResourceUrlPrefix/images/icons/emoticons/check.gif" width=16 height=16 align=absmiddle border=0> $action.getText('perms.can.use')
+                        #else
+                            <img src="$staticResourceUrlPrefix/images/icons/emoticons/error.gif" width=16 height=16 align=absmiddle border=0> $action.getText('perms.cant.use')
+                        #end
+                    </td>
+                    <td align="center" class="permissionCell">
+                        #if ($anonymousRow.isTypeAllowed('VIEWUSERPROFILES'))
+                            <img src="$staticResourceUrlPrefix/images/icons/emoticons/check.gif" width=16 height=16 align=absmiddle border=0>
+                        #else
+                            <img src="$staticResourceUrlPrefix/images/icons/emoticons/error.gif" width=16 height=16 align=absmiddle border=0>
+                        #end
+                    </td>
+                </tr>
+                </table>
+                <br>
+                <table width="100%">
+                    <tr>
+                        <td align="right">
+                        <form name="editglobalperms" action="editglobalpermissions.action">
+                                <input type="submit" value="$action.getText('globalperms.editpermissions')">
+                            </form>
+                        </td>
+                    </tr>
+                </table>
+        </div>
+
+        #parse ( "/breadcrumbs.vm" )
+    </body>
+</html>

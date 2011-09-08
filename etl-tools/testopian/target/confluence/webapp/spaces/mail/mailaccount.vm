@@ -1,0 +1,67 @@
+<html>
+    <head>
+        <title>$action.getActionName($action.getClass().getName())</title>
+    </head>
+
+    #applyDecorator("root")
+        #decoratorParam("helper" $action.helper)
+        #decoratorParam("context" "space-administration")
+        #decoratorParam("mode"  "view-space-administration")
+
+        #applyDecorator ("root")
+            #decoratorParam ("context" "spaceadminpanel")
+            #decoratorParam ("helper" $action.helper)
+            #decoratorParam ("selection" "mailaccounts")
+            #decoratorParam ("title" $action.getText("action.name"))
+            #decoratorParam ("selectedTab" "admin")
+
+            #includeJavascript('/includes/js/defaultmailports.js')
+
+            #parse ("/spaces/mail/pollresult.vm")
+            
+            #applyDecorator ("warning" "")
+                $action.getText("delete.mail.warning", [$docBean.getLink("help.adding.mail.account")])
+            #end
+
+            #if ($action.editAction)
+                #set ($formAction = "doeditmailaccount.action")
+                #set ($confirmButtonValue = "save.name")
+            #else
+                #set ($formAction = "doaddmailaccount.action")
+                #set ($confirmButtonValue = "create.name")
+            #end
+            
+            <form method="POST" action="$formAction" name="mailAccount">
+                <table border="0" width="100%">
+                    #form_xsrfToken()
+                    #bodytag ("TextField" "label='accountName'" "name='name'" )
+                        #param ("labelwidth" "30%")
+                    #end
+                    #tag ("TextField" "label='description'" "name='description'"  "size='50'")
+                    #tag( "Select" "label='protocol'" "name='protocol'" "list=protocolList" "listKey=key" "listValue=value" "onchange='updatePort(this)'")
+                    #tag ("TextField" "label='hostname'" "name='hostname'" )
+                    #tag ("TextField" "label='port'" "name='port'" "id=port")
+                    #tag ("TextField" "label='username'" "name='username'" )
+                    #bodytag ("Password" "label='password'" "name='password'")
+                        #param ("showPassword" true)
+                    #end
+                    #tag ("Hidden" "name='key'")
+                    #if ($action.editAction)
+                        #tag ("Hidden" "name='id'")
+                        #tag ("Hidden" "name='enabled'")
+                    #end
+                    <tr>
+                        <td colspan=2>
+                        <div align="center">
+                            #tag ("Submit" "name='confirm'" "value='$confirmButtonValue'" "theme='notable'" )
+                            #tag ("Submit" "name='testConnection'" "value='mailaccount.test.connection'" "theme='notable'" )
+                            #tag ("Submit" "name='cancel'" "value='cancel.name'" "theme='notable'" )
+                        </div>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+
+        #end
+    #end
+</html>

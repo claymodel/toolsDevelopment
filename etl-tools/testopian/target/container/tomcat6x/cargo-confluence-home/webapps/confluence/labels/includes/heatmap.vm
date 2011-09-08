@@ -1,0 +1,24 @@
+#if( $rankedResults.size() == 0 )
+    <p class="smalltext">$action.getText("no.labels.defined")</p>
+#else
+    <div class="heatmap">
+        <div class="operation-links">
+            $action.getText("order.word"):
+            #if ($helper.action.isGroupRanks() == true)
+                <a href="$pageContext?groupRanks=false#if ($helper.space)&key=${action.space.key}#end">$action.getText("alphabetically.word")</a>
+                |
+                <strong>$action.getText("by.popularity")</strong>
+            #else
+                <strong>$action.getText("alphabetically.word")</strong>
+                |
+                <a href="$pageContext?groupRanks=true#if ($helper.space)&key=${action.space.key}#end">$action.getText("by.popularity")</a>
+            #end
+        </div>
+        <ul style="background-color:#f0f0f0; padding: 10px; margin: 0px; line-height: 2em;">
+        #foreach($result in $action.results)
+            #set ($size = 12 + $result.rank * 2)
+            <li style="font-size:${size}px; padding: 2px; ">#labelLink($result.label)</li>
+        #end
+        </ul>
+    </div>
+#end

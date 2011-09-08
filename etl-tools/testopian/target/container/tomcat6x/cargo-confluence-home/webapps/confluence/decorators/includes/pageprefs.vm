@@ -1,0 +1,13 @@
+<content tag="pageprefs">
+    #if(!$action.anonymousUser && !$action.isPrintableVersion())
+        <ul id="page-prefs-list">
+        ##<div style="padding: 5px; border: 1px solid #cccccc; margin: 0px; float:right;">
+        ##    <center>
+            #foreach ($item in $webInterfaceManager.getDisplayableItems("system.page.actions", $action.webInterfaceContext))
+                #set ($icon = $item.icon)
+                #set ($itemLabel = $item.label.getDisplayableLabel($req, $action.webInterfaceContext))
+                <li><a #if ($item.link.id) id="$item.link.id" #end href="$item.link.getDisplayableUrl($req, $action.webInterfaceContext)"><img src="$icon.url.getDisplayableUrl($req, $action.webInterfaceContext)" height="$icon.height" width="$icon.width" border="0" align="absmiddle" title="$itemLabel" alt="$itemLabel"></a></li>
+            #end
+        </ul>
+    #end
+</content>

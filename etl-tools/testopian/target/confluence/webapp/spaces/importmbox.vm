@@ -1,0 +1,51 @@
+<html>
+    <head>
+        <title>$action.getActionName($action.getClass().getName())</title>
+    </head>
+
+    #applyDecorator("root")
+        #decoratorParam("helper" $action.helper)
+        #decoratorParam("context" "space-administration")
+        #decoratorParam("mode"  "view-space-administration")
+
+        #applyDecorator ("root")
+            #decoratorParam ("context" "spaceadminpanel")
+            #decoratorParam ("selection" "importmbox")
+            #decoratorParam ("title" $action.getText("action.name"))
+            #decoratorParam ("selectedTab" "admin")
+            #decoratorParam("helper" $action.helper)
+
+            <div class="stepdesc">
+            $action.getText("import.mbox.desc")
+            </div>
+
+            ## CONF-12462 The space key property has been added to the url query params to ensure that
+            ## the key is loaded by the servlet even if the file upload fails because it is too big.
+            <ul type="square" style="padding: 0; margin-left: 2em; color: #ccc">
+                <li> <div class="formtitle"> $action.getText("local") </div>
+
+                    <form name="localImportForm" method="POST" action="doimportmbox.action?nonBackgroundTask=$action.nonBackgroundTask&key=$space.key" enctype="multipart/form-data">
+                        <div class="stepdesc">$action.getText("browse.for.mbox.locally"): </div>
+                        #bodytag ("File" "label='file'" "name='file'")
+                            #param ("notable" "true")
+                        #end
+                        #tag ("Submit" "value=getText('import.action')" "name='import'" "theme='simple'" )
+                    </form>
+                <p/>
+                </li>
+                <li>  <div class="formtitle"> $action.getText("server") </div>
+
+                        <form name="remoteImportForm" method="POST" action="doimportmbox.action?nonBackgroundTask=$action.nonBackgroundTask&key=$space.key" enctype="multipart/form-data">
+                            <div class="stepdesc">$action.getText("mbox.on.server"):</div>
+                            <span>
+                                #tag( "TextField" "label='file'" "name='fileName'" "size=50" "theme='simple'" )
+                            </span>
+                             <span style="margin-right:30px">
+                                #tag ("Submit" "value=getText('import.action')" "name='import'" "theme='simple'" )
+                            </span>
+                        </form>
+                </li>
+            </ul>
+        #end
+    #end
+</html>

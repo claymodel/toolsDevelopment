@@ -1,0 +1,181 @@
+/*************************************************************
+ * NOTE: Smartsprites used to generate sprites automatically *
+ *************************************************************/
+
+/*
+ * NOTE: Animated gifs will become static when generated into sprites
+ */
+
+/** sprite: icons; sprite-image: url('../../../images/sprites/icons.png'); sprite-layout: horizontal */
+span.icon, a.icon {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    text-align: left;
+    text-indent: -9999em;
+}
+
+/* used in pagelist.vm */
+.tabletitleops .icon {
+    width: 12px;
+    height: 12px;
+}
+
+.icon-wait {
+    background-image: url(../../../images/icons/wait.gif); /** sprite-ref: icons; */
+}
+.icon-browse-space {
+    background-image: url(../../../images/icons/browse_space.gif); /** sprite-ref: icons; */
+}
+.icon-add-page {
+    background-image: url(../../../images/icons/add_page_16.gif); /** sprite-ref: icons; */
+}
+.icon-add-page-disabled {
+    background-image: url(../../../images/icons/add_page_faded_16.gif); /** sprite-ref: icons; */
+}
+.icon-add-fav {
+    background-image: url(../../../images/icons/star_grey.gif); /** sprite-ref: icons; */
+}
+.icon-remove-fav {
+    background-image: url(../../../images/icons/star_yellow.gif); /** sprite-ref: icons; */
+}
+.icon-home-page {
+    background-image: url(../../../images/icons/home_16.gif); /** sprite-ref: icons; */
+}
+.icon-recently-updated-page {
+    background-image: url(../../../images/icons/new_16.gif); /** sprite-ref: icons; */
+}
+.icon-page {
+    background-image: url(../../../images/icons/docs_16.gif); /** sprite-ref: icons; */
+}
+.icon-comment {
+    background-image: url(../../../images/icons/comment_16.gif); /** sprite-ref: icons; */
+}
+.icon-space {
+    background-image: url(../../../images/icons/web_16.gif); /** sprite-ref: icons; */
+}
+.icon-personal-space {
+    background-image: url(../../../images/icons/personal_space_16.gif); /** sprite-ref: icons; */
+}
+.icon-user {
+    background-image: url(../../../images/icons/classic/16/28.png); /** sprite-ref: icons; */
+}
+.icon-group {
+    background-image: url(../../../images/icons/classic/16/127.png); /** sprite-ref: icons; */
+}
+.icon-blog {
+    background-image: url(../../../images/icons/blogentry_16.gif); /** sprite-ref: icons; */
+}
+.icon-trackback {
+    background-image: url(../../../images/icons/document_exchange.gif); /** sprite-ref: icons; */
+}
+.icon-mail {
+    background-image: url(../../../images/icons/mail_content_16.gif); /** sprite-ref: icons; */
+}
+.icon-status {
+    background-image: url(../../../images/icons/quotes.png); /** sprite-ref: icons; */
+}
+.icon-show-more {
+    background-image: url(../../../images/icons/add_12.gif); /** sprite-ref: icons; */
+}
+.icon-show-less {
+    background-image: url(../../../images/icons/subtract_12.gif); /** sprite-ref: icons; */
+}
+.icon-file-pdf {
+    background-image: url(../../../images/icons/attachments/pdf.gif); /** sprite-ref: icons; */
+}
+.icon-file-image {
+    background-image: url(../../../images/icons/attachments/image.gif); /** sprite-ref: icons; */
+}
+.icon-file-xml {
+    background-image: url(../../../images/icons/attachments/xml.gif); /** sprite-ref: icons; */
+}
+.icon-file-html {
+    background-image: url(../../../images/icons/attachments/html.gif); /** sprite-ref: icons; */
+}
+.icon-file-java {
+    background-image: url(../../../images/icons/attachments/java.gif); /** sprite-ref: icons; */
+}
+.icon-file-text {
+    background-image: url(../../../images/icons/attachments/text.gif); /** sprite-ref: icons; */
+}
+.icon-file-zip {
+    background-image: url(../../../images/icons/attachments/zip.gif); /** sprite-ref: icons; */
+}
+.icon-file-excel97-template {
+    background-image: url(../../../images/icons/attachments/excel.gif); /** sprite-ref: icons; */
+}
+.icon-file-powerpoint97-template {
+    background-image: url(../../../images/icons/attachments/powerpoint.gif); /** sprite-ref: icons; */
+}
+.icon-file-word97-template {
+    background-image: url(../../../images/icons/attachments/word.gif); /** sprite-ref: icons; */
+}
+.icon-file-excel97 {
+    background-image: url(../../../images/icons/attachments/excel.gif); /** sprite-ref: icons; */
+}
+.icon-file-powerpoint97 {
+    background-image: url(../../../images/icons/attachments/powerpoint.gif); /** sprite-ref: icons; */
+}
+.icon-file-word97 {
+    background-image: url(../../../images/icons/attachments/word.gif); /** sprite-ref: icons; */
+}
+.icon-file-excel-macro {
+    background-image: url(../../../images/icons/attachments/excel.gif); /** sprite-ref: icons; */
+}
+.icon-file-excel {
+    background-image: url(../../../images/icons/attachments/excel.gif); /** sprite-ref: icons; */
+}
+.icon-file-excel-template {
+    background-image: url(../../../images/icons/attachments/excel.gif); /** sprite-ref: icons; */
+}
+.icon-file-powerpoint-macro {
+    background-image: url(../../../images/icons/attachments/powerpoint.gif); /** sprite-ref: icons; */
+}
+.icon-file-powerpoint {
+    background-image: url(../../../images/icons/attachments/powerpoint.gif); /** sprite-ref: icons; */
+}
+.icon-file-powerpoint-slideshow {
+    background-image: url(../../../images/icons/attachments/powerpoint.gif); /** sprite-ref: icons; */
+}
+.icon-file-powerpoint-template {
+    background-image: url(../../../images/icons/attachments/powerpoint.gif); /** sprite-ref: icons; */
+}
+.icon-file-word {
+    background-image: url(../../../images/icons/attachments/word.gif); /** sprite-ref: icons; */
+}
+.icon-file-word-template {
+    background-image: url(../../../images/icons/attachments/word.gif); /** sprite-ref: icons; */
+}
+.icon-file-multimedia {
+    background-image: url(../../../images/icons/attachments/multimedia.png); /** sprite-ref: icons; */
+}
+.icon-file-unknown {
+    background-image: url(../../../images/icons/attachments/file.gif); /** sprite-ref: icons; */
+}
+.icon-people-directory span.icon {
+    background-image: url(../../../images/icons/people_directory_16.png); /** sprite-ref: icons; */
+}
+.icon-rss-feed-small span.icon {
+    background-image: url(../../../images/icons/feed-icon-16x16-small.png); /** sprite-ref: icons; */
+}
+.icon-create-space span.icon {
+    background-image: url(../../../images/icons/add_space_16.gif); /** sprite-ref: icons; */
+}
+.icon-create-user-macro span.icon {
+    background-image: url(../../../images/icons/add_user_macro_16.png); /** sprite-ref: icons; */
+}
+#children-section.children-hidden a.children-show-hide.icon,
+.icon-section-closed {
+    background-image: url(../../../images/icons/grey_arrow_right.gif); /** sprite-ref: icons; */
+}
+#children-section.children-showing a.children-show-hide.icon,
+.icon-section-opened {
+    background-image: url(../../../images/icons/grey_arrow_down.gif); /** sprite-ref: icons; */
+}
+.icon-remove {
+    background-image: url(../../../images/icons/trash_16.gif); /** sprite-ref: icons; */
+}
+.icon-edit {
+    background-image: url(../../../images/icons/edit_pencil.png); /** sprite-ref: icons; */
+}

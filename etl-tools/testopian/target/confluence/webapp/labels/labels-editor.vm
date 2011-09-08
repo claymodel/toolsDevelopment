@@ -1,0 +1,59 @@
+#requireResource("confluence.web.resources:labels-editor")
+#requireResource("confluence.web.resources:aui-forms")
+
+#set( $labels = $helper.viewableLabels )
+
+<fieldset class="hidden parameters">
+    <legend>Labels parameters</legend>
+    <input type="hidden" id="domainName" value="$bootstrap.domainName">
+    <input type="hidden" id="pageId" value="$page.id">
+    <input type="hidden" id="spaceKey" value="$generalUtil.urlEncode($spaceKey)">
+</fieldset>
+
+<div id="labels-section" class="pageSection">
+    <div class="labels-editor">
+        <span id="labels-section-title" class="label-title">
+            $action.getText("labels.title")
+        </span>
+        <div id="labels-section-content" class="content-column">
+            <span id="labels-section-title-none" class="label-title none #if ($labels.size() != 0) hidden #end">
+                $action.getText("labels.none")
+            </span>
+
+            <div id="labelsList" class="label-list">
+                #parse("/labels/labels-list.vm")
+            </div>
+
+            #if( $permissionCheckDispatcher.isPermittedForAjax("addLabelToEntity",[$page]) )
+                <a id="labels-edit" href="#" class="show-labels-editor editor-icon" title="$action.getText('edit.labels.tooltip')">
+                    <span class="icon icon-edit">$action.getText('edit.labels')</span>
+                </a>
+            #end
+        </div>
+
+        <span class="errorMessage error" id="errorSpan"></span>
+        <form method="GET" action="" id="add-labels-form">
+            <div id="labelInputSpan" class="labels-input">
+                <div id="labelOperationErrorContainer" class="hidden">
+                    <span class="error"><span class="errorMessage" id="labelOperationErrorMessage"></span></span>
+                </div>
+
+                <div class="caption">$action.getText("enter.labels.to.add.to.this.page")</div>
+                <div id="label-input-fields">
+                    <input autocomplete="off" id="labelsString" name="labelsString" value="$!labelsString" size="40">
+                    <input id="add-labels-editor-button" type="submit" class="add-labels" value="$action.getText('add.word')">
+                    <input id="close-labels-editor-button" type="submit" class="hide-labels-editor" value="$action.getText('done.word')">
+                </div>
+                <div id="waitImageAndStatus">
+                    <img class="waiting" alt="Please wait" src="$staticResourceUrlPrefix/images/icons/wait.gif">&nbsp;
+                    <span id="labelOperationStatus" class="smalltext"></span>
+                </div>
+                <div id="labelsAutocompleteList" class="aui-dd-parent"></div>
+                <div class="labels-tip">
+                    <div id="suggestedLabelsSpan"></div>
+                    $action.getText("tip.start.typing")
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

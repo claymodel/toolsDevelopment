@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dwr PUBLIC "-//GetAhead Limited//DTD Direct Web Remoting 2.0//EN" "http://getahead.org/dwr//dwr20.dtd">
+<dwr>
+        <allow>
+            <!-- deprecated since 3.3 -->
+            <create creator="spring" javascript="WysiwygConverter">
+              <param name="beanName" value="confluenceWysiwygConverterDWRWrapper"/>
+            </create>
+
+            <!-- deprecated since 3.3 -->
+            <create creator="spring" javascript="AjaxUserProfileEditor">
+              <param name="beanName" value="ajaxUserProfileEditor"/>
+            </create>
+            
+            <convert converter="bean" match="com.atlassian.confluence.util.ajax.AjaxResponse"/>
+            
+            <!--  deprecated since 3.3 -->
+            <convert converter="bean" match="com.atlassian.confluence.pages.DraftData"/>
+            
+            <!--  deprecated since 3.3 -->
+            <convert converter="bean" match="com.atlassian.confluence.core.ActivityAjaxResponse"/>
+
+            <!-- deprecated since 3.3 -->
+            <create creator="spring" javascript="AddLabelToEntity">
+              <param name="beanName" value="addLabelToEntity"/>
+            </create>
+            <!--  deprecated since 3.3 -->
+            <create creator="spring" javascript="RemoveLabelFromEntity">
+              <param name="beanName" value="removeLabelFromEntity"/>
+            </create>
+             <!-- deprecated since 3.3 -->
+            <create creator="spring" javascript="SuggestedLabelsForEntity">
+              <param name="beanName" value="suggestedLabelsForEntity"/>
+            </create>
+            
+            <!-- deprecated since 3.3 -->
+            <create creator="spring" javascript="PageNotification">
+              <param name="beanName" value="pageNotification"/>
+            </create>
+            
+            <!--  deprecated since 3.3 -->
+            <create creator="spring" javascript="DraftAjax">
+              <param name="beanName" value="draftAjax"/>
+            </create>
+            
+            <!--  deprecated since 3.3 -->
+            <create creator="spring" javascript="HeartbeatAjax">
+              <param name="beanName" value="heartbeatAjax"/>
+            </create>
+        </allow>
+</dwr>

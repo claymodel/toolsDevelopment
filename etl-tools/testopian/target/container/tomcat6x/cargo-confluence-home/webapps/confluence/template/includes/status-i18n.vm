@@ -1,0 +1,9 @@
+#if ($action.userStatusPluginEnabled)
+<fieldset class="hidden parameters">
+    <input type="hidden" id="statusDialogHeading" value="$action.getText('status.dialog.heading')">
+    <input type="hidden" id="statusDialogAccessibilityLabel" value="$action.getText('status.accessibility.label')">
+    <input type="hidden" id="statusDialogLatestLabel" value="$action.getText('status.dialog.latest')">
+    <input type="hidden" id="statusDialogUpdateButtonLabel" value="$action.getText('status.dialog.button.update')">
+    <input type="hidden" id="statusDialogCancelButtonLabel" value="$action.getText('cancel.name')">
+</fieldset>
+#end

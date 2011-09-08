@@ -1,0 +1,57 @@
+<script>
+
+    function toogleDisplay(elementId, trigger_element)
+    {
+        var element = document.getElementById(elementId);
+        var trigger = document.getElementById(elementId + '_trigger');
+        if (element.style.display == 'none')
+        {
+            element.style.display = 'block';
+            trigger_element.innerHTML = "&laquo; $action.getText('less.word')";
+        }
+        else
+        {
+            element.style.display = 'none';
+            trigger_element.innerHTML = "$action.getText('more.word') &raquo;";
+        }
+    }
+</script>
+
+
+<div style="margin-top:10px">
+    <div class="borderedGreyBox">
+        <div class="borderedLabelHeading">$action.getText("recent.labels")</div>
+        <div>
+             #foreach($label in $action.getRecentLabels())
+                #if ($velocityCount == 6)
+                    </div>
+                    <div id="extend_recent" style="display:none">
+                #end
+                #labelLink($label)<br/>
+            #end
+        </div>
+        #if ($action.getRecentLabels().size() > 5)
+        <div align="right" style="padding:5px 5px 0px 5px;"><a href="" onClick="toogleDisplay('extend_recent', this); return false;">$action.getText("more.word") &raquo;</a></div>
+        #end
+    </div>
+    <br/>
+    <div class="borderedGreyBox">
+        <div class="borderedLabelHeading">$action.getText("popular.labels")</div>
+        <div>
+             #foreach($labelSearchResult in $action.getPopularLabels())
+                #if ($velocityCount == 6)
+                    </div>
+                    <div id="extend_popular" style="display:none">
+                #end
+                #labelLink($labelSearchResult.label)<br/>
+            #end
+        </div>
+        #if ($action.getPopularLabels().size() > 5)
+        <div align="right" style="padding:5px 5px 0px 5px;"><a href="" onClick="toogleDisplay('extend_popular', this); return false;">$action.getText("more.word") &raquo;</a></div>
+        #end
+    </div>
+</div>
+
+
+
+

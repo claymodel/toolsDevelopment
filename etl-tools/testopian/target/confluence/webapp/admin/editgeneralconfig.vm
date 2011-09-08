@@ -1,0 +1,196 @@
+#* @vtlvariable name="action" type="com.atlassian.confluence.admin.actions.GeneralConfigurationAction" *#
+<html>
+	<head>
+		<title>$action.getText("title.general.config")</title>
+		<meta name="help-path" content="/admin/help/generalconfig.vm"/>
+        <content tag="selectedWebItem">generalconfiguration</content>
+    </head>
+	<body>
+        #requireResource("confluence.web.resources:aui-forms")
+        #requireResource("confluence.sections.admin.generalconfig:resources")
+
+        #parse ( "/template/includes/actionerrors.vm" )
+
+        #if($editMode)
+            #set($formAction="doeditgeneralconfig.action")
+        #else
+            #set($formAction="editgeneralconfig.action")
+        #end
+
+        <form method="POST" class="aui long-label" name="editgeneralconfig" action="$formAction">
+            #form_xsrfToken()
+
+            <fieldset class="hidden parameters">
+                <input type="hidden" id="editMode" value="$editMode">
+            </fieldset>
+
+            ##Site Configuration
+            #if(!$editMode)<a href="$req.contextPath/admin/editgeneralconfig.action" class="edit-link">$action.getText("edit.name")</a>#end
+            <h2>$action.getText("sub.title.site")</h2>
+            <p>$action.getText("sub.title.site.description")</p>
+            #bodytag( "TextField" "label='site.title'" "name='siteTitle'" "value=siteTitle" "theme='aui'")
+                #param("longField" "true")
+            #end
+
+            <div id="urlWarning" class="hidden warning-message">
+                $action.getText("warning.domain.name.match") <a href="$action.getText('url.confluence.atlassian')/display/CONFKB/Various+issues+Caused+when+Server+Base+URL+does+not+Match+the+URL+used+to+access+Confluence"> $action.getText("warning.domain.name.match.kb")</a>
+            </div>
+            #bodytag( "TextField" "id=editbaseurl" "label='domain.name'" "name='domainName'" "value=domainName" "disabled=!$systemAdmin" "theme='aui'")
+                #param("longField" "true")
+            #end
+
+            #tag( "Select" "label='site.homepage'" "name='siteHomePage'" "list=siteHomePages" "listKey=key" "listValue=value" "theme='aui'")
+            #if ($editMode)
+                #bodytag( "Textarea" "label='site.welcomemessage'" "name='siteWelcomeMessage'" "rows=5" "cols=72"  "theme='aui'")
+                    #param("inlineText" "$action.getText('site.welcomemessage.help')")
+                #end
+                #tag( "Textarea" "label='site.custom.contact.admin.message'" "name='customContactAdminMessage'" "rows=5" "cols=72" "theme='aui'")
+            #else
+                <div class="field-group">
+                    <label>$action.getText("site.welcomemessage")</label>
+                    <div class="welcome-message">$!action.renderedSiteWelcomeMessage</div>
+                </div>
+                <div class="field-group">
+                    <label>$action.getText("site.custom.contact.admin.message")</label>
+                    <div>$!action.renderedCustomErrorMessage</div>
+                </div>
+            #end
+            #tag( "Component" "label='site.custom.contact.admin.form'" "name='showContactAdministratorsForm'" "value=showContactAdministratorsForm" "theme='aui'" "template='onofflist.vm'")
+            #bodytag( "TextField" "label='site.supportaddress'" "name='$action.getText('mailto.confluence.auto.support.requests')'" "theme='aui'" "value='$action.getText('mailto.confluence.auto.support.requests')'" "disabled=!$siteSupportEmailAllowed")
+                #param("longField" "true")
+            #end
+
+            ##Feature Settings
+            #if($editMode)
+                <a name="features"></a>
+            #else
+                <a href="$req.contextPath/admin/editgeneralconfig.action#features" class="edit-link">$action.getText("edit.name")</a>
+            #end
+            <h2>$action.getText("sub.title.features")</h2>
+            #if ($systemAdmin)
+                <p>$action.getText("sub.title.features.description", [ "$req.contextPath/plugins/servlet/upm" ])</p>
+            #end
+            #tag( "Component" "label='view.space.goes.to.browse.space'" "name='viewSpaceGoesToSpaceSummary'" "value=viewSpaceGoesToSpaceSummary" "theme='aui'" "template='onofflist.vm'")
+            #tag( "Component" "label='enable.wysiwyg'" "name='enableWysiwyg'" "value=enableWysiwyg" "theme='custom'" "template='onofflist.vm'" "theme='aui'")
+            #tag( "Component" "label='use.wysiwyg.by.default'" "name='useWysiwygByDefault'" "value=useWysiwygByDefault" "theme='custom'" "template='onofflist.vm'" "theme='aui'")
+            #tag( "Component" "label='allow.camel.case'" "name='allowCamelCase'" "value=allowCamelCase" "theme='custom'" "template='onofflist.vm'" "theme='aui'")
+            #tag( "Component" "label='allow.threaded.comments'" "name='allowThreadedComments'" "value=allowThreadedComments" "theme='custom'" "template='onofflist.vm'" "theme='aui'")
+            #tag( "Component" "label='allow.trackbacks'" "name='allowTrackbacks'" "value=allowTrackbacks" "theme='custom'" "template='onofflist.vm'" "theme='aui'")
+            #tag( "Component" "label='allow.remoteapi'" "name='allowRemoteApi'" "value=allowRemoteApi" "theme='custom'" "template='onofflist.vm'" "disabled=!$systemAdmin" "theme='aui'")
+            #tag( "Component" "label='gzip.response.encoding'" "name='gzipResponseEncoding'" "value=gzipResponseEncoding" "theme='custom'" "template='onofflist.vm'" "theme='aui'")
+            #tag( "Component" "label='open.search'" "name='enableOpenSearch'" "value=enableOpenSearch" "theme='aui'" "template='onofflist.vm'")
+            #tag( "Component" "label='javascript.top'" "name='enableJavascriptTop'" "value=enableJavascriptTop" "theme='aui'" "template='onofflist.vm'")
+            #tag( "Component" "label='display.link.icons'" "name='displayLinkIcons'" "value=displayLinkIcons" "theme='aui'" "template='onofflist.vm'")
+
+            #if ($editMode)
+            #set($didYouMeanDesc = $action.getText('did.you.mean.to.enable', ["<a href='${req.contextPath}/admin/search-indexes.action'>", '</a>']))
+            #end
+            #bodytag ("Component" "label='did.you.mean.only.english.supported'" "name='enableDidYouMean'" "value=enableDidYouMean" "template='onofflist.vm'" "theme='aui'")
+                #param("description" "$!didYouMeanDesc")
+            #end
+            #if ($action.didYouMeanIndexExists()) <input type="hidden" id="dymIndexExists" value="true"/> #end
+
+            <div class="field-group">
+                #if($editMode)
+                    #bodytag( "Component" "label='draft.save.interval'" "name='draftSaveIntervalMinutes'" "value=draftSaveIntervalMinutes" "template='text-inline.vm'" "theme='aui'")
+                        #param("shortField" "true")
+                        #param("inlineText" "$action.getText('draft.save.interval.mins')")
+                    #end
+                    #bodytag( "Component" "label=''" "name='draftSaveIntervalSeconds'" "value=draftSaveIntervalSeconds" "template='text-inline.vm'" "theme='aui'")
+                        #param("shortField" "true")
+                        #param("inlineText" "$action.getText('draft.save.interval.secs')")
+                    #end
+                #else
+                    <label for="draftSaveIntervalMinutes">$action.getText("draft.save.interval")</label>
+                    <span id="draftSaveIntervalMinutes" class="field-value">$!action.niceDraftSaveInterval</span>
+                #end
+            </div>
+            #bodytag( "TextField" "id=numberOfBreadcrumbAncestors" "label='numberOfBreadcrumbAncestors'" "name='numberOfBreadcrumbAncestors'" "value=numberOfBreadcrumbAncestors" "theme='aui'")
+                #param("shortField" "true")
+            #end
+
+            <fieldset class="group">
+                <legend><span>$action.getText("quick.nav")</span></legend>
+                #tag( "Component" "label='enable.name'" "name='enableQuickNav'" "value=enableQuickNav" "theme='aui'" "template='onofflist-include.vm'")
+                ## Not normal AUI form markup, but the maxSimultaneousQuickNavRequests field needs to be associated with the above checkbox
+                #if($editMode)
+                    <input name="maxSimultaneousQuickNavRequests" id="maxSimultaneousQuickNavRequests" value="$maxSimultaneousQuickNavRequests" class="text short-field " type="text">
+                    <span  class="inline-text">$action.getText('quick.nav.max.simultaneous.requests')</span>
+                #else
+                    #if($action.enableQuickNav)
+                        <label for="maxSimultaneousQuickNavRequests">($action.getText("quick.nav.max.simultaneous.requests"): $!action.maxSimultaneousQuickNavRequests)</label>
+                    #end
+                #end
+            </fieldset>
+
+            ##Formatting and International Settings
+            #if($editMode)
+                <a name="formatting"></a>
+            #else
+                <a href="$req.contextPath/admin/editgeneralconfig.action#formatting" class="edit-link">$action.getText("edit.name")</a>
+            #end
+
+            <h2>$action.getText("sub.title.formatting")</h2>
+            <p>$action.getText("sub.title.formatting.description", [ "$req.contextPath/admin/configurelanguage.action" ])</p>
+            #tag( "Select" "label='indexing.language'" "name='indexingLanguage'" "list=indexingLanguages" "listKey=key" "listValue=value" "theme='aui'" )
+            #tag( "TextField" "label='defaultEncoding'" "name='defaultEncoding'" "value=defaultEncoding" "theme='aui'" )
+            #tag( "TextField" "label='defaultTimeFormatterPattern'" "name='defaultTimeFormatterPattern'" "value=defaultTimeFormatterPattern" "theme='aui'" )
+            #tag( "TextField" "label='defaultDateTimeFormatterPattern'" "name='defaultDateTimeFormatterPattern'" "value=defaultDateTimeFormatterPattern" "theme='aui'" )
+            #tag( "TextField" "label='defaultDateFormatterPattern'" "name='defaultDateFormatterPattern'" "value=defaultDateFormatterPattern" "theme='aui'" )
+            #tag( "TextField" "label='defaultLongNumberFormatterPattern'" "name='defaultLongNumberFormatterPattern'" "value=defaultLongNumberFormatterPattern" "theme='aui'" )
+            #tag( "TextField" "label='defaultDecimalNumberFormatterPattern'" "name='defaultDecimalNumberFormatterPattern'" "value=defaultDecimalNumberFormatterPattern" "theme='aui'")
+
+            ##Attachment Settings
+            #if($editMode)
+                <a name="attachments"></a>
+            #else
+                <a href="$req.contextPath/admin/editgeneralconfig.action#attachments" class="edit-link">$action.getText("edit.name")</a>
+            #end
+            <h2>$action.getText("sub.title.attachment")</h2>
+            #if ($systemAdmin)
+                <p>$action.getText("sub.title.attachment.description", [ "$req.contextPath/admin/attachmentstoragesetup.action" ])</p>
+            #end
+            #if ($editMode)
+                #set($attachmentValue = $action.attachmentMaxSize)
+            #else
+                #set($attachmentValue = $action.niceAttachmentMaxSize)
+            #end
+            #bodytag( "TextField" "label='attachment.max.size'" "name='attachmentMaxSize'" "value='$attachmentValue'" "theme='aui'" )
+                #param("shortField" "true")
+                #param("inlineText" "$action.getText('attachment.maximum.size.unit')")
+            #end
+            #bodytag( "TextField" "label='attachment.max.upload'" "name='maxAttachmentsInUI'" "value=maxAttachmentsInUI" "theme='aui'" )
+                #param("shortField" "true")
+            #end
+            #bodytag( "TextField" "label='thumbnail.max.height'" "name='maxThumbHeight'" "value=maxThumbHeight" "theme='aui'" )
+                #param("shortField" "true")
+            #end
+            #bodytag( "TextField" "label='thumbnail.max.width'" "name='maxThumbWidth'" "value=maxThumbWidth" "theme='aui'" )
+                #param("shortField" "true")
+            #end
+
+            ##Connection Timeouts
+            #if($editMode)
+                <a name="timeouts"></a>
+            #else
+                <a href="$req.contextPath/admin/editgeneralconfig.action#timeouts" class="edit-link">$action.getText("edit.name")</a>
+            #end
+            <h2>$action.getText('timeouts.heading')</h2>
+            #tag( "Component" "label='timeouts.enabled'" "name='connectionsEnabled'" "value=connectionsEnabled" "theme='aui'" "template='onofflist.vm'" "disabled=!$systemAdmin")
+            #bodytag( "TextField" "id=connectionTimeouts" "label='timeouts.connectionTimeout'" "name='connectionTimeout'" "value=connectionTimeout" "disabled=!$systemAdmin" "theme='aui'")
+                #param("shortField" "true")
+            #end
+            #bodytag( "TextField" "id=socketTimeouts" "label='timeouts.socketTimeout'" "name='socketTimeout'" "value=socketTimeout" "disabled=!$systemAdmin" "theme='aui'" )
+                #param("shortField" "true")
+            #end
+
+            ## Buttons
+            #bodytag( "Submit" "theme='aui'" )
+                #param ("submitValue" "$action.getText('update.name')")
+                #param ("cancelValue" "$action.getText('cancel.name')")
+            #end
+        </form>
+
+		#parse("/breadcrumbs.vm")
+	</body>
+</html>

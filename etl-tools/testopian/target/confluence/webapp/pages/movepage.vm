@@ -1,0 +1,52 @@
+<html>
+
+    <!-- This page no longer seems to be used -->
+
+    <head>
+		<title>$action.getText("title.move.page") - $!title</title>
+		<meta name="help-path" content="/pages/help/movepage.vm"/>
+	</head>
+
+	<body>
+		#parse ( "/template/includes/actionerrors.vm" )
+        #parse("/includes/alert-locked.vm")
+
+        <div class="centered">
+            <table class="grid" width="90%">
+                <form name="movepageform" method="POST" action="handlenameconflicts.action?pageId=$page.id">
+                    <tr>
+                        <td colspan="2" class="infocell">
+                            <strong>1.</strong> $action.getText("select.a.new.space")
+                        </td>
+                    </tr>
+                    #bodytag ("Select" "label='dest.space'" "name='newSpaceKey'" "list=availableSpaces" "listKey=key" "listValue=name")
+                        #param ("headerKey" "")
+                        #param ("headerValue" "-- Select Space --")
+                    #end
+
+                    <tr>
+                        <td colspan="2" class="infocell">
+                            <strong>2.</strong> $action.getText("select.a.new.title")
+                        </td>
+                    </tr>
+                    #tag ("TextField" "name='newPageTitle'" "label='page.new.title'")
+
+                    #* only show the move all child pages option if the page actually has children *#
+                    #if ($page.children.size() > 0)
+                        #tag ("Checkbox" "name='moveHierarchy'" "label='move.child.pages'")
+                    #end
+                    
+                    #tag ("Checkbox" "name='updateLinks'" "label='update.links'")
+                    <tr>
+                        <td colspan="2" align="center">
+                            #tag ("Submit" "name='confirm'" "value='move.name'" "theme='notable'" )
+                            #tag ("Submit" "name='cancel'" "value='cancel.name'" "theme='notable'" )
+                        </td>
+                    </tr>
+                </form>
+            </table>
+        </div>
+		#parse ( "/pages/page-breadcrumbs.vm" )
+		#parse ( "/pages/page-operations.vm" )
+	</body>
+</html>

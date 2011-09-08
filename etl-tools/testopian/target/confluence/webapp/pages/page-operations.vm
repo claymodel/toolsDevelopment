@@ -1,0 +1,141 @@
+
+<!-- This page no longer seems to be used -->
+
+<content tag="operations.title">$action.getText('page.operations')</content>
+
+<content tag="operations">
+<div class="operations">
+<ul>
+    #if( $page.locks.size() > 0)
+    <li><a href="$req.contextPath/pages/viewinfo.action?pageId=$page.id#locks"><img src="$staticResourceUrlPrefix/images/icons/lock_16.gif" height="16" width="16" border="0" align="absmiddle" title="${stack.findValue('getText("locked.page.title")')}"></a><span class="label">
+    <a href="$req.contextPath/pages/viewinfo.action?pageId=$page.id#locks">$action.getText("locked.page.title")</a></span></li>
+    #end
+
+    #if( $permissionCheckDispatcher.isPermitted("/pages/editpage.action?pageId=$page.id") )
+    <li><a href="$req.contextPath/pages/editpage.action?pageId=$page.id" accesskey="e"><img src="$staticResourceUrlPrefix/images/icons/edit_only_16.gif" height=16 width=16 border=0 align=absmiddle title="${stack.findValue('getText("edit.page.name")')}"></a><span class="label">
+    <a href="$req.contextPath/pages/editpage.action?pageId=$page.id">$action.getText("edit.page.name")</a></span></li>
+    #end
+
+    #if( $permissionCheckDispatcher.isPermitted("/pages/viewinfo.action?pageId=$page.id") )
+    <li><a href="$req.contextPath/pages/viewinfo.action?pageId=$page.id" accesskey="i"><img src="$staticResourceUrlPrefix/images/icons/about_16.gif" height=16 width=16 border=0 align=absmiddle title="${stack.findValue('getText("page.info")')}"></a><span class="label">
+    <a href="$req.contextPath/pages/viewinfo.action?pageId=$page.id">$action.getText("page.info")</a></span></li>
+    #end
+
+    #if( $permissionCheckDispatcher.isPermitted("/pages/viewpreviousversions.action?pageId=$page.id") )
+    <li><a href="$req.contextPath/pages/viewpreviousversions.action?pageId=$page.id"><img src="$staticResourceUrlPrefix/images/icons/history_16.gif" height=16 width=16 border=0 align=absmiddle title="$action.getText("action.view.previous.versions")"></a><span class="label">
+    <a href="$req.contextPath/pages/viewpreviousversions.action?pageId=$page.id">$action.getText("action.view.previous.versions")</a></span></li>
+    #end
+
+    #if( $previousLoginDate && $page.lastModificationDate.after($previousLoginDate) && $permissionCheckDispatcher.isPermitted("/pages/viewchangessincelastlogin.action?pageId=$page.id") )
+    <li><a href="$req.contextPath/pages/viewchangessincelastlogin.action?pageId=$page.id"><img src="$staticResourceUrlPrefix/images/icons/history_16.gif" height=16 width=16 border=0 align=absmiddle title="$action.getText("action.view.changes.since.last.login")"></a><span class="label">
+    <a href="$req.contextPath/pages/viewchangessincelastlogin.action?pageId=$page.id">$action.getText("action.view.changes.since.last.login")</a></span></li>
+    #end
+
+    ##note - renamepage perm. is delegated to the createpage perm., which decides perm.s for creating and editing pages
+    #if( $permissionCheckDispatcher.isPermitted("/pages/editpage.action?pageId=$page.id") )
+    <li><a href="$req.contextPath/pages/renamepage.action?pageId=$page.id"><img src="$staticResourceUrlPrefix/images/icons/move_16.gif" height=16 width=16 border=0 align=absmiddle title="${stack.findValue('getText("rename.page.name")')}"></a>
+    <a href="$req.contextPath/pages/renamepage.action?pageId=$page.id">$action.getText("rename.page.name")</a></li>
+    #end
+
+    ##note - movepage perm. is delegated to the createpage perm., which decides perm.s for creating and editing pages
+    #if( $permissionCheckDispatcher.isPermitted("/pages/editpage.action?pageId=$page.id") )
+    <li><a href="$req.contextPath/pages/movepage.action?pageId=$page.id"><img src="$staticResourceUrlPrefix/images/icons/move_16.gif" height=16 width=16 border=0 align=absmiddle title="${stack.findValue('getText("move.page.name")')}"></a>
+    <a href="$req.contextPath/pages/movepage.action?pageId=$page.id">$action.getText("move.page.name")</a></li>
+    #end
+
+    #if( $permissionCheckDispatcher.isPermitted("/pages/removepage.action?pageId=$page.id") )
+	<li><a href="$req.contextPath/pages/removepage.action?pageId=$page.id"><img src="$staticResourceUrlPrefix/images/icons/trash_16.gif" height=16 width=16 border=0 align=absmiddle title="${stack.findValue('getText("remove.page.name")')}"></a><span class="label">
+    <a href="$req.contextPath/pages/removepage.action?pageId=$page.id">$action.getText("remove.page.name")</a></span></li>
+    #end
+
+    #if( $permissionCheckDispatcher.isPermitted("/pages/exportpage.action?pageId=$page.id") )
+    <li><a href="$req.contextPath/pages/exportpage.action?pageId=$page.id"><img src="$staticResourceUrlPrefix/images/icons/exp_16.gif" height=16 width=16 border=0 align=absmiddle title="${stack.findValue('getText("export.page.name")')}"></a><span class="label">
+    <a href="$req.contextPath/pages/exportpage.action?pageId=$page.id">$action.getText("export.page.name")</a></span></li>
+    #end
+
+    ##note - movepage perm. is delegated to the createpage perm., which decides perm.s for creating and editing pages
+    #if( $page.locks.size() == 0 && $permissionCheckDispatcher.isPermitted("/pages/editpage.action?pageId=$page.id"))
+    <li><a href="$req.contextPath/pages/lockpage.action?pageId=$page.id"><img src="$staticResourceUrlPrefix/images/icons/lock_16.gif" height="16" width="16" border="0" align="absmiddle" title="${stack.findValue('getText("permission.page.title")')}"></a><span class="label">
+    <a href="$req.contextPath/pages/lockpage.action?pageId=$page.id">$action.getText("permission.page.title")</a></span></li>
+    #end
+
+    #if(!$action.anonymousUser && $actionErrors.size() == 0)
+        #if(!$action.userWatchingSpace)
+            #if($action.userWatchingPage)
+                #if( $permissionCheckDispatcher.isPermitted("/pages/removepagenotification.action?pageId=$page.id") )
+                <li><a href="$req.contextPath/pages/removepagenotification.action?pageId=$page.id"><img src="$staticResourceUrlPrefix/images/icons/watch_cancel_16.gif" height=16 width=16 border=0 align=absmiddle title="${stack.findValue('getText("remove.page.notification")')}"></a><span class="label">
+                <a href="$req.contextPath/pages/removepagenotification.action?pageId=$page.id">$action.getText("remove.page.notification")</a></span></li>
+                #end
+            #else
+                #if( $permissionCheckDispatcher.isPermitted("/pages/addpagenotification.action?pageId=$page.id") )
+                <li><a href="$req.contextPath/pages/addpagenotification.action?pageId=$page.id"><img src="$staticResourceUrlPrefix/images/icons/watch_16.gif" height=16 width=16 border=0 align=absmiddle title="${stack.findValue('getText("add.page.notification")')}"></a><span class="label">
+                <a href="$req.contextPath/pages/addpagenotification.action?pageId=$page.id">$action.getText("add.page.notification")</a></span></li>
+                #end
+            #end
+        #end
+    #end
+</ul>
+    #*parse ('/includes/common-page-space-operations.vm')*#
+</div>
+</content>
+
+
+<content tag="incoming-links">
+    #if ($incomingLinks.size() > 0)
+        <p>
+            <div class="infopanel-heading">$action.getText("action.page.incoming.links"):
+            #if( $permissionCheckDispatcher.isPermitted("/pages/viewinfo.action?pageId=$page.id") )
+                <span class="smallfont">(<a href="$req.contextPath/pages/viewinfo.action?pageId=$page.id#incoming">more</a>)</span>
+            #end
+            </div>
+            #foreach ($link in $incomingLinks)
+                #contentLink2 ($link.sourceContent true false)<br />
+            #end
+        </p>
+    #end
+</content>
+
+<content tag="trackbacks">
+    #if ($page.trackbackLinks.size() > 0)
+        <p>
+            <div class="infopanel-heading">$action.getText("action.page.trackback.links"):</div>
+            #foreach ($tbl in $page.trackbackLinks)
+                #contentIcon ($tbl) <a href="$tbl.url">$generalUtil.wordWrap($tbl.title, 32)</a><br/>
+            #end
+        </p>
+    #end
+</content>
+
+<content tag="referrers">
+   #if (!$settingsManager.getGlobalSettings().getReferrerSettings().isHideExternalReferrers() && $hotReferrers.size() > 0)
+        <p>
+            <div class="infopanel-heading">$action.getText("action.page.hot.referrers"):
+            #if( $permissionCheckDispatcher.isPermitted("/pages/viewinfo.action?pageId=$page.id") )
+                <span class="smallfont">(<a href="$req.contextPath/pages/viewinfo.action?pageId=$page.id#referers">more</a>)</span>
+            #end
+            </div>
+            <span class="smallerfont">
+            #foreach ($referer in $hotReferrers)
+                <a href="$referer.url" title="$referer.url">$generalUtil.displayShortUrl($referer.url)</a> ($referer.viewCount)
+                #if( $permissionCheckDispatcher.isPermitted("/admin/ban_referrer_pageinfo.action") )
+                    <a title="$action.getText("delete.referer")" href="$req.contextPath/admin/add_referrer_to_excludelist.action?referrerToExclude=$referer.url"><img src="$staticResourceUrlPrefix/images/icons/del_16.gif" width="8" height="8" border="0"></a>
+                #end<br/>
+            #end
+            </span>
+        </p>
+    #end
+</content>
+
+<content tag="external-references">
+    #if ($externalReferences.size() > 0)
+        <p>
+            <div class="infopanel-heading">$action.getText("action.page.external.refs"):</div>
+            <span class="smallerfont">
+            #foreach ($link in $externalReferences)
+               $action.renderExternalLink($link)<br/>
+            #end
+            </span>
+        </p>
+    #end
+    </div>
+</content>

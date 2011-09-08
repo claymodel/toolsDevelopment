@@ -1,0 +1,30 @@
+            <tr bgcolor=ffffff>
+                <td>||heading 1||heading 2||heading 3||
+                    <br/>|col A1|col A2|col A3|
+                    <br/>|col B1|col B2|col B3|
+                </td>
+                <td>$action.getText('table.desc')
+                    <p>
+                $action.getText('table.looks.like')
+                        <div align=center>
+                            <table class="wikitable">
+                                <tr>
+                                    <th>heading 1</th>
+                                    <th>heading 2</th>
+                                    <th>heading 3</th>
+                                </tr>
+                                <tr>
+                                    <td>col A1</td>
+                                    <td>col A2</td>
+                                    <td>col A3</td>
+                                </tr>
+                                <tr>
+                                    <td>col B1</td>
+                                    <td>col B2</td>
+                                    <td>col B3</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </p>
+                </td>
+            </tr>

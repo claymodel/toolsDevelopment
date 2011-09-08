@@ -1,0 +1,36 @@
+            <tr bgcolor=ffffff>
+                <td>h1. $action.getText('h1.desc')</td>
+                <td>
+                    <h1 class="heading1">$action.getText('h1.desc')</h1>
+                </td>
+            </tr>
+            <tr bgcolor=ffffff>
+                <td>h2. $action.getText('h2.desc')</td>
+                <td>
+                    <h2 class="heading2"> $action.getText('h2.desc')</h2>
+                </td>
+            </tr>
+            <tr bgcolor=ffffff>
+                <td>h3. $action.getText('h3.desc')</td>
+                <td>
+                    <h3 class="heading3"> $action.getText('h3.desc')</h3>
+                </td>
+            </tr>
+            <tr bgcolor=ffffff>
+                <td>h4. $action.getText('h4.desc')</td>
+                <td>
+                    <h4 class="heading4"> $action.getText('h4.desc')</h4>
+                </td>
+            </tr>
+            <tr bgcolor=ffffff>
+                <td>h5. $action.getText('h5.desc')</td>
+                <td>
+                    <h5 class="heading5"> $action.getText('h5.desc')</h5>
+                </td>
+            </tr>
+            <tr bgcolor=ffffff>
+                <td>h6. $action.getText('h6.desc')</td>
+                <td>
+                    <h6 class="hweading6"> $action.getText('h6.desc')</h6>
+                </td>
+            </tr>

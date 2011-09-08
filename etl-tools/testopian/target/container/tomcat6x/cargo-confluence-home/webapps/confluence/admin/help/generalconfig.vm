@@ -1,0 +1,157 @@
+$action.getText('generalconfig.help.description')
+<!-- Site -->
+<p>
+    <strong>$action.getText('generalconfig.site.title'):</strong><br>
+    $action.getText('generalconfig.site.title.description')
+    <br>
+    $action.getText('default.confluence')
+</p>
+<p>
+    <strong>$action.getText('generalconfig.site.homepage'):</strong><br>
+    $action.getText('generalconfig.site.homepage.description')
+    <br>
+    $action.getText('default.dashboard')
+</p>
+<p>
+    <strong>$action.getText('site.welcome.message'):</strong><br>
+    $action.getText('site.welcome.message.description')
+    <br>
+    #doc("help.editing.site.welcome.message" "$action.getText('more.about.site.welcome.message')")
+</p>
+
+<p>
+    <strong>$action.getText('site.custom.contact.admin.message.summary'):</strong><br>
+    $action.getText('site.custom.contact.admin.message.description')
+</p>
+
+<p>
+    <strong>$action.getText('view.space.goes.to.summary'):</strong><br>
+    $action.getText('view.space.goes.to.summary.description')
+    <br>
+    $action.getText('default.off')
+</p>
+
+<p>
+    <strong>$action.getText('site.custom.contact.admin.form.summary'):</strong><br>
+    $action.getText('site.custom.contact.admin.form.description')
+    <br>
+    $action.getText('default.on')
+</p>
+
+<p>
+    <strong>$action.getText('site.supportaddress'):</strong><br>
+    $action.getText('site.supportaddress.description')
+</p>
+
+<!-- Features -->
+<p>
+    <strong>$action.getText('enable.rich.text'):</strong><br>
+    $action.getText('rich.text.description')
+    <br>
+    $action.getText('default.on')
+    <br>
+    #doc("help.rich.text.editor.overview" "$action.getText('more.about.rich.text')")
+</p>
+
+<p>
+  <strong>$action.getText('rich.text.default')</strong><br>
+  $action.getText('rich.text.default.description')
+  <br>
+  $action.getText('default.on')
+  <br>
+</p>
+
+<p>
+    <strong>$action.getText('camel.case.links'):</strong><br>
+    $action.getText('camel.case.description')
+    <br>
+    $action.getText('default.off')
+    <br>
+    #doc("help.enabling.camel.case.linking" "$action.getText('more.about.camel.casing')")
+</p>
+
+<p>
+    <strong>$action.getText('threaded.comments'):</strong><br>
+    $action.getText('threaded.comments.description')
+    <br>
+    $action.getText('default.threaded')
+</p>
+
+<p>
+    <strong>$action.getText('trackback.name'):</strong><br>
+    $action.getText('trackback.description')
+    <br>
+    $action.getText('default.off')
+    <br>
+    #doc("help.enabling.trackback" "$action.getText('more.about.trackback')")
+
+</p>
+
+<p>
+    <strong>$action.getText('remote.api.name'):</strong><br>
+    $action.getText('remote.api.description')
+    <br>
+    $action.getText('default.on')
+    <br>
+    <a href="http://confluence.atlassian.com/display/CONFDEV/Remote+API+Specification">$action.getText('more.about.remote.api')</a>
+
+</p>
+
+<p>
+    <strong>$action.getText('draft.save.interval'):</strong><br>
+    $action.getText('draft.save.interval.description')
+    <br>
+    $action.getText('default.30.seconds')
+</p>
+
+<p>
+    <strong>$action.getText('javascript.top'):</strong><br>
+    $action.getText('javascript.top.description')
+    <br>
+    $action.getText('default.on')
+</p>
+
+<p>
+    <strong>$action.getText('attachment.maximum.size'):</strong><br>
+    $action.getText('attachment.maximum.size.description')
+    <br>
+    $action.getText('default.10mb')
+</p>
+
+<p>
+    <strong>$action.getText('generalconfig.indexing.language'): </strong><br>
+  $action.getText('generalconfig.indexing.language.description')
+  <br>
+  $action.getText('default.english')
+</p>
+
+<p>
+    <strong>$action.getText('global.default.language'):</strong><br>
+    $action.getText('global.default.language.description')
+   <br>
+    $action.getText('default.english')
+    <br>
+</p>
+<p>
+    <strong>$action.getText('server.base.url'):</strong><br>
+    $action.getText('server.base.url.description')
+    <br>
+    #doc("help.configure.server.URL" "$action.getText('more.about.server.base.url')")
+</p>
+<p>
+    <strong>$action.getText('formatting.name')</strong><br>
+     $action.getText('formatting.description')
+    <br>
+    #doc("help.configure.time.date.format" "$action.getText('more.about.formatting')")
+</p>
+<p>
+    <strong>$action.getText('display.link.icons')</strong><br>
+     $action.getText('display.link.icons.description')
+</p>
+<p>
+    <strong>$action.getText('thumbnails.name'):</strong><br>
+    $action.getText('thumbnails.description')
+   <br>
+    $action.getText('default.200.by.200')
+    <br>
+</p>

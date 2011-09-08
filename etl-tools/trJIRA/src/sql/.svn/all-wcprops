@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 35
+/svn/!svn/ver/17/trunk/jfdd/src/sql
+END
+01_alter_fddpma_schema.sql
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/17/trunk/jfdd/src/sql/01_alter_fddpma_schema.sql
+END
+02_update_fddpma_project.sql
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/17/trunk/jfdd/src/sql/02_update_fddpma_project.sql
+END

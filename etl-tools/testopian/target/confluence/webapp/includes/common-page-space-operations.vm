@@ -1,0 +1,24 @@
+<ul>
+    #if ($space.homePage)
+        <li><a href="$req.contextPath$generalUtil.getPageUrl($space.homePage)"><img src="$staticResourceUrlPrefix/images/icons/home_16.gif" height=16 width=16 border=0 align=absmiddle title="$action.getText("action.space.home")"></a>
+        <a href="$req.contextPath$generalUtil.getPageUrl($space.homePage)">$action.getText("action.space.home")</a></li>
+    #end
+    #if( $permissionCheckDispatcher.isPermitted("/spaces/viewspacesummary.action?key=$space.key") )
+        <li><a href="$req.contextPath/spaces/viewspacesummary.action?key=$generalUtil.urlEncode($space.key)"><img src="$staticResourceUrlPrefix/images/icons/web_16.gif" height=16 width=16 border=0 align=absmiddle title="$action.getText("action.space.summary")"></a>
+        <a href="$req.contextPath/spaces/viewspacesummary.action?key=$generalUtil.urlEncode($space.key)">$action.getText("action.space.summary")</a></li>
+    #end
+    #if( $permissionCheckDispatcher.isPermitted("/pages/createpage.action?spaceKey=$space.key") )
+        <li><a href="$req.contextPath/pages/createpage.action?spaceKey=$generalUtil.urlEncode($space.key)"><img src="$staticResourceUrlPrefix/images/icons/add_page_16.gif" height=16 width=16 border=0 align=absmiddle title="$action.getText("action.add.page")"></a>
+        <a href="$req.contextPath/pages/createpage.action?spaceKey=$generalUtil.urlEncode($space.key)">$action.getText("action.add.page")</a></li>
+
+        #if ($page.type == "page")
+            <li><a href="$req.contextPath/pages/createpage.action?spaceKey=$generalUtil.urlEncode($space.key)&fromPageId=$page.id"><img src="$staticResourceUrlPrefix/images/icons/add_page_child_16.gif" height=16 width=16 border=0 align=absmiddle title="$action.getText("action.add.page.child")"></a>
+            <a href="$req.contextPath/pages/createpage.action?spaceKey=$generalUtil.urlEncode($space.key)&fromPageId=$page.id">$action.getText("action.add.page.child")</a></li>
+        #end
+    #end
+    
+    #if( $permissionCheckDispatcher.isPermitted("/pages/createblogpost.action?spaceKey=$space.key") )
+        <li><a href="$req.contextPath/pages/createblogpost.action?spaceKey=$generalUtil.urlEncode($space.key)&fromPageId=$page.id"><img src="$staticResourceUrlPrefix/images/icons/add_blogentry_16.gif" height=16 width=16 border=0 align=absmiddle title="$action.getText("action.add.blogpost")"></a>
+        <a href="$req.contextPath/pages/createblogpost.action?spaceKey=$generalUtil.urlEncode($space.key)&fromPageId=$page.id">$action.getText("action.add.blogpost")</a></li>
+    #end
+</ul>

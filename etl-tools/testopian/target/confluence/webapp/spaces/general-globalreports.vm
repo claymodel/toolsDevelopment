@@ -1,0 +1,7 @@
+#set ($globalReports = $action.getText("global-reports"))
+#set ($remoteUser = $action.remoteUser)
+#set ($orphanedPages = $action.getText("action.orphaned.pages"))
+#set ($undefinedPages = $action.getText("action.undefined.pages"))
+#set ($spaceRSS = $action.getText("action.space.rss"))
+
+#parse ("spaces/globalreports.vm")

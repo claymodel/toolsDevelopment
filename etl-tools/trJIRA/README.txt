@@ -1,0 +1,65 @@
+#JFDD - JIRA to FDDPMA Synchronisation
+
+= Introduction =
+
+This project updates FDDPMA with JIRA features. It makes the best of both worlds
+when it comes to FDD with JIRA and FDDPMA. When a item is created in JIRA, JFDD reads 
+the JIRA record and creates or updates the item in FDDPMA.
+
+JFDD automatically works out the planned dates in FDDPMA by using the Original Estimates
+field within JIRA.
+
+
+= Installation =
+
+These steps should be performed by someone who knows JIRA and FDDPMA well.
+
+ # Upgrade the JIRA plugin that provide remote RPC access. This file has been modified to include missing fields, namely Original Estimate.
+  # Stop JIRA
+  # copy `atlassian-jira-rpc-plugin-3.13.4-1.jar` to `C:\Program Files\JIRA-Enterprise-3.13.4\atlassian-jira\WEB-INF\lib\atlassian-jira-rpc-plugin-3.13.4-1.jar`
+	N.B. Rename the previous jar file to ensure it doesn't conflict.
+  # Start JIRA
+ # Setup the FDD workflow in JIRA. 
+  # Create an issue type called `FDD Task`
+  # Import `jira-workflow-fdd.xml`, configure and enable as you would a normal workflow.
+  # Create status types that the workflow can use. E.g. `In Design` etc.  And note down the ID (hover over the Edit link).
+ # Create a JIRA Filter based on the project you want to sync. Make sure you filter based on the new Issue type (e.g. FDD Task)
+ # Ensure the jfdd.properties file is update with usernames and passwords etc.
+ # Update FDDPMA.
+  # Run the 01_alter_fddpma_schema.sql script on th FDDPMA database to create two new fields, one in fddpma_feature and the other in fddpma_project
+  # For each project in JIRA, create and a project in FDDPMA and then update new field to refrence this project. E.g. `UPDATE fddpma_project SET JIRA_KEY = 'MYPROJECT' WHERE PROJECT_ID = 4`; 
+
+= Running JFDD =
+JFDD is currently a command line batch process. 
+
+E.g. `C:\temp\jfdd>java -Djfdd.properties=c:/temp/jfdd/jfdd.properties -jar jfdd.jar`
+{{{
+2009-07-18 21:25:06,875 INFO [main] JFDDBatch - Using properties file: c:/temp/jfdd/jfdd.properties
+2009-07-18 21:25:07,796 INFO [main] JFDDBatch - Found 3 issues for filter(10000)
+2009-07-18 21:25:08,093 INFO [main] JFDDBatch - JFDD-15: another new feature status: 10003 originalEstimate: 648000
+2009-07-18 21:25:08,156 INFO [main] JFDDBatch - JFDD-14: feature 2 status: 6 originalEstimate: 324000
+2009-07-18 21:25:08,156 INFO [main] JFDDBatch - JFDD-13: f1 status: 10001 originalEstimate: 97200
+}}}
+
+= Process Overview =
+A typical project sequence is as follows:
+ # Create JIRA and set to Open
+ # Run the sync job. This will create the new features with no planning dates.
+ # When ready to start, set the Original Estimate and move workflow to "In Design"
+ # Run the sync job. This will update the feature with planning dates. If no original estimate exists at this stage it will provide a default estimate. This default estimate is taken from the config entry "default.estimate"
+
+ NB. If the JIRA item is opened and progressed a few workflow steps before the sync job, then JFDD will work out the estimated start date based on the last date that the JIRA items was updated and the original estimate (or default estimate).
+
+= Developer Guide =
+There are two JIRA libraries that require modification to allow JFDD to connect remotely into JIRA; `atlassian-jira-rpc-plugin-3.13.3-1.jar` and `jira-soapclient-3.13.jar`
+
+ # The first step is to modify and build `atlassian-jira-rpc-plugin-3.13.3-1.jar`. This file can be downloaded from the JIRA website @"http://repository.atlassian.com/atlassian-jira-rpc-plugin/distributions/". The remote call into JIRA requires modification to include the missing "Original Estimate" and "Estimate" fields. The file to modify is: `/atlassian-jira-rpc-plugin-3.13.4-1A/src/java/com/atlassian/jira/rpc/soap/beans/RemoteIssue.java` 
+ # Once you have modified this library you build it using `maven jar`
+ # And deploy it by overwriting the existing `atlassian-jira-rpc-plugin-3.13.3-1.jar` file with your new one. Generally found @`C:\Program Files\JIRA-Enterprise-3.13.3\atlassian-jira\WEB-INF\lib\atlassian-jira-rpc-plugin-3.13.3-1.jar`
+ # This will allow you to generate a new WSDL file from `http://localhost:8080/rpc/soap/jirasoapservice-v2`. Save this file to /jira-soapclient-3.13/src/wsdl/jirasoapservice-v2.wsdl
+ # Generate the Axis client by using the supplied maven configuration, 
+  * E.g.`C:\workspace\jira-soapclient-3.13>maven fetch-wsdl` 
+  * followed by `maven release`
+ # This will generate `C:\workspace\jira-soapclient-3.13\release\jira-soapclient-3.13.jar`
+ # Add this jar to the jfdd project classpath. As the name suggests, it's require for JFDD to connect remotely to JIRA. Be sure to also include the other library in the JFDD project the other remote libs such as `axis-1.3.jar` etc.
+ 

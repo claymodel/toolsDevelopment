@@ -1,0 +1,39 @@
+#set ($blog = $params.get("blogpost"))
+
+<div class="blogpost" style="margin-bottom: 30px">
+    <div><a class="blogHeading" href="$req.contextPath$generalUtil.getPageUrl($blog)">$blog.title</a></div>
+
+    <div class="pagesubheading">
+        #if ($blog.creationDate != $blog.lastModificationDate)
+            Last changed: $action.dateFormatter.formatDateTime( $blog.lastModificationDate ) by #usernameLink($blog.lastModifierName)
+        #end
+    </div>
+        <div class="wiki-content">
+        $body
+        </div>
+        #if ($param.get("contentType") == "excerpts")
+            <p><a href="$req.contextPath$generalUtil.getPageUrl($post)" title="Read the rest of $generalUtil.escapeXml($post.title)">Read more...</a></p>
+        #end
+    <div class="endsection">
+        <strong>Posted at $action.dateFormatter.formatBlogDate($blog.creationDate)</strong> by
+        <img src="$staticResourceUrlPrefix/images/icons/user_16.gif" height="16" width="16" border="0" align="absmiddle" title="User Profile: $webwork.htmlEncode($action.getUserFullName($blog.creatorName))">
+        #usernameLink($blog.creatorName)
+
+        #if( $permissionCheckDispatcher.isPermitted("/pages/editblogpost.action?pageId=$blog.id") )
+            |
+            <a href="$req.contextPath/pages/editblogpost.action?pageId=$blog.id">$action.getText("edit.name")</a>
+        #end
+
+        |
+        <img src="$staticResourceUrlPrefix/images/icons/comment_16.gif" height="16" width="16" border="0" align="absmiddle">
+        #if ($blog.comments.size() > 0)
+            <a href="$req.contextPath$generalUtil.customGetPageUrl($blog)showComments=true#comments">
+                #if ($blog.comments.size() != 1) $action.getText("comment.plural", [$blog.comments.size()])#else $action.getText("comment.singular")#end</a>
+        #else
+            <a href="$req.contextPath$generalUtil.customGetPageUrl($blog)showComments=true#comments">$action.getText("comment.none")</a>
+        #end
+
+
+    </div>
+</div>
+

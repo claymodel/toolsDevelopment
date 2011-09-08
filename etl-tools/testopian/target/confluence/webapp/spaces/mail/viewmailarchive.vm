@@ -1,0 +1,126 @@
+<html>
+    <head>
+        <title>$action.getActionName($action.getClass().getName())</title>
+
+        #rssautodiscovery($action.rssDescriptor)
+    </head>
+
+    #applyDecorator("root")
+        #decoratorParam("helper" $action.helper)
+        #decoratorParam("context" "space-mails")
+        #decoratorParam("mode" "view-mail-archive")
+
+            <content tag="spacekey">$action.space.key</content>
+            #set( $contextPath = "viewmailarchive.action?key=${key}&" )
+
+
+            <body>
+                <div class="pagecontent">
+
+                <table width="100%" border=0>
+                    <tr>
+                        <td>
+                        #if( $permissionCheckDispatcher.isPermitted("/spaces/fetchnewmail.action?key=$key") )
+                            #if ($action.hasMailAccounts())
+                                <img src="$staticResourceUrlPrefix/images/icons/bullet_creme.gif" height="8" width="8" border="0" alt=""/>
+                                <a href="$req.contextPath/spaces/fetchnewmail.action?key=$generalUtil.urlEncode($key)">$action.getText("fetch.new.mail")</a>
+                            #else
+                                $action.getText("mail.archive.notconfigured") #if($permissionCheckDispatcher.isPermitted("/spaces/addmailaccount.action?key=$key"))(<a href="addmailaccount.action?key=$generalUtil.urlEncode($key)">$action.getText("add.mail.account")</a>)#end
+                            #end
+                        #end
+                        </td>
+                        <td align="right">
+                            #if ($action.paginationSupport.total > 0)
+
+                                #if( $permissionCheckDispatcher.isPermitted("/spaces/removemail.action?key=$key") )
+                                    <a href="$req.contextPath/spaces/removespacemail.action?key=$generalUtil.urlEncode($key)">$action.getText("delete.all.num", [$action.paginationSupport.total])</a>
+                                    <img src="$staticResourceUrlPrefix/images/icons/trash_16.gif" height="16" width="16" border="0" alt=""/>
+                                #end
+                            #end
+                        </td>
+                    </tr>
+                </table>
+
+                #if ($action.polling)
+                    #if ($action.pollSuccessful)
+                        <div align="center" class="infoMacro" width="60%" style="margin: auto; width: 60%; padding: 5px">
+                        <strong>$action.getText("mail.poll.success")</strong><br>
+                    #else
+                        <div align="center" class="warningMacro" width="60%" style="margin: auto; width: 60%; padding: 5px">
+                        <strong>$action.getText("mail.poll.error")</strong><br>
+                    #end
+                    #if ($action.pollResults.size() == 0)
+                        <p>$action.getText("mail.poll.noservers")</p>
+                    #else
+                        <ul>
+                        #foreach ($result in $action.pollResults)
+                            #if ($result.success)
+                                #if ($result.mailRetrieved == 0)
+                                    <li>$action.getText("mail.poll.server.nomail", [ $result.mailAccountDescription ])</li>
+                                #else
+                                    <li>$action.getText("mail.poll.server.success", [ $result.mailAccountDescription, $result.mailRetrieved ])</li>
+                                #end
+                            #else
+                                <li>$action.getText("mail.poll.server.error", [ $result.mailAccountDescription, $result.errorMessage ])</li>
+                            #end
+                        #end
+                       </ul>
+                    #end
+                </div>
+                #end
+
+                #if ($action.paginationSupport.total > 0)
+                    #pagination($action.paginationSupport $contextPath)
+                        <table class="tableview" cellpadding="0" cellspacing="1" width="100%">
+                            <tr>
+                                <th>
+                                    <strong>$action.getText("column.sender")</strong>
+                                </th>
+                                <th class="colHeaderLink">
+                                    <strong>$action.getText("column.subject")</strong>
+                                </th>
+                                <th class="colHeaderLink">
+                                    <strong>$action.getText("column.date")</strong>
+                                </th>
+                                 #if( $permissionCheckDispatcher.isPermitted("/spaces/removemail.action?key=$key&id=$mail.id") )
+                                <th class="colHeaderLink">
+                                    <strong>$action.getText("column.remove")</strong>
+                                </th>
+                                #end
+                            </tr>
+
+                    #set ($startIndex = $action.paginationSupport.startIndex)
+                    #set( $currentItems = $action.paginationSupport.items)
+
+                    #foreach( $mail in $currentItems )
+                        <tr #alternateRowColors()>
+                            <td width="1%" nowrap>
+                                $action.getSender($mail.getFrom())
+                            </td>
+                            <td>
+                                #contentLink($mail)
+                            </td>
+                            <td width="1%" nowrap>
+                                $dateFormatter.format( $mail.getCreationDate() )
+                            </td>
+                            #if( $permissionCheckDispatcher.isPermitted("/spaces/removemail.action?key=$key&id=$mail.id") )
+                            <td width="1%" align="center">
+                                <a href="removemail.action?key=$generalUtil.urlEncode($key)&id=$mail.id">
+                                <img src="$staticResourceUrlPrefix/images/icons/trash_16.gif" height=16 width=16 border=0 align=absmiddle title="$action.getText('column.remove')"></a>
+                            </td>
+                            #end
+                        </tr>
+                    #end
+                    </table>
+
+                    #pagination($action.paginationSupport $contextPath)
+                #else
+                    <p>$action.getText("mail.archive.no.mails")</p>
+                #end
+
+            </div>
+        </body>
+    #end
+</html>
+
+

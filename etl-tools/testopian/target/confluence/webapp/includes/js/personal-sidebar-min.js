@@ -1,0 +1,1 @@
+AJS.toInit(function(e){var b="com.atlassian.confluence.sidebar.hide",d=e("#personal-info-sidebar"),a=d.height(),c=e("#content");function f(){d.toggleClass("collapsed");c.toggleClass("sidebar-collapsed");d.trigger("toggled")}if(getCookie(b)=="true"){f()}e(".sidebar-collapse").click(function(g){f();setCookie(b,d.hasClass("collapsed"));return AJS.stopEvent(g)}).height(a)});

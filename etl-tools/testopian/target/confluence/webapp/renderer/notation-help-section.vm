@@ -1,0 +1,26 @@
+#set ($hidden = "")
+#if ($action.section != "all" && $action.section != $sectionKey)
+    #set ($hidden = "hidden")
+#end
+
+<div id="help-section-div-${sectionKey}" class="help-section-div $hidden">
+    <div class="helpheading">
+        <img src="$staticResourceUrlPrefix/images/icons/help_16.gif" height=16 width=16 border=0 align=absmiddle vspace=0 hspace=0 title="$action.getText('help.tips')">
+        $action.getText("notation.help.section.title.${sectionKey}")
+    </div>
+    <div class="helpcontent">
+        <p>$action.getText("notation.help.section.desc.${sectionKey}")</p>
+        <div align=center>
+            <table class="grid" cellpadding="0" cellspacing="0" width=95%>
+                <tr>
+                    <th width="250">$action.getText("heading.notation")</th>
+                    <th>$action.getText("notation.heading.comment")</th>
+                </tr>
+                #parse("renderer/notation-help_${sectionKey}.vm")
+                #foreach ($descriptor in $action.getMacroHelpForSection($sectionKey))
+                    $descriptor.help
+                #end
+            </table>
+        </div>
+    </div>
+</div>

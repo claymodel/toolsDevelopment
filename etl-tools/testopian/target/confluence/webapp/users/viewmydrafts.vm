@@ -1,0 +1,59 @@
+<html>
+	<head>
+		<title>$generalUtil.htmlEncode($pageTitle)</title>
+    </head>
+
+    <body>
+    #requireResource("confluence-draft-changes:draft-changes")
+
+    #applyDecorator("root")
+        #decoratorParam("context" "profile")
+        #decoratorParam("mode" "drafts")
+        #decoratorParam("helper" $action.helper)
+        #decoratorParam("infopanel-width" "200px")
+
+        #parse ("/template/includes/draft-changes.vm")
+
+        <table width="100%" cellpadding="0" cellspacing="0" border=0>
+            <tr><td>
+                <p>$action.getText('viewdrafts.page.desc')</p>
+
+            <table class="tableview" width="100%" cellpadding="0" cellspacing="0">
+            #if ($drafts.isEmpty())
+                <tr><td>$action.getText('no.drafts.found')</td></tr>
+            #else
+                <tr>
+                    <th width="1%">&nbsp;</th>
+                    <th>$action.getText('title.name')</th>
+                    <th width="150px">$action.getText('last.saved.date')</th>
+                    <th width="1%">$action.getText('heading.operations')</th>
+                </tr>
+                #foreach ($draft in $drafts)
+                    <tr>
+                        <td>#typeIcon($draft.draftType)</td>
+                        <td>#if ("$!{draft.title}" != "") $!{draft.title} &nbsp; #else <em>$action.getText('untitled.draft.title')</em> #end</td>
+                        <td nowrap>$generalUtil.getRelativeTime($draft.lastModificationDate)</td>
+                        <td nowrap>
+                            #if (!$draft.newPage)
+                                <a id="view-draft-change-$draft.id" href="#" class="draftPageId:$draft.pageId draftId:$draft.id username:$remoteUser.name view-diff-link">$action.getText('view.change.upper')</a> |
+                            #end
+                            #if ($draftManager.isMergeRequired($draft))
+                                #if ($draftManager.getMergedContent($draft))
+                                    <a id="merge-draft-$draft.id" href="$req.contextPath/pages/resumedraft.action?draftId=$draft.id">$action.getText('merge.and.resume')</a>
+                                #else
+                                    <a id="conflict-draft-$draft.id" href="$req.contextPath/pages/resumedraft.action?draftId=$draft.id">$action.getText('view.conflict')</a>
+                                #end
+                            #else
+                                <a id="resume-draft-$draft.id" href="$req.contextPath/pages/resumedraft.action?draftId=$draft.id">$action.getText('resume.editing')</a>
+                            #end | <a id="discard-draft-$draft.id" href="$req.contextPath/users/deletedraft.action?draftId=$draft.id&#url_xsrfToken">$action.getText('discard.name')</a>
+                        </td>
+                    </tr>
+                #end
+            #end
+            </table>
+
+        </div></td></tr></table>
+
+    #end
+    </body>
+</html>

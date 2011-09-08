@@ -1,0 +1,209 @@
+#add-labels-form {
+    margin: 0;
+    padding: 0;
+    clear: left; /* makes sure top margins of stuff following labels are effective */
+}
+.labels-input {
+    border: 1px solid #ccc;
+    padding: 8px;
+    background-color: #f0f0f0;
+}
+
+#labelOperationStatus {
+    vertical-align: middle;
+}
+
+/*Displaying of labels in Space Admin and on a page*/
+
+#labels-section #labelInputSpan {
+    display: none;
+    clear: left;
+    margin-top: 5px;
+}
+#labels-section.open #labelInputSpan {
+    display: block;
+}
+
+#labels-section .remove-label,
+#space-labels-section .remove-label,
+#space-categories-section .remove-category {
+    display: none;
+    background: url(../../../images/icons/delete_8_gray.gif) no-repeat 100% 50%;
+    width: 8px;
+    position: absolute;
+    right: 7px;
+    top: 0;
+    text-indent: -999em;
+    outline: none;
+}
+#labels-section.open .remove-label,
+#space-labels-section .remove-label,
+#space-categories-section .remove-category {
+    display: block;
+    float: left;
+}
+#labels-section .confluence-label,
+#space-labels-section .confluence-label,
+#space-categories-section .confluence-label {
+    display: inline;
+    text-decoration: none;
+    float: left;
+    margin: 0 0 3px;
+    position: relative; /* allows positioning of delete link within this */
+    padding: 0px 2px;
+}
+
+
+#labels-section.open .confluence-label,
+#space-labels-section .confluence-label,
+#space-categories-section .confluence-label {
+   background-color: #D0DFEE;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    padding: 0 20px 0 5px;
+    border: solid 1px white;
+    margin-right: 2px;
+    line-height: 1.2;
+}
+
+#labels-section.open .confluence-label:hover,
+#space-labels-section .confluence-label:hover,
+#space-categories-section .confluence-label:hover {
+    border: solid 1px #326ca6;
+}
+
+#labels-section .label-title {
+    font-size: 13px;
+    padding-right: 5px;
+    display: inline;
+    float: left;
+}
+
+#labels-section .label-title.none {
+    padding-right: 2px;
+}
+
+#space-labels-section .label-title,
+#space-categories-section .label-title {
+    font-size: 13px;
+    font-style: italic;
+    display: inline;
+    position: absolute;
+}
+
+#labels-section .label-list {
+    display: inline;
+}
+#space-labels-section .label-list,
+#space-categories-section .label-list {
+    display: block;
+    padding-top: 10px;
+}
+
+#labels-section .remove-label-caption {
+    display: none;
+}
+#labels-section.open .remove-label-caption {
+    display: inline;
+    margin: 0;
+    font-size: 8pt;
+    vertical-align: top;
+    color: #003366;
+}
+#labels-section a.label,
+#space-categories-section a.label,
+#space-labels-section a.label {
+    color: #003366;
+    text-decoration:none;
+    font-size: 8pt;
+    vertical-align: text-top;
+}
+
+#labels-section a.label {
+    background-color: #D0DFEE;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    border: solid 1px white;
+    padding: 0 5px 2px;
+}
+
+#labels-section a.label:hover {
+    border: solid 1px #326ca6;
+}
+
+#labels-section.open a.label {
+    display: none;
+}
+#labels-section a.remove-label:focus,
+#space-labels-section a.remove-label:focus,
+#space-categories-section a.remove-category:focus {
+    outline: none;
+}
+#labels-section-title,
+#space-labels-section-title,
+#space-categories-section-title {
+    font-size: 1.35em;
+    color: black;
+    font-weight: normal;
+}
+#labels-section-title.hidden,
+#space-labels-section-title.hidden,
+#space-categories-section-title.hidden {
+    display: none;
+}
+
+#labels-section-content {
+    padding-left: 55px;
+}
+
+#label-input-fields {
+    width: 100%;
+}
+#waitImageAndStatus {
+    display: none;
+    height: 16px;
+}
+#waitImageAndStatus.open {
+    display: inline;
+}
+.labels-tip {
+    color: #666;
+    font-size: .9em;
+    margin-top: .3em;
+}
+.suggested-label {
+    padding-right: .3em;
+}
+a.suggested-label:focus {
+    outline: none;
+}
+
+#labels-section .waiting {
+    vertical-align: middle;
+    border: none;
+}
+#labelsAutocompleteList .aui-dropdown li a span {
+    padding-left: 0;
+}
+#labels_div #labelsString {
+    width: 100%;
+}
+.editor-icon,
+.editor-icon:hover {
+    text-decoration: none;
+    vertical-align: top;
+    float: left;
+}
+
+.editor-title {
+    border-bottom: 1px solid #DDDDDD;
+    clear: both;
+    color: #222222;
+    font-size: 16px;
+    margin: 10px 0;
+}
+.labels.editor {
+    padding-left: 10px;
+}

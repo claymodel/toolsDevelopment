@@ -1,0 +1,37 @@
+            <tr bgcolor=ffffff>
+                <td>
+{code:title=Bar.java|borderStyle=solid}<br/>
+// Some comments here<br/>
+public String getFoo()<br/>
+{<br/>
+&nbsp;&nbsp;&nbsp; return foo;<br/>
+}<br/>
+  {code}
+                    <br/>
+                    <br/>
+  {code:xml}
+                    <br/>
+                    &lt;test&gt;
+                    <br/>
+                    &nbsp; &lt;another tag=&quot;attribute&quot;/&gt;
+                    <br/>
+                    &lt;/test&gt;
+                    <br/>
+  {code}
+                    <br/>
+                </td>
+                <td>
+  $action.getText('codepanel.desc')
+                    <p>
+  $action.getText('example.name'):
+                        <br/>
+                        <div class="code" style="border-style: solid; "><div class="codeHeader" style="border-bottom-style: solid; "><strong>Bar.java</strong></div><div class="codeContent">
+                        <pre>&#10;<span class="java-comment">// Some comments here</span>&#10;<span class="java-keyword">public</span>&#160;<span class="java-object">String</span> getFoo()&#10;&#123;&#10;  <span class="java-keyword">return</span> foo;&#10;&#125;&#10;</pre>
+                        </div></div>
+                        <br/>
+                        <div class="code"><div class="codeContent">
+                        <pre>&#10;<span class="xml-tag">&lt;test&gt;</span>&#10;    <span class="xml-tag">&lt;another tag=<span class="xml-quote">&quot;attribute&quot;</span>/&gt;</span>&#10;<span class="xml-tag">&lt;/test&gt;</span>&#10;</pre>
+                        </div></div>
+                    </p>
+                </td>
+            </tr>

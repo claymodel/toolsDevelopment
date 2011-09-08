@@ -1,0 +1,57 @@
+<html>
+	<head>
+		<title>$action.getText("title.admin.console")</title>
+	</head>
+	<body>
+		#parse ( "/breadcrumbs.vm" )
+
+		<p>$action.getText("console.description")</p>
+		#parse ( "/template/includes/actionerrors.vm" )
+
+        #if ($displaySupportPeriodEndMessage && $displaySupportPeriodEndMessage == "on")
+            #applyDecorator ("alert" "")
+                  $action.getText('confluence.support.has.ended',["$supportPeriodEndDateString"])
+                  <p>$action.getText('buy.renewal', [$action.getText('hitcounter.buy.renewal')])
+                  $action.getText('why.renew', [$action.getText('hitcounter.why.renew')])</p>
+                  $action.getText('contact.us', [$action.getText('mailto.sales')])
+            #end
+        #end
+
+		#if ($displayAlmostSupportPeriodEndMessage && $displayAlmostSupportPeriodEndMessage == "on")
+            #applyDecorator ("warning" "")
+                $action.getText('confluence.support.is.about.to.end',["$supportPeriodEndDateString"])
+                <p>$action.getText('buy.renewal', [$action.getText('hitcounter.buy.renewal')])
+                $action.getText('why.renew', [$action.getText('hitcounter.why.renew')])</p>
+                $action.getText('contact.us', [$action.getText('mailto.sales')])
+                $action.getText('dont.remind.me', ["$req.contextPath/admin/editconsolemessages.action?displayAlmostSupportPeriodEndMessage=off&#url_xsrfToken()"])
+            #end
+        #end
+
+        #if ($displayEmailAdminMessage && $displayEmailAdminMessage == "on")
+            #applyDecorator ("warning" "")
+                $action.getText('no.mail.server.configured',["$req.contextPath/admin/mail/viewmailservers.action"])
+                $action.getText('dont.remind.me', ["$req.contextPath/admin/editconsolemessages.action?displayEmailAdminMessage=off&#url_xsrfToken()"])
+            #end
+        #end
+<p/>
+        #if ($displayBaseUrlAdminMessage && $displayBaseUrlAdminMessage == "on")
+            #applyDecorator ("warning" "")
+                $action.getText('base.url.needs.rethinking',["$bootstrapManager.domainName","$req.contextPath/admin/editgeneralconfig.action?autofocus=editbaseurl"])
+                $action.getText('dont.remind.me', ["$req.contextPath/admin/editconsolemessages.action?displayBaseUrlAdminMessage=off&#url_xsrfToken()"])
+            #end
+        #end
+
+        #if($action.usingHSQL)
+            #applyDecorator ("warning" "")
+            $action.getText('hsql.splashWarning', [$docBean.getLink('help.supported.platforms')])
+            #end
+        #end
+
+        #if($action.usingDailyBackup)
+            #applyDecorator ("warning" "")
+            $action.getText('dailyBackup.splashWarning', [$docBean.getLink("help.site.backup.and.restore")])
+            #end
+        #end
+
+    </body>
+</html>

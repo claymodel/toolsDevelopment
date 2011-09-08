@@ -1,0 +1,138 @@
+body {
+background-image: url(bckgnd2.gif);
+background-color: #7189B7;
+font-family: verdana, sans-serif;
+}
+
+p {
+font-family: verdana, sans-serif;
+}
+
+div.main {
+top: 0px;
+margin-right: 12px;
+margin-left: 18%;
+background-color: #F9F9F9;
+position: relative;
+z-index: 5;
+border-left: 2px #000 solid;
+border-right: 2px #000 solid;
+padding-left: 5mm;
+}
+
+h1.main {
+background-image: url(bckgnd.gif);
+padding-left: 5mm;
+font-family: "arial black", arial, sans-serif;
+margin-right: 12px;
+margin-left: 18%;
+background-color: #FFC964;
+border-left: 5px #000 solid;
+}
+
+*.errors {
+color: red;
+font-weight: bold;
+}
+
+div.main a {
+text-decoration: underline;
+color: #F9F9F9;
+background-color: #7189B7;
+font-weight: 900
+}
+
+div.main a:hover {
+color: #FFC964;
+}
+
+div.navi {
+background-color: #f3f1f4
+z-index:+1;
+color: #ffffff;
+font-weight: bold;
+width: 17%;
+text-align: right;
+float: left;
+margin-left: 0em;
+margin-top: 3em;
+padding-top: 1em;
+padding-bottom: 1em;
+}
+
+p.left-navbar a {
+background-image: url(bckgnd.gif);
+text-decoration: none;
+color: #000;
+}
+
+p.left-navbar a:hover {
+text-decoration: underline;
+}
+
+p.left-navbar {
+background-image: url(bckgnd.gif);
+border-right: 2px #000 solid;
+background-color: #FFC964;
+padding-right: 1em;
+}
+
+table.plain tr td {
+border-bottom: 0px #DDDDDD solid; 
+border-top: 0px #DDDDDD solid;
+border-left: 0px #DDDDDD solid;
+border-right: 0px #DDDDDD solid;
+}
+
+td.plain {
+border-bottom: 0px #DDDDDD solid !important; 
+border-top: 0px #DDDDDD solid !important;
+border-left: 0px #DDDDDD solid !important;
+border-right: 0px #DDDDDD solid !important;
+}
+
+table tr td, table.grid tr td {
+padding-left: 10px;
+padding-top: 3px;
+padding-bottom: 3px;
+padding-right: 10px;
+border-bottom: 1px #DDDDDD solid;
+border-top: 1px #DDDDDD solid;
+border-left: 1px #DDDDDD solid;
+border-right: 1px #DDDDDD solid;
+}
+
+table caption {
+font-size: 14pt;
+color: #000000;
+padding-top: 20px;
+padding-bottom: 10px;
+}
+
+table {
+border-collapse:collapse;
+min-width: 300px;
+}
+
+th {
+color: #F9F9F9;
+background-color: #7189B7;
+border-right: 1px #000 solid;
+border-bottom: 1px #000 solid;
+border-top: 1px #000 solid;
+border-left: 1px #000 solid;
+padding-left: 10px;
+padding-right: 5px;
+}
+
+div.banner {
+z-index: 2;
+position: absolute;
+left: 10px;
+top: 10px;
+color: #FFFFFF;
+}
+
+table.background {
+background-color: #7189B7;
+}

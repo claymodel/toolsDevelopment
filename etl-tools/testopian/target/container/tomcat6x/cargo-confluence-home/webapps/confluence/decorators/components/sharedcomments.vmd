@@ -1,0 +1,104 @@
+#* make sure you pass in an AbstractPage as a decorator parameter when you call this inline decorator *#
+#set ($page = $params.get("page"))
+
+<div class="wiki-content" style="margin-right:10px;">
+#if ($action.commentsShowing)
+    <p style="clear: both"/><!-- comments should always display underneath the content. we should have a 'clear:both' here just in case there are floats or aligned images in the content -->
+
+    #* If we are showing the "add comment" area, or there are existing comments, show the "Comments" and hide link. *#
+    #if (($action.showCommentArea || $page.comments.size() > 0) && !$action.isPrintableVersion())
+        <div class="tabletitle" style="border: 0px">
+            <a name="comments">
+                <h2>$action.getText("action.page.comments")</h2>
+            </a>
+            #if (!$action.isPrintableVersion())
+            <span class="smalltext">&nbsp;(<a href="$req.contextPath$generalUtil.customGetPageUrl($page)showComments=false">$action.getText('comment.hide')</a>)</span>
+            #end
+        </div>
+    #end
+
+    #* Show expanded comments. If there are none, then show nothing at all (no heading, zilch!) *#
+    #if ($page.comments.size() > 0)
+        #if ($threadComments)
+
+            #* if thread is too deep and displaying from a comment in the middle (ie. the rootComment) only show that branch. Else show all threads. *#
+            #if ($rootComment)
+
+                <div class="greybox" width="75%">
+                    #set ($x = $rootComment.descendantsCount + 1)
+                    $action.getText('showing.x.of.y.comments', [$x, $page.comments.size()])
+                    <a href="$req.contextPath$generalUtil.customGetPageUrl($page)showComments=true#comments">$action.getText('comment.show.all')</a>
+                </div>
+
+                #viewPageComment($rootComment $rootComment.depth)
+
+            #else
+                #foreach ( $comment in $page.topLevelComments )
+                    #viewPageComment($comment $comment.depth)
+                #end
+            #end
+
+        #else
+
+            #foreach( $comment in $page.comments )
+                #viewPageComment($comment $comment.depth)
+            #end
+
+        #end
+    #end
+
+    #if (!$action.isPrintableVersion())
+        #if ($action.showCommentArea)
+            #if ($permissionHelper.canComment($remoteUser, $page))
+            <div align="left">
+                #parse ("/includes/alert-anonymous.vm")
+                <div style="width:720px;" id="addcomment">
+                    <form name="inlinecommentform"
+                          method="post" action="$req.contextPath/pages/doaddcomment.action?pageId=${page.id}">
+                        #form_xsrfToken()
+                        #bodytag ("Component" "name='content'" "theme='notable'" "template='wiki-textarea.vm'")
+                            #param ("formname" "inlinecommentform")
+                            #param ("spaceKey" "$generalUtil.urlEncode($spaceKey)")
+                            #param ("rows" 15)
+                            #param ("cols" 70)
+                            #param ("width" "100%")
+                            #param ("tabindex" "4")
+                            #param ("tdcolor" "f0f0f0")
+                            #param ("edit" "true")
+                            #param ("toolbarExpanded" "false")
+                            #param ("initialFocus" "false")
+                            #param ("contentId" "0")
+                            #param ("contentType" "comment")
+                        #end
+                        #commentSubmission()
+                    </form>
+                </div>
+            </div>
+            #end
+        #else
+            #if ($permissionHelper.canComment($remoteUser, $page))
+                <div #if ($page.comments.size() == 0)style="margin-top: 30px;#end">
+                <a href="$req.contextPath$generalUtil.customGetPageUrl($page)showComments=true&showCommentArea=true#addcomment"><img src="$staticResourceUrlPrefix/images/icons/add_comment_16.gif" height="16" width="16" border="0" align="absmiddle"></a>
+                <a href="$req.contextPath$generalUtil.customGetPageUrl($page)showComments=true&showCommentArea=true#addcomment">$action.getText('action.add.comment')</a>
+                </div>
+            #end
+        #end
+    #end
+#else
+    <p/>
+    <div class="greybox">
+        <img src="$staticResourceUrlPrefix/images/icons/comment_16.gif" height="16" width="16" border="0" align="absmiddle"/>
+        #if ($page.comments.size() > 0)
+            <a href="$req.contextPath$generalUtil.customGetPageUrl($page)showComments=true#comments">
+                #if ($page.comments.size() != 1) $action.getText("comment.plural", [$page.comments.size()])#else $action.getText("comment.singular")#end</a>
+        #else
+            $action.getText("comment.none")
+        #end
+            #if ($permissionHelper.canComment($remoteUser, $page))
+         |
+            <a href="$req.contextPath$generalUtil.customGetPageUrl($page)showComments=true&showCommentArea=true#addcomment"><img src="$staticResourceUrlPrefix/images/icons/add_comment_16.gif" height="16" width="16" border="0" align="absmiddle"></a>
+            <a href="$req.contextPath$generalUtil.customGetPageUrl($page)showComments=true&showCommentArea=true#addcomment">$action.getText('action.add.comment')</a>
+        #end
+    </div>
+#end
+</div>

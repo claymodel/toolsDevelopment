@@ -1,0 +1,6 @@
+</p> $action.getText('snipsnap.description')
+
+$action.getText('snipsnap.no.attachments.or.duplicate.users')
+</br>
+$action.getText('snipsnap.process.can.take.a.few.mins')
+</P>

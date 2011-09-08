@@ -1,0 +1,28 @@
+<html>
+
+    <!-- This page no longer seems to be used -->
+
+    <head>
+        <title>$action.getText("title.view.page.links")</title>
+    </head>
+
+    <body>
+        #parse ( "/template/includes/actionerrors.vm" )
+
+        #if ($actionErrors.size() == 0)
+			#if( $referrers.size()>0 )
+				<table border="0" width="100%">
+					#foreach( $referer in $referrers )
+						<tr>
+							<td>($referer.viewCount)</td>
+							<td><a href="$referer.url">$referer.url</a></td>
+						</tr>
+					#end
+				</table>
+			#end
+        #end
+
+		#parse ( "/pages/page-breadcrumbs.vm" )
+		#parse ( "/pages/page-operations.vm" )
+    </body>
+</html>

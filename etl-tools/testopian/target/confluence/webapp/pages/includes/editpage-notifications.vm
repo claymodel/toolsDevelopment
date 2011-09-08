@@ -1,0 +1,44 @@
+#if ($showDraftMessage)
+<table cellpadding='5' cellspacing='8px' class='infoMacro' border="0" align='center'>
+    <tr><td valign='top' width="1%"><img src="$staticResourceUrlPrefix/images/icons/emoticons/information.gif" width="16" height="16" align="absmiddle" alt="" border="0"></td><td>
+        #set( $qq = '"' )
+        #if ($draft.newPage)
+            #set ($draftDate=$dateFormatter.formatDateTime($draft.lastModificationDate))
+            #if ($draft.title && $draft.title.length() > 0)
+                $action.getText("draft.warning.create.page", [$draftDate, $draft.title])
+            #else
+                $action.getText("draft.warning.create.page.without.title", [$draftDate])
+            #end
+            $action.getText("draft.warning.resume.or.discard.new", ["<a href='#' onClick='javascript:AJS.Editor.sendFormDraft(${qq}useDraft${qq});return false;'> ", "</a>", "<a href='#' onClick='javascript:AJS.Editor.sendFormDraft(${qq}discardDraft${qq});return false;'> ", "</a>"])
+        #else
+            $action.getText("draft.warning.edit.page", ["$dateFormatter.formatDateTime($draft.lastModificationDate)"])
+            #if ($mergeRequired)
+                $action.getText("draft.warning.merge.required")
+            #end
+            #if ($conflictFound)
+                $action.getText("draft.warning.conflict.found", ["<a href='?pageId=${pageId}&viewConflict=true&spaceKey=${action.spaceKey}' >", "</a>",
+                "<a href='#' onClick='javascript:AJS.Editor.sendFormDraft(${qq}discardDraft${qq});return false;'>", "</a>"])
+            #else
+                #if ($mergeRequired)
+                    $action.getText("draft.warning.merge.or.discard",  ["<a id='view-diff-link-notification' href='#' class='view-diff-link'>", "</a>",
+                    "<a href='#' onClick='javascript:AJS.Editor.sendFormDraft(${qq}useDraft${qq});return false;'> ", "</a>",
+                    "<a href='#' onClick='javascript:AJS.Editor.sendFormDraft(${qq}discardDraft${qq});return false;'>", "</a>"])
+                #else
+                    $action.getText("draft.warning.resume.or.discard", ["<a id='view-diff-link-notification' href='#' class='view-diff-link'>", "</a>",
+                    "<a href='#' onClick='javascript:AJS.Editor.sendFormDraft(${qq}useDraft${qq});return false;'> ", "</a>",
+                    "<a href='#' onClick='javascript:AJS.Editor.sendFormDraft(${qq}discardDraft${qq});return false;'> ", "</a>"])
+                #end
+            #end
+        #end
+    </td></tr>
+</table>
+#end
+
+<div id='heartbeat-div' class="hidden">
+    <table cellpadding='5' cellspacing='8px' class='noteMacro' border="0" align='center'>
+        <tr><td valign='top' width="1%"><img src="$staticResourceUrlPrefix/images/icons/emoticons/warning.gif" width="16" height="16" align="absmiddle" alt="" border="0"></td><td>
+            $action.getText("heartbeat.page.edited.warning", ["<span id='other-users-span'></span>"])
+        </td></tr>
+    </table>
+</div>
+

@@ -1,0 +1,17 @@
+#* @vtlvariable name="globalSettings" type="com.atlassian.confluence.setup.settings.Settings" *#
+#* @vtlvariable name="page" type="com.atlassian.confluence.pages.AbstractPage" *#
+#if ($page && $action.tinyUrl)
+<content tag="canonical">
+    <link rel="canonical" href="$globalSettings.baseUrl$generalUtil.htmlEncode($generalUtil.getPageUrl($page))">
+    <link rel="shortlink" href="${globalSettings.baseUrl}/x/$action.tinyUrl">
+    <meta name="wikilink" content="$generalUtil.htmlEncode($page.linkWikiMarkup)">
+    <meta name="page-version" content="$page.version">
+</content>
+<div id="link-to-page-fields" class="hidden parameters">
+    <input type="hidden" id="linkToThisPageHeading" value="$!action.getText("dialog.linktothispage.heading")">
+    <input type="hidden" id="linkToThisPageLink" value="$!action.getText("insert.link.popup.destination")">
+    <input type="hidden" id="linkToThisPageTinyLink" value="$!action.getText("tiny.link")">
+    <input type="hidden" id="linkToThisPageWikiMarkup" value="$!action.getText("show.wiki.markup")">
+    <input type="hidden" id="linkToThisPageClose" value="$!action.getText("close.name")">
+</div>
+#end

@@ -1,0 +1,1958 @@
+
+Start test case 1 ....
+Version: android_1124.1368755 generated on 20100412
+
+PVAuthorEngine Unit Test
+
+[test range from: 1 to: 1]
+
+  
+Input audio file name:
+  Input video filename:
+  Output filename: 
+  Audio Configfile name:
+  Video Configfilename:
+  Test case range 1 to 1
+
+Starting Test 1: H263 to V-Only .3gp Test
+Verifying Authored File...
+Oscl File Open Failed
+  Successes 1, Failures 2
+  Time taken by the test:  52
+
+Test output begins
+Number of tests: 3
+Successes: 1
+Failures: 2
+external/opencore/engines/author/test/src/test_pv_author_engine_testset1.cpp:1445:"false" evaluated to false.
+external/opencore/engines/author/test/src/pvaetest.cpp:3054:"false" evaluated to false.
+
+Errors: 0
+
+Test output ends
+%%%%%END%%%%%
+
+Start test case 2 ....
+Version: android_1124.1368755 generated on 20100412
+
+PVAuthorEngine Unit Test
+
+[test range from: 23 to: 23]
+
+  
+Input audio file name:
+  Input video filename:
+  Output filename: 
+  Audio Configfile name:
+  Video Configfilename:
+  Test case range 23 to 23
+
+Test output begins
+Number of tests: 0
+Successes: 0
+Failures: 0
+
+Errors: 0
+
+Test output ends
+%%%%%END%%%%%
+
+Start test case 3 ....
+Version: android_1124.1368755 generated on 20100412
+
+PVAuthorEngine Unit Test
+
+[test range from: 24 to: 24]
+
+  
+Input audio file name:
+  Input video filename:
+  Output filename: 
+  Audio Configfile name:
+  Video Configfilename:
+  Test case range 24 to 24
+
+Test output begins
+Number of tests: 0
+Successes: 0
+Failures: 0
+
+Errors: 0
+
+Test output ends
+%%%%%END%%%%%
+
+Start test case 4 ....
+Version: android_1124.1368755 generated on 20100412
+
+PVAuthorEngine Unit Test
+
+[test range from: 25 to: 25]
+
+  
+Input audio file name:
+  Input video filename:
+  Output filename: 
+  Audio Configfile name:
+  Video Configfilename:
+  Test case range 25 to 25
+
+Test output begins
+Number of tests: 0
+Successes: 0
+Failures: 0
+
+Errors: 0
+
+Test output ends
+%%%%%END%%%%%
+
+Start test case 5 ....
+Version: android_1124.1368755 generated on 20100412
+
+PVAuthorEngine Unit Test
+
+[test range from: 26 to: 26]
+
+  
+Input audio file name:
+  Input video filename:
+  Output filename: 
+  Audio Configfile name:
+  Video Configfilename:
+  Test case range 26 to 26
+
+Test output begins
+Number of tests: 0
+Successes: 0
+Failures: 0
+
+Errors: 0
+
+Test output ends
+%%%%%END%%%%%
+
+Start test case 6 ....
+Version: android_1124.1368755 generated on 20100412
+
+PVAuthorEngine Unit Test
+
+[test range from: 27 to: 27]
+
+  
+Input audio file name:
+  Input video filename:
+  Output filename: 
+  Audio Configfile name:
+  Video Configfilename:
+  Test case range 27 to 27
+
+Test output begins
+Number of tests: 0
+Successes: 0
+Failures: 0
+
+Errors: 0
+
+Test output ends
+%%%%%END%%%%%
+
+Start test case 7 ....
+Version: android_1124.1368755 generated on 20100412
+
+PVAuthorEngine Unit Test
+
+[test range from: 28 to: 28]
+
+  
+Input audio file name:
+  Input video filename:
+  Output filename: 
+  Audio Configfile name:
+  Video Configfilename:
+  Test case range 28 to 28
+
+Test output begins
+Number of tests: 0
+Successes: 0
+Failures: 0
+
+Errors: 0
+
+Test output ends
+%%%%%END%%%%%
+
+Start test case 8 ....
+Version: android_1124.1368755 generated on 20100412
+
+PVAuthorEngine Unit Test
+
+[test range from: 29 to: 29]
+
+  
+Input audio file name:
+  Input video filename:
+  Output filename: 
+  Audio Configfile name:
+  Video Configfilename:
+  Test case range 29 to 29
+
+Test output begins
+Number of tests: 0
+Successes: 0
+Failures: 0
+
+Errors: 0
+
+Test output ends
+%%%%%END%%%%%
+
+Start test case 9 ....
+Version: android_1124.1368755 generated on 20100412
+
+PVAuthorEngine Unit Test
+
+[test range from: 30 to: 30]
+
+  
+Input audio file name:
+  Input video filename:
+  Output filename: 
+  Audio Configfile name:
+  Video Configfilename:
+  Test case range 30 to 30
+
+Test output begins
+Number of tests: 0
+Successes: 0
+Failures: 0
+
+Errors: 0
+
+Test output ends
+%%%%%END%%%%%
+
+Start test case 10 ....
+Version: android_1124.1368755 generated on 20100412
+
+PVAuthorEngine Unit Test
+
+[test range from: 31 to: 31]
+
+  
+Input audio file name:
+  Input video filename:
+  Output filename: 
+  Audio Configfile name:
+  Video Configfilename:
+  Test case range 31 to 31
+
+Test output begins
+Number of tests: 0
+Successes: 0
+Failures: 0
+
+Errors: 0
+
+Test output ends
+%%%%%END%%%%%
+
+Start test case 11 ....
+Version: android_1124.1368755 generated on 20100412
+
+PVAuthorEngine Unit Test
+
+[test range from: 32 to: 32]
+
+  
+Input audio file name:
+  Input video filename:
+  Output filename: 
+  Audio Configfile name:
+  Video Configfilename:
+  Test case range 32 to 32
+
+Test output begins
+Number of tests: 0
+Successes: 0
+Failures: 0
+
+Errors: 0
+
+Test output ends
+%%%%%END%%%%%
+
+Start test case 12 ....
+Version: android_1124.1368755 generated on 20100412
+
+PVAuthorEngine Unit Test
+
+[test range from: 33 to: 33]
+
+  
+Input audio file name:
+  Input video filename:
+  Output filename: 
+  Audio Configfile name:
+  Video Configfilename:
+  Test case range 33 to 33
+
+Test output begins
+Number of tests: 0
+Successes: 0
+Failures: 0
+
+Errors: 0
+
+Test output ends
+%%%%%END%%%%%
+
+Start test case 13 ....
+Version: android_1124.1368755 generated on 20100412
+
+PVAuthorEngine Unit Test
+
+[test range from: 34 to: 34]
+
+  
+Input audio file name:
+  Input video filename:
+  Output filename: 
+  Audio Configfile name:
+  Video Configfilename:
+  Test case range 34 to 34
+
+Test output begins
+Number of tests: 0
+Successes: 0
+Failures: 0
+
+Errors: 0
+
+Test output ends
+%%%%%END%%%%%
+
+Start test case 14 ....
+Version: android_1124.1368755 generated on 20100412
+
+PVAuthorEngine Unit Test
+
+[test range from: 35 to: 35]
+
+  
+Input audio file name:
+  Input video filename:
+  Output filename: 
+  Audio Configfile name:
+  Video Configfilename:
+  Test case range 35 to 35
+
+Test output begins
+Number of tests: 0
+Successes: 0
+Failures: 0
+
+Errors: 0
+
+Test output ends
+%%%%%END%%%%%
+
+Start test case 15 ....
+Version: android_1124.1368755 generated on 20100412
+
+PVAuthorEngine Unit Test
+
+[test range from: 36 to: 36]
+
+  
+Input audio file name:
+  Input video filename:
+  Output filename: 
+  Audio Configfile name:
+  Video Configfilename:
+  Test case range 36 to 36
+
+Test output begins
+Number of tests: 0
+Successes: 0
+Failures: 0
+
+Errors: 0
+
+Test output ends
+%%%%%END%%%%%
+
+Start test case 16 ....
+Version: android_1124.1368755 generated on 20100412
+
+PVAuthorEngine Unit Test
+
+[test range from: 37 to: 37]
+
+  
+Input audio file name:
+  Input video filename:
+  Output filename: 
+  Audio Configfile name:
+  Video Configfilename:
+  Test case range 37 to 37
+
+Test output begins
+Number of tests: 0
+Successes: 0
+Failures: 0
+
+Errors: 0
+
+Test output ends
+%%%%%END%%%%%
+
+Start test case 17 ....
+Version: android_1124.1368755 generated on 20100412
+
+PVAuthorEngine Unit Test
+
+[test range from: 38 to: 38]
+
+  
+Input audio file name:
+  Input video filename:
+  Output filename: 
+  Audio Configfile name:
+  Video Configfilename:
+  Test case range 38 to 38
+
+Test output begins
+Number of tests: 0
+Successes: 0
+Failures: 0
+
+Errors: 0
+
+Test output ends
+%%%%%END%%%%%
+
+Start test case 18 ....
+Version: android_1124.1368755 generated on 20100412
+
+PVAuthorEngine Unit Test
+
+[test range from: 39 to: 39]
+
+  
+Input audio file name:
+  Input video filename:
+  Output filename: 
+  Audio Configfile name:
+  Video Configfilename:
+  Test case range 39 to 39
+
+Test output begins
+Number of tests: 0
+Successes: 0
+Failures: 0
+
+Errors: 0
+
+Test output ends
+%%%%%END%%%%%
+
+Start test case 19 ....
+Version: android_1124.1368755 generated on 20100412
+
+PVAuthorEngine Unit Test
+
+[test range from: 40 to: 40]
+
+  
+Input audio file name:
+  Input video filename:
+  Output filename: 
+  Audio Configfile name:
+  Video Configfilename:
+  Test case range 40 to 40
+
+Test output begins
+Number of tests: 0
+Successes: 0
+Failures: 0
+
+Errors: 0
+
+Test output ends
+%%%%%END%%%%%
+
+Start test case 20 ....
+Version: android_1124.1368755 generated on 20100412
+
+PVAuthorEngine Unit Test
+
+[test range from: 41 to: 41]
+
+  
+Input audio file name:
+  Input video filename:
+  Output filename: 
+  Audio Configfile name:
+  Video Configfilename:
+  Test case range 41 to 41
+
+Test output begins
+Number of tests: 0
+Successes: 0
+Failures: 0
+
+Errors: 0
+
+Test output ends
+%%%%%END%%%%%
+
+Start test case 21 ....
+Version: android_1124.1368755 generated on 20100412
+
+PVAuthorEngine Unit Test
+
+[test range from: 42 to: 42]
+
+  
+Input audio file name:
+  Input video filename:
+  Output filename: 
+  Audio Configfile name:
+  Video Configfilename:
+  Test case range 42 to 42
+
+Test output begins
+Number of tests: 0
+Successes: 0
+Failures: 0
+
+Errors: 0
+
+Test output ends
+%%%%%END%%%%%
+
+Start test case 22 ....
+Version: android_1124.1368755 generated on 20100412
+
+PVAuthorEngine Unit Test
+
+[test range from: 43 to: 43]
+
+  
+Input audio file name:
+  Input video filename:
+  Output filename: 
+  Audio Configfile name:
+  Video Configfilename:
+  Test case range 43 to 43
+
+Test output begins
+Number of tests: 0
+Successes: 0
+Failures: 0
+
+Errors: 0
+
+Test output ends
+%%%%%END%%%%%
+
+Start test case 23 ....
+Version: android_1124.1368755 generated on 20100412
+
+PVAuthorEngine Unit Test
+
+[test range from: 44 to: 44]
+
+  
+Input audio file name:
+  Input video filename:
+  Output filename: 
+  Audio Configfile name:
+  Video Configfilename:
+  Test case range 44 to 44
+
+Test output begins
+Number of tests: 0
+Successes: 0
+Failures: 0
+
+Errors: 0
+
+Test output ends
+%%%%%END%%%%%
+
+Start test case 24 ....
+Version: android_1124.1368755 generated on 20100412
+
+PVAuthorEngine Unit Test
+
+[test range from: 45 to: 45]
+
+  
+Input audio file name:
+  Input video filename:
+  Output filename: 
+  Audio Configfile name:
+  Video Configfilename:
+  Test case range 45 to 45
+
+Test output begins
+Number of tests: 0
+Successes: 0
+Failures: 0
+
+Errors: 0
+
+Test output ends
+%%%%%END%%%%%
+
+Start test case 25 ....
+Version: android_1124.1368755 generated on 20100412
+
+PVAuthorEngine Unit Test
+
+[test range from: 46 to: 46]
+
+  
+Input audio file name:
+  Input video filename:
+  Output filename: 
+  Audio Configfile name:
+  Video Configfilename:
+  Test case range 46 to 46
+
+Test output begins
+Number of tests: 0
+Successes: 0
+Failures: 0
+
+Errors: 0
+
+Test output ends
+%%%%%END%%%%%
+
+Start test case 26 ....
+Version: android_1124.1368755 generated on 20100412
+
+PVAuthorEngine Unit Test
+
+[test range from: 47 to: 47]
+
+  
+Input audio file name:
+  Input video filename:
+  Output filename: 
+  Audio Configfile name:
+  Video Configfilename:
+  Test case range 47 to 47
+
+Test output begins
+Number of tests: 0
+Successes: 0
+Failures: 0
+
+Errors: 0
+
+Test output ends
+%%%%%END%%%%%
+
+Start test case 27 ....
+Version: android_1124.1368755 generated on 20100412
+
+PVAuthorEngine Unit Test
+
+[test range from: 48 to: 48]
+
+  
+Input audio file name:
+  Input video filename:
+  Output filename: 
+  Audio Configfile name:
+  Video Configfilename:
+  Test case range 48 to 48
+
+Test output begins
+Number of tests: 0
+Successes: 0
+Failures: 0
+
+Errors: 0
+
+Test output ends
+%%%%%END%%%%%
+
+Start test case 28 ....
+Version: android_1124.1368755 generated on 20100412
+
+PVAuthorEngine Unit Test
+
+[test range from: 49 to: 49]
+
+  
+Input audio file name:
+  Input video filename:
+  Output filename: 
+  Audio Configfile name:
+  Video Configfilename:
+  Test case range 49 to 49
+
+Test output begins
+Number of tests: 0
+Successes: 0
+Failures: 0
+
+Errors: 0
+
+Test output ends
+%%%%%END%%%%%
+
+Start test case 29 ....
+Version: android_1124.1368755 generated on 20100412
+
+PVAuthorEngine Unit Test
+
+[test range from: 50 to: 50]
+
+  
+Input audio file name:
+  Input video filename:
+  Output filename: 
+  Audio Configfile name:
+  Video Configfilename:
+  Test case range 50 to 50
+
+Test output begins
+Number of tests: 0
+Successes: 0
+Failures: 0
+
+Errors: 0
+
+Test output ends
+%%%%%END%%%%%
+
+Start test case 30 ....
+Version: android_1124.1368755 generated on 20100412
+
+PVAuthorEngine Unit Test
+
+[test range from: 51 to: 51]
+
+  
+Input audio file name:
+  Input video filename:
+  Output filename: 
+  Audio Configfile name:
+  Video Configfilename:
+  Test case range 51 to 51
+
+Test output begins
+Number of tests: 0
+Successes: 0
+Failures: 0
+
+Errors: 0
+
+Test output ends
+%%%%%END%%%%%
+
+Start test case 31 ....
+Version: android_1124.1368755 generated on 20100412
+
+PVAuthorEngine Unit Test
+
+[test range from: 52 to: 52]
+
+  
+Input audio file name:
+  Input video filename:
+  Output filename: 
+  Audio Configfile name:
+  Video Configfilename:
+  Test case range 52 to 52
+
+Test output begins
+Number of tests: 0
+Successes: 0
+Failures: 0
+
+Errors: 0
+
+Test output ends
+%%%%%END%%%%%
+
+Start test case 32 ....
+Version: android_1124.1368755 generated on 20100412
+
+PVAuthorEngine Unit Test
+
+[test range from: 53 to: 53]
+
+  
+Input audio file name:
+  Input video filename:
+  Output filename: 
+  Audio Configfile name:
+  Video Configfilename:
+  Test case range 53 to 53
+
+Test output begins
+Number of tests: 0
+Successes: 0
+Failures: 0
+
+Errors: 0
+
+Test output ends
+%%%%%END%%%%%
+
+Start test case 33 ....
+Version: android_1124.1368755 generated on 20100412
+
+PVAuthorEngine Unit Test
+
+[test range from: 54 to: 54]
+
+  
+Input audio file name:
+  Input video filename:
+  Output filename: 
+  Audio Configfile name:
+  Video Configfilename:
+  Test case range 54 to 54
+
+Test output begins
+Number of tests: 0
+Successes: 0
+Failures: 0
+
+Errors: 0
+
+Test output ends
+%%%%%END%%%%%
+
+Start test case 34 ....
+Version: android_1124.1368755 generated on 20100412
+
+PVAuthorEngine Unit Test
+
+[test range from: 55 to: 55]
+
+  
+Input audio file name:
+  Input video filename:
+  Output filename: 
+  Audio Configfile name:
+  Video Configfilename:
+  Test case range 55 to 55
+
+Test output begins
+Number of tests: 0
+Successes: 0
+Failures: 0
+
+Errors: 0
+
+Test output ends
+%%%%%END%%%%%
+
+Start test case 35 ....
+Version: android_1124.1368755 generated on 20100412
+
+PVAuthorEngine Unit Test
+
+[test range from: 56 to: 56]
+
+  
+Input audio file name:
+  Input video filename:
+  Output filename: 
+  Audio Configfile name:
+  Video Configfilename:
+  Test case range 56 to 56
+
+Test output begins
+Number of tests: 0
+Successes: 0
+Failures: 0
+
+Errors: 0
+
+Test output ends
+%%%%%END%%%%%
+
+Start test case 36 ....
+Version: android_1124.1368755 generated on 20100412
+
+PVAuthorEngine Unit Test
+
+[test range from: 57 to: 57]
+
+  
+Input audio file name:
+  Input video filename:
+  Output filename: 
+  Audio Configfile name:
+  Video Configfilename:
+  Test case range 57 to 57
+
+Test output begins
+Number of tests: 0
+Successes: 0
+Failures: 0
+
+Errors: 0
+
+Test output ends
+%%%%%END%%%%%
+
+Start test case 37 ....
+Version: android_1124.1368755 generated on 20100412
+
+PVAuthorEngine Unit Test
+
+[test range from: 58 to: 58]
+
+  
+Input audio file name:
+  Input video filename:
+  Output filename: 
+  Audio Configfile name:
+  Video Configfilename:
+  Test case range 58 to 58
+
+Test output begins
+Number of tests: 0
+Successes: 0
+Failures: 0
+
+Errors: 0
+
+Test output ends
+%%%%%END%%%%%
+
+Start test case 38 ....
+Version: android_1124.1368755 generated on 20100412
+
+PVAuthorEngine Unit Test
+
+[test range from: 59 to: 59]
+
+  
+Input audio file name:
+  Input video filename:
+  Output filename: 
+  Audio Configfile name:
+  Video Configfilename:
+  Test case range 59 to 59
+
+Test output begins
+Number of tests: 0
+Successes: 0
+Failures: 0
+
+Errors: 0
+
+Test output ends
+%%%%%END%%%%%
+
+Start test case 39 ....
+Version: android_1124.1368755 generated on 20100412
+
+PVAuthorEngine Unit Test
+
+[test range from: 60 to: 60]
+
+  
+Input audio file name:
+  Input video filename:
+  Output filename: 
+  Audio Configfile name:
+  Video Configfilename:
+  Test case range 60 to 60
+
+Test output begins
+Number of tests: 0
+Successes: 0
+Failures: 0
+
+Errors: 0
+
+Test output ends
+%%%%%END%%%%%
+
+Start test case 40 ....
+Version: android_1124.1368755 generated on 20100412
+
+PVAuthorEngine Unit Test
+
+[test range from: 61 to: 61]
+
+  
+Input audio file name:
+  Input video filename:
+  Output filename: 
+  Audio Configfile name:
+  Video Configfilename:
+  Test case range 61 to 61
+
+Test output begins
+Number of tests: 0
+Successes: 0
+Failures: 0
+
+Errors: 0
+
+Test output ends
+%%%%%END%%%%%
+
+Start test case 41 ....
+Version: android_1124.1368755 generated on 20100412
+
+PVAuthorEngine Unit Test
+
+[test range from: 62 to: 62]
+
+  
+Input audio file name:
+  Input video filename:
+  Output filename: 
+  Audio Configfile name:
+  Video Configfilename:
+  Test case range 62 to 62
+
+Test output begins
+Number of tests: 0
+Successes: 0
+Failures: 0
+
+Errors: 0
+
+Test output ends
+%%%%%END%%%%%
+
+Start test case 42 ....
+Version: android_1124.1368755 generated on 20100412
+
+PVAuthorEngine Unit Test
+
+[test range from: 63 to: 63]
+
+  
+Input audio file name:
+  Input video filename:
+  Output filename: 
+  Audio Configfile name:
+  Video Configfilename:
+  Test case range 63 to 63
+
+Test output begins
+Number of tests: 0
+Successes: 0
+Failures: 0
+
+Errors: 0
+
+Test output ends
+%%%%%END%%%%%
+
+Start test case 43 ....
+Version: android_1124.1368755 generated on 20100412
+
+PVAuthorEngine Unit Test
+
+[test range from: 64 to: 64]
+
+  
+Input audio file name:
+  Input video filename:
+  Output filename: 
+  Audio Configfile name:
+  Video Configfilename:
+  Test case range 64 to 64
+
+Test output begins
+Number of tests: 0
+Successes: 0
+Failures: 0
+
+Errors: 0
+
+Test output ends
+%%%%%END%%%%%
+
+Start test case 44 ....
+Version: android_1124.1368755 generated on 20100412
+
+PVAuthorEngine Unit Test
+
+[test range from: 65 to: 65]
+
+  
+Input audio file name:
+  Input video filename:
+  Output filename: 
+  Audio Configfile name:
+  Video Configfilename:
+  Test case range 65 to 65
+
+Test output begins
+Number of tests: 0
+Successes: 0
+Failures: 0
+
+Errors: 0
+
+Test output ends
+%%%%%END%%%%%
+
+Start test case 45 ....
+Version: android_1124.1368755 generated on 20100412
+
+PVAuthorEngine Unit Test
+
+[test range from: 66 to: 66]
+
+  
+Input audio file name:
+  Input video filename:
+  Output filename: 
+  Audio Configfile name:
+  Video Configfilename:
+  Test case range 66 to 66
+
+Test output begins
+Number of tests: 0
+Successes: 0
+Failures: 0
+
+Errors: 0
+
+Test output ends
+%%%%%END%%%%%
+
+Start test case 46 ....
+Version: android_1124.1368755 generated on 20100412
+
+PVAuthorEngine Unit Test
+
+[test range from: 67 to: 67]
+
+  
+Input audio file name:
+  Input video filename:
+  Output filename: 
+  Audio Configfile name:
+  Video Configfilename:
+  Test case range 67 to 67
+
+Test output begins
+Number of tests: 0
+Successes: 0
+Failures: 0
+
+Errors: 0
+
+Test output ends
+%%%%%END%%%%%
+
+Start test case 47 ....
+Version: android_1124.1368755 generated on 20100412
+
+PVAuthorEngine Unit Test
+
+[test range from: 68 to: 68]
+
+  
+Input audio file name:
+  Input video filename:
+  Output filename: 
+  Audio Configfile name:
+  Video Configfilename:
+  Test case range 68 to 68
+
+Test output begins
+Number of tests: 0
+Successes: 0
+Failures: 0
+
+Errors: 0
+
+Test output ends
+%%%%%END%%%%%
+
+Start test case 48 ....
+Version: android_1124.1368755 generated on 20100412
+
+PVAuthorEngine Unit Test
+
+[test range from: 69 to: 69]
+
+  
+Input audio file name:
+  Input video filename:
+  Output filename: 
+  Audio Configfile name:
+  Video Configfilename:
+  Test case range 69 to 69
+
+Test output begins
+Number of tests: 0
+Successes: 0
+Failures: 0
+
+Errors: 0
+
+Test output ends
+%%%%%END%%%%%
+
+Start test case 49 ....
+Version: android_1124.1368755 generated on 20100412
+
+PVAuthorEngine Unit Test
+
+[test range from: 70 to: 70]
+
+  
+Input audio file name:
+  Input video filename:
+  Output filename: 
+  Audio Configfile name:
+  Video Configfilename:
+  Test case range 70 to 70
+
+Test output begins
+Number of tests: 0
+Successes: 0
+Failures: 0
+
+Errors: 0
+
+Test output ends
+%%%%%END%%%%%
+
+Start test case 50 ....
+Version: android_1124.1368755 generated on 20100412
+
+PVAuthorEngine Unit Test
+
+[test range from: 71 to: 71]
+
+  
+Input audio file name:
+  Input video filename:
+  Output filename: 
+  Audio Configfile name:
+  Video Configfilename:
+  Test case range 71 to 71
+
+Test output begins
+Number of tests: 0
+Successes: 0
+Failures: 0
+
+Errors: 0
+
+Test output ends
+%%%%%END%%%%%
+
+Start test case 51 ....
+Version: android_1124.1368755 generated on 20100412
+
+PVAuthorEngine Unit Test
+
+[test range from: 72 to: 72]
+
+  
+Input audio file name:
+  Input video filename:
+  Output filename: 
+  Audio Configfile name:
+  Video Configfilename:
+  Test case range 72 to 72
+
+Test output begins
+Number of tests: 0
+Successes: 0
+Failures: 0
+
+Errors: 0
+
+Test output ends
+%%%%%END%%%%%
+
+Start test case 52 ....
+Version: android_1124.1368755 generated on 20100412
+
+PVAuthorEngine Unit Test
+
+[test range from: 73 to: 73]
+
+  
+Input audio file name:
+  Input video filename:
+  Output filename: 
+  Audio Configfile name:
+  Video Configfilename:
+  Test case range 73 to 73
+
+Test output begins
+Number of tests: 0
+Successes: 0
+Failures: 0
+
+Errors: 0
+
+Test output ends
+%%%%%END%%%%%
+
+Start test case 53 ....
+Version: android_1124.1368755 generated on 20100412
+
+PVAuthorEngine Unit Test
+
+[test range from: 74 to: 74]
+
+  
+Input audio file name:
+  Input video filename:
+  Output filename: 
+  Audio Configfile name:
+  Video Configfilename:
+  Test case range 74 to 74
+
+Test output begins
+Number of tests: 0
+Successes: 0
+Failures: 0
+
+Errors: 0
+
+Test output ends
+%%%%%END%%%%%
+
+Start test case 54 ....
+Version: android_1124.1368755 generated on 20100412
+
+PVAuthorEngine Unit Test
+
+[test range from: 75 to: 75]
+
+  
+Input audio file name:
+  Input video filename:
+  Output filename: 
+  Audio Configfile name:
+  Video Configfilename:
+  Test case range 75 to 75
+
+Test output begins
+Number of tests: 0
+Successes: 0
+Failures: 0
+
+Errors: 0
+
+Test output ends
+%%%%%END%%%%%
+
+Start test case 55 ....
+Version: android_1124.1368755 generated on 20100412
+
+PVAuthorEngine Unit Test
+
+[test range from: 76 to: 76]
+
+  
+Input audio file name:
+  Input video filename:
+  Output filename: 
+  Audio Configfile name:
+  Video Configfilename:
+  Test case range 76 to 76
+
+Test output begins
+Number of tests: 0
+Successes: 0
+Failures: 0
+
+Errors: 0
+
+Test output ends
+%%%%%END%%%%%
+
+Start test case 56 ....
+Version: android_1124.1368755 generated on 20100412
+
+PVAuthorEngine Unit Test
+
+[test range from: 77 to: 77]
+
+  
+Input audio file name:
+  Input video filename:
+  Output filename: 
+  Audio Configfile name:
+  Video Configfilename:
+  Test case range 77 to 77
+
+Test output begins
+Number of tests: 0
+Successes: 0
+Failures: 0
+
+Errors: 0
+
+Test output ends
+%%%%%END%%%%%
+
+Start test case 57 ....
+Version: android_1124.1368755 generated on 20100412
+
+PVAuthorEngine Unit Test
+
+[test range from: 78 to: 78]
+
+  
+Input audio file name:
+  Input video filename:
+  Output filename: 
+  Audio Configfile name:
+  Video Configfilename:
+  Test case range 78 to 78
+
+Test output begins
+Number of tests: 0
+Successes: 0
+Failures: 0
+
+Errors: 0
+
+Test output ends
+%%%%%END%%%%%
+
+Start test case 58 ....
+Version: android_1124.1368755 generated on 20100412
+
+PVAuthorEngine Unit Test
+
+[test range from: 79 to: 79]
+
+  
+Input audio file name:
+  Input video filename:
+  Output filename: 
+  Audio Configfile name:
+  Video Configfilename:
+  Test case range 79 to 79
+
+Test output begins
+Number of tests: 0
+Successes: 0
+Failures: 0
+
+Errors: 0
+
+Test output ends
+%%%%%END%%%%%
+
+Start test case 59 ....
+Version: android_1124.1368755 generated on 20100412
+
+PVAuthorEngine Unit Test
+
+[test range from: 80 to: 80]
+
+  
+Input audio file name:
+  Input video filename:
+  Output filename: 
+  Audio Configfile name:
+  Video Configfilename:
+  Test case range 80 to 80
+
+Test output begins
+Number of tests: 0
+Successes: 0
+Failures: 0
+
+Errors: 0
+
+Test output ends
+%%%%%END%%%%%
+
+Start test case 60 ....
+Version: android_1124.1368755 generated on 20100412
+
+PVAuthorEngine Unit Test
+
+[test range from: 81 to: 81]
+
+  
+Input audio file name:
+  Input video filename:
+  Output filename: 
+  Audio Configfile name:
+  Video Configfilename:
+  Test case range 81 to 81
+
+Test output begins
+Number of tests: 0
+Successes: 0
+Failures: 0
+
+Errors: 0
+
+Test output ends
+%%%%%END%%%%%
+
+Start test case 61 ....
+Version: android_1124.1368755 generated on 20100412
+
+PVAuthorEngine Unit Test
+
+[test range from: 82 to: 82]
+
+  
+Input audio file name:
+  Input video filename:
+  Output filename: 
+  Audio Configfile name:
+  Video Configfilename:
+  Test case range 82 to 82
+
+Test output begins
+Number of tests: 0
+Successes: 0
+Failures: 0
+
+Errors: 0
+
+Test output ends
+%%%%%END%%%%%
+
+Start test case 62 ....
+Version: android_1124.1368755 generated on 20100412
+
+PVAuthorEngine Unit Test
+
+[test range from: 83 to: 83]
+
+  
+Input audio file name:
+  Input video filename:
+  Output filename: 
+  Audio Configfile name:
+  Video Configfilename:
+  Test case range 83 to 83
+
+Test output begins
+Number of tests: 0
+Successes: 0
+Failures: 0
+
+Errors: 0
+
+Test output ends
+%%%%%END%%%%%
+
+Start test case 63 ....
+Version: android_1124.1368755 generated on 20100412
+
+PVAuthorEngine Unit Test
+
+[test range from: 84 to: 84]
+
+  
+Input audio file name:
+  Input video filename:
+  Output filename: 
+  Audio Configfile name:
+  Video Configfilename:
+  Test case range 84 to 84
+
+Test output begins
+Number of tests: 0
+Successes: 0
+Failures: 0
+
+Errors: 0
+
+Test output ends
+%%%%%END%%%%%
+
+Start test case 64 ....
+Version: android_1124.1368755 generated on 20100412
+
+PVAuthorEngine Unit Test
+
+[test range from: 85 to: 85]
+
+  
+Input audio file name:
+  Input video filename:
+  Output filename: 
+  Audio Configfile name:
+  Video Configfilename:
+  Test case range 85 to 85
+
+Test output begins
+Number of tests: 0
+Successes: 0
+Failures: 0
+
+Errors: 0
+
+Test output ends
+%%%%%END%%%%%
+
+Start test case 65 ....
+Version: android_1124.1368755 generated on 20100412
+
+PVAuthorEngine Unit Test
+
+[test range from: 86 to: 86]
+
+  
+Input audio file name:
+  Input video filename:
+  Output filename: 
+  Audio Configfile name:
+  Video Configfilename:
+  Test case range 86 to 86
+
+Test output begins
+Number of tests: 0
+Successes: 0
+Failures: 0
+
+Errors: 0
+
+Test output ends
+%%%%%END%%%%%
+
+Start test case 66 ....
+Version: android_1124.1368755 generated on 20100412
+
+PVAuthorEngine Unit Test
+
+[test range from: 87 to: 87]
+
+  
+Input audio file name:
+  Input video filename:
+  Output filename: 
+  Audio Configfile name:
+  Video Configfilename:
+  Test case range 87 to 87
+
+Test output begins
+Number of tests: 0
+Successes: 0
+Failures: 0
+
+Errors: 0
+
+Test output ends
+%%%%%END%%%%%
+
+Start test case 67 ....
+Version: android_1124.1368755 generated on 20100412
+
+PVAuthorEngine Unit Test
+
+[test range from: 88 to: 88]
+
+  
+Input audio file name:
+  Input video filename:
+  Output filename: 
+  Audio Configfile name:
+  Video Configfilename:
+  Test case range 88 to 88
+
+Test output begins
+Number of tests: 0
+Successes: 0
+Failures: 0
+
+Errors: 0
+
+Test output ends
+%%%%%END%%%%%
+
+Start test case 68 ....
+Version: android_1124.1368755 generated on 20100412
+
+PVAuthorEngine Unit Test
+
+[test range from: 89 to: 89]
+
+  
+Input audio file name:
+  Input video filename:
+  Output filename: 
+  Audio Configfile name:
+  Video Configfilename:
+  Test case range 89 to 89
+
+Test output begins
+Number of tests: 0
+Successes: 0
+Failures: 0
+
+Errors: 0
+
+Test output ends
+%%%%%END%%%%%
+
+Start test case 69 ....
+Version: android_1124.1368755 generated on 20100412
+
+PVAuthorEngine Unit Test
+
+[test range from: 90 to: 90]
+
+  
+Input audio file name:
+  Input video filename:
+  Output filename: 
+  Audio Configfile name:
+  Video Configfilename:
+  Test case range 90 to 90
+
+Test output begins
+Number of tests: 0
+Successes: 0
+Failures: 0
+
+Errors: 0
+
+Test output ends
+%%%%%END%%%%%
+
+Start test case 70 ....
+Version: android_1124.1368755 generated on 20100412
+
+PVAuthorEngine Unit Test
+
+[test range from: 91 to: 91]
+
+  
+Input audio file name:
+  Input video filename:
+  Output filename: 
+  Audio Configfile name:
+  Video Configfilename:
+  Test case range 91 to 91
+
+Test output begins
+Number of tests: 0
+Successes: 0
+Failures: 0
+
+Errors: 0
+
+Test output ends
+%%%%%END%%%%%
+
+Start test case 71 ....
+Version: android_1124.1368755 generated on 20100412
+
+PVAuthorEngine Unit Test
+
+[test range from: 92 to: 92]
+
+  
+Input audio file name:
+  Input video filename:
+  Output filename: 
+  Audio Configfile name:
+  Video Configfilename:
+  Test case range 92 to 92
+
+Test output begins
+Number of tests: 0
+Successes: 0
+Failures: 0
+
+Errors: 0
+
+Test output ends
+%%%%%END%%%%%
+
+Start test case 72 ....
+Version: android_1124.1368755 generated on 20100412
+
+PVAuthorEngine Unit Test
+
+[test range from: 93 to: 93]
+
+  
+Input audio file name:
+  Input video filename:
+  Output filename: 
+  Audio Configfile name:
+  Video Configfilename:
+  Test case range 93 to 93
+
+Test output begins
+Number of tests: 0
+Successes: 0
+Failures: 0
+
+Errors: 0
+
+Test output ends
+%%%%%END%%%%%
+
+Start test case 73 ....
+Version: android_1124.1368755 generated on 20100412
+
+PVAuthorEngine Unit Test
+
+[test range from: 94 to: 94]
+
+  
+Input audio file name:
+  Input video filename:
+  Output filename: 
+  Audio Configfile name:
+  Video Configfilename:
+  Test case range 94 to 94
+
+Test output begins
+Number of tests: 0
+Successes: 0
+Failures: 0
+
+Errors: 0
+
+Test output ends
+%%%%%END%%%%%
+
+Start test case 74 ....
+Version: android_1124.1368755 generated on 20100412
+
+PVAuthorEngine Unit Test
+
+[test range from: 95 to: 95]
+
+  
+Input audio file name:
+  Input video filename:
+  Output filename: 
+  Audio Configfile name:
+  Video Configfilename:
+  Test case range 95 to 95
+
+Test output begins
+Number of tests: 0
+Successes: 0
+Failures: 0
+
+Errors: 0
+
+Test output ends
+%%%%%END%%%%%
+
+Start test case 75 ....
+Version: android_1124.1368755 generated on 20100412
+
+PVAuthorEngine Unit Test
+
+[test range from: 96 to: 96]
+
+  
+Input audio file name:
+  Input video filename:
+  Output filename: 
+  Audio Configfile name:
+  Video Configfilename:
+  Test case range 96 to 96
+
+Test output begins
+Number of tests: 0
+Successes: 0
+Failures: 0
+
+Errors: 0
+
+Test output ends
+%%%%%END%%%%%
+
+Start test case 76 ....
+Version: android_1124.1368755 generated on 20100412
+
+PVAuthorEngine Unit Test
+
+[test range from: 97 to: 97]
+
+  
+Input audio file name:
+  Input video filename:
+  Output filename: 
+  Audio Configfile name:
+  Video Configfilename:
+  Test case range 97 to 97
+
+Test output begins
+Number of tests: 0
+Successes: 0
+Failures: 0
+
+Errors: 0
+
+Test output ends
+%%%%%END%%%%%
+
+Start test case 77 ....
+Version: android_1124.1368755 generated on 20100412
+
+PVAuthorEngine Unit Test
+
+[test range from: 98 to: 98]
+
+  
+Input audio file name:
+  Input video filename:
+  Output filename: 
+  Audio Configfile name:
+  Video Configfilename:
+  Test case range 98 to 98
+
+Test output begins
+Number of tests: 0
+Successes: 0
+Failures: 0
+
+Errors: 0
+
+Test output ends
+%%%%%END%%%%%
+
+Start test case 78 ....
+Version: android_1124.1368755 generated on 20100412
+
+PVAuthorEngine Unit Test
+
+[test range from: 99 to: 99]
+
+  
+Input audio file name:
+  Input video filename:
+  Output filename: 
+  Audio Configfile name:
+  Video Configfilename:
+  Test case range 99 to 99
+
+Test output begins
+Number of tests: 0
+Successes: 0
+Failures: 0
+
+Errors: 0
+
+Test output ends
+%%%%%END%%%%%

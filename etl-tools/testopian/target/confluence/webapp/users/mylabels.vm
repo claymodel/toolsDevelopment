@@ -1,0 +1,47 @@
+<html>
+<head>
+    <title>$generalUtil.htmlEncode($pageTitle)</title>
+</head>
+
+#applyDecorator("root")
+    #decoratorParam("context" "profile")
+    #decoratorParam("mode"  "my-labels")
+    #decoratorParam("helper" $action.helper)
+    #decoratorParam("help-path" "/labels/help/my-labels-help.vm")
+    #decoratorParam("infopanel-width" "200px")
+
+   <body>
+   <div style="float: right; margin-top: 12px; margin-right: 12px;">
+       <a href="$req.contextPath/spaces/createrssfeed.action?types=page&types=blogpost&types=mail&types=comment&types=attachment&sort=modified&spaces=&labelString=favourite+favorite&rssType=rss2&maxResults=10&timeSpan=5&publicFeed=false&title=Personal+Labels+RSS+Feed" title="Personal Labels RSS Feed"><img src="$staticResourceUrlPrefix/images/icons/rss20.gif" height=15 width=80 border=0 align=absmiddle></a>
+   </div>
+
+   <p>$action.getText("user.profile.mylabels.blurb")</p>
+
+    <table width="100%" cellpadding="0" cellspacing="0">
+        <tr>
+            <td valign="top" width="1%">
+                <div style="width: 140px; margin-top: 12px; border-right:1px solid #d3d3d3; background: #F0F0F0;">
+                    <div style="padding:3px;text-decoration:none;font-weight:bold" class="label">$action.getText('your.labels')</div>
+                    <div style="padding:5px 5px 10px 10px">
+                        #foreach ($label in $myLabels)
+                            <a href="${req.contextPath}/users/viewmylabels.action?labelId=$label.id">$label.name</a> <span class="smalltext">$action.getContentCount($label)</span>
+                        <br/>
+                        #end
+                    </div>
+                </div>
+            </td>
+            <td valign="top">
+                <div style="padding-left:10px">
+                    #bodytag ("Component" "template='general-pagelist.vm'")
+                        #param ("mytitle" "#if($currentLabel)Content labelled with &quot;$!currentLabel.name&quot; #else $action.getText('all.labelled.content')#end")
+                        #param ("pages" "paginationSupport.page")
+                    #end
+                    #pagination($action.paginationSupport "${req.contextPath}/users/viewmylabels.action?labelId=$currentLabel.id&")
+                </div>
+            </td>
+        </tr>
+    </table>
+</body>
+
+#end
+</html>

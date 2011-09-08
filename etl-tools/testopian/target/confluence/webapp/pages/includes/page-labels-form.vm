@@ -1,0 +1,28 @@
+## labels form in the editor
+#requireResource("confluence.web.resources:labels-editor")
+
+<fieldset class="hidden parameters">
+    <input type="hidden" id="pageId" value="$!pageId">
+</fieldset>
+
+<div id="labels_tab">
+    <label class="formtitle" for="labelsString">$action.getText("labels.name"): </label>
+    <a href="#" class="inline-control-link" id="labels_edit_link">$action.getText("edit.name")</a>
+</div>
+<div id="labels_info">
+   $generalUtil.htmlEncode($!labelsString)
+</div>
+
+<div id="labels_div" class="toggleFormDiv editor-panel hidden">
+    <span class="error">
+        <span class="errorMessage" id="errorSpan"></span>
+    </span>
+    #fielderror ('labelsString')
+    <input type="text" id="labelsString" name="labelsString" autocomplete="off"
+    value="$generalUtil.htmlEncode($!labelsString)" class="monospaceInput" />
+    <div id="labelsAutocompleteList" class="aui-dd-parent"></div>
+    <div class="labels-tip">
+        <div id="suggestedLabelsSpan"></div>
+        $action.getText("tip.start.typing")
+    </div>
+</div>

@@ -1,0 +1,10 @@
+#if($actionErrors && $actionErrors.size() > 0)
+    <div class="errorBox">
+    <span class="errorMessage">$action.getText("errors.occurred")</span>
+    <ul>
+        #foreach($errorHtml in $actionErrors)
+        <li>$errorHtml</li>
+        #end
+    </ul>
+    </div>
+#end

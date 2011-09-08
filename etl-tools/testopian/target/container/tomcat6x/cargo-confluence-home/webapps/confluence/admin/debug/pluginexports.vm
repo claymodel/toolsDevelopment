@@ -1,0 +1,22 @@
+<html>
+<head>
+<title>$action.getActionName($action.getClass().getName())</title>
+</head>
+<body>
+<h3>$action.getText("administration.plugin.exports.list")</h3>
+
+<ul>
+#foreach ($name in $action.registrar.names)
+<li>$name
+    <ul>
+    #foreach ($interface in $action.registrar.getInterfaces($name))
+        <li>$interface.name</li>
+    #end
+    </ul>
+</li>
+#end
+</ul>
+
+</body>
+</html>
+#parse ("/breadcrumbs.vm")

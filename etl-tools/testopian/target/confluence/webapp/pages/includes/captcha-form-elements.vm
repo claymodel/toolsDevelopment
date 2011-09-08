@@ -1,0 +1,19 @@
+<!-- captcha form elements -->
+#if($captchaManager.showCaptchaForCurrentUser())
+<div class="captcha">
+	#captchaImage()
+	#fielderror('captcha')
+
+	## hardcoded error div used for javascript check
+	<div class="error" id="captchaError" style="display:none;">
+		<span class="errorMessage">
+		$action.getText("captcha.response.failed")
+		</span>
+	</div>
+
+	<div class="captcha-response">
+		<label for="captchaResponse" class="smalltext">$action.getText("captcha.challenge")</label>
+		<input type="text" id="captchaResponse" name="captchaResponse" value="">
+	</div>
+</div>
+#end

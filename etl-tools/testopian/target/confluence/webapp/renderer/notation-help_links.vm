@@ -1,0 +1,168 @@
+            <tr bgcolor=ffffff>
+                <td>
+                    [#anchor]<br/>
+                    [^attachment.ext]<br/>
+                    or<br/>
+                    [pagetitle]<br/>
+                    [pagetitle#anchor]<br/>
+                    [pagetitle^attachment.ext]<br/>
+                    or<br/>
+                    [spacekey:pagetitle]<br/>
+                    [spacekey:pagetitle#anchor]<br/>
+                    [spacekey:pagetitle^attachment.ext]
+                </td>
+                <td>$action.getText('internal.hyperlink.desc')
+
+                    <p>
+$action.getText('example.name'):
+                    <a href="#">$action.getText('pagetitle')</a>
+
+                    <p>$action.getText("if.page.doesnt.exist", ["$staticResourceUrlPrefix/images/icons/plus.gif", "$action.getText('create.new.page')"])</p>
+
+                    <p>$action.getText('example.name'):
+                    <span class="createlink">
+                        <a href="#" class="createlink" title="$action.getText('create.new.page')">$action.getText('anewpage')<sup><img src="$staticResourceUrlPrefix/images/icons/plus.gif" height="7" width="7" align="absmiddle" title="$action.getText('create.new.page')" border="0"/>
+                            </sup>
+                        </a>
+                    </span>
+                </td>
+            </tr>
+            <tr bgcolor=ffffff>
+                <td>
+                    [link alias|#anchor|link tip]<br/>
+                    [link alias|^attachment.ext|link tip]<br/>
+                    or<br/>
+                    [link alias|pagetitle|link tip]<br/>
+                    [link alias|pagetitle#anchor|link tip]<br/>
+                    [link alias|pagetitle^attachment.ext|link tip]<br/>
+                    or<br/>
+                    [link alias|spacekey:pagetitle|link tip]<br/>
+                    [link alias|spacekey:pagetitle#anchor|link tip]<br/>
+                    [link alias|spacekey:pagetitle^attachment.ext|link tip]
+                </td>
+                <td>$action.getText('linkalias.desc')
+                    <p>
+                        $action.getText('example.name'):
+                        <a href="#" title="link tip">$action.getText('linkalias.name')</a>
+                    </p>
+                </td>
+            </tr>
+            <tr bgcolor=ffffff>
+                <td>
+                    [/2004/01/12/$action.getText('my.blog.post')]
+                    [spacekey:/2004/01/12/$action.getText('my.blog.post')]
+                </td>
+                <td>$action.getText('bloglink.desc')
+                    <p>
+                        $action.getText('example.name'):
+                        <ul><li><a href="#">/2004/01/12/$action.getText('my.blog.post')</a><br/></li>
+                        <li><a href="#">$action.getText('my.link.name')</a></li></ul>
+                    </p>
+                </td>
+            </tr>
+            <tr bgcolor=ffffff>
+                <td>
+                    [/2004/01/12]<br/>
+                    [spacekey:/2004/01/12]<br/>
+                    or<br/>
+                    [$action.getText('my.link.name')|/2004/01/12]<br/>
+                    [$action.getText('my.link.name')|spacekey:/2004/01/12]
+                </td>
+                <td>$action.getText('dateblog.desc')
+                    <p>
+                        $action.getText('examples.name'):
+                        <ul><li><a href="#">/2004/01/12/$action.getText('my.blog.post')</a></li>
+                        <li><a href="#">$action.getText('my.link.name')</a></li></ul>
+                    </p>
+                </td>
+            </tr>
+            <tr bgcolor=ffffff>
+                <td>
+                    [$12345]<br/>
+                    $action.getText('or.name')<br/>
+                    [$action.getText('my.link.name')|$12345]
+                </td>
+                <td>$action.getText('databaselink.desc')
+                                    <p>
+                        $action.getText('examples.name'):
+                        <ul><li><a href="#">$action.getText('some.fake.page.name')</a></li>
+                        <li><a href="#">$action.getText('my.link.name')</a></li></ul>
+                    </p>
+                </td>
+            </tr>
+            <tr bgcolor=ffffff>
+                <td>
+                    [$action.getText('spacekey'):]<br/>
+                    [$action.getText('custom.link.title')|$action.getText('spacekey'):]<br/>
+                </td>
+                <td>$action.getText('spacelink.desc')
+                    <p>
+                        $action.getText('examples.name'):
+                        <ul><li><a href="#">$action.getText('spacekey')</a></li>
+                        <li><a href="#">$action.getText('custom.link.title')</a></li>
+                        <li>[<strike>$action.getText('nosuchspace'):</strike>]</li></ul>
+                    </p>
+                </td>
+            </tr>
+            <tr bgcolor=ffffff>
+                <td>
+                    [~username]<br/>
+                    [$action.getText('custom.link.title')|~username]<br/>
+                </td>
+                <td>$action.getText('userlink.desc')
+                    <p>
+                        $action.getText('examples.name'):
+                        <ul><li><img src="$staticResourceUrlPrefix/images/icons/user_12.gif" width="12" height="12" align=absmiddle><a
+                        href="#">$action.getText('user.full.name')</a></li>
+                        <li><a href="#">$action.getText('custom.link.title')</a></li>
+                        <li>[<strike>~$action.getText('nosuchuser')</strike>]</li></ul>
+                    </p>
+                </td>
+            </tr>
+            <tr bgcolor=ffffff>
+                <td>[$action.getText('phraseatshortcut.name')]<br/>
+                [$action.getText('custom.link.text')|$action.getText('phraseatshortcut.name')]</td>
+                <td>$action.getText('shortcutlink.desc')
+                    <p>
+                $action.getText('examples.name'):
+                        <ul><li><a href="http://www.google.com/search?q=confluence">confluence@Google</a></li>
+                        <li><a href="http://www.google.com/search?q=confluence">$action.getText('custom.link.text')</a></li></ul>
+                    </p>
+                </td>
+            </tr>
+            <tr bgcolor=ffffff>
+                <td>[http://confluence.atlassian.com]<br/>
+                [Atlassian|http://atlassian.com]</td>
+                <td>$action.getText('externallink.desc')
+                    <p>
+                        $action.getText('externallink.note')
+                    </p>
+                    <p>
+                $action.getText('examples.name'):
+
+                        <ul>
+                            <li><a href="http://confluence.atlassian.com">&#104;ttp://confluence.atlassian.com</a><sup><img src="$staticResourceUrlPrefix/images/icons/linkext7.gif" height="7" width="7" align="absmiddle" alt="&gt;&gt;" border="0"/></sup>
+                            <li><a href="http://atlassian.com">Atlassian</a><sup><img src="$staticResourceUrlPrefix/images/icons/linkext7.gif" height="7" width="7" align="absmiddle" alt="&gt;&gt;" border="0"/></sup>
+                        </ul>
+                    </p>
+                </td>
+            </tr>
+            <tr bgcolor=ffffff>
+                <td>[mailto:legendaryservice@atlassian.com]</td>
+                <td>$action.getText('maillink.desc')
+                    <p>
+                $action.getText('example.name'):
+                        <span class="nobr">
+                            <img src="$staticResourceUrlPrefix/images/icons/mail_small.gif" height="12" width="13" align="absmiddle" alt="&gt;&gt;" border="0"/><a href="#">legendaryservice@atlassian.com</a>
+                        </span>
+                    </p>
+                </td>
+            </tr>
+            <tr bgcolor=ffffff>
+                <td>[file://c:/temp/foo.txt]<br>[file://z:/file/on/network/share.txt]</td>
+                <td>
+                <p>
+                    $action.getText('filelink.desc')
+                </p>
+                </td>
+            </tr>

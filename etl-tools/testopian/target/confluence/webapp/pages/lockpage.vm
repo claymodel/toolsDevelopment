@@ -1,0 +1,55 @@
+<html>
+
+    <!-- This page no longer seems to be used -->
+
+	<head>
+		<title>$action.getText("action.title"): $page.title</title>
+	</head>
+
+	<body>
+		#parse ( "/template/includes/actionerrors.vm" )
+
+		#if ($actionErrors.size() == 0)
+		<p></p>
+        <form method="POST" name="lockpageform" action="dolockpage.action">
+            #tag ("Hidden" "name='pageId'" "value=page.id")
+            <div class="steptitle" style="width: 85%">
+            <ol>
+                <!-- step 1 -->
+                <li><div class="steptitle">$action.getText("permission.owner.title")</div>
+                <div class="stepdesc">$action.getText("permission.owner.desc")</div>
+                <div class="stepfield">
+                    #fielderror ('lockOwner')
+                    <div class="steplabel">$action.getText("permission.owner.label")</div>
+                    <select name="lockOwner">
+                         <option value="__Lock Self__">$action.getUserFullName($remoteUser.name)</option>
+                         <option value=""></option>
+                         <option value="">$action.getText("permission.owner.groups.header")</option>
+                         #foreach ($group in $groups)
+                             <option value="$group">$group</option>
+                         #end
+                    </select>
+                </div><p>
+                </li>
+
+                <!-- step 2 -->
+                <li><div class="steptitle">$action.getText("permission.comment.title")</div>
+                <div class="stepdesc">$action.getText("permission.comment.desc")</div>
+                <div class=stepfield>
+                    #fielderror ('comment')
+                    <div class="steplabel">$action.getText("permission.comment.label")</div><input type="text" name="comment" size="30" maxlength="255" value="$!action.comment">
+                </div><p>
+                </li>
+            </ol>
+            </div>
+
+            <div style="width: 85%; text-align: right">
+            #tag( "Submit" "name='submit'" "value='add.name'" "theme='notable'" )
+            #tag( "Submit" "name='cancel'" "value='cancel.name'" "theme='notable'" )
+            </div>
+        </form>
+        #end
+        #parse ( "/pages/page-breadcrumbs.vm" )
+        #parse ( "/pages/page-operations.vm" )
+	</body>
+</html>

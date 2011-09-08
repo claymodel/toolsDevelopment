@@ -1,0 +1,17 @@
+$helper.renderConfluenceMacro("{profile:user=%s|mode=hover}", $action.username)
+
+<div class="actions">
+    <ul class="ajs-menu-bar #if (!$action.isEnabledUser()) single-item #end">
+        #if ($action.isEnabledUser())
+            <li class="popup-follow ajs-button ajs-menu-item#if ($action.following) unfollow-item#else follow-item#end">
+                <a class="popup-icon unfollow-icon" title="$action.getText("person.follow.remove", [$generalUtil.htmlEncode($action.user.fullName)])" href="$req.contextPath/unfollowuser.action?mode=profile&username=$generalUtil.urlEncode($action.user.name)&#url_xsrfToken()">
+                    <span class="unfollow-text">$action.getText("person.follow.stop")</span>
+                </a>
+                <a class="popup-icon follow-icon" title="$action.getText("person.follow.add", [$generalUtil.htmlEncode($action.user.fullName)])" href="$req.contextPath/followuser.action?mode=profile&username=$generalUtil.urlEncode($action.user.name)&#url_xsrfToken()">
+                    <span class="follow-text">$action.getText("person.follow")</span>
+                </a>
+            </li>
+        #end
+        #menuMacros_renderMenu("user-popup-menu-$generalUtil.htmlEncode($action.user.name)", $action.getText("more.word.capitalised"), "user-popup-more", "system.user.hover")
+    </ul>
+</div>

@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <title>$action.getText("preview.and.edit") &ndash; $title</title>
+    </head>
+
+  #set ($decorator = $req.getParameter("inline"))
+
+    #if (!$decorator)
+        #set ($decorator = "space")
+    #end
+
+    #applyDecorator("root")
+        #decoratorParam("helper" $action.helper)
+        #decoratorParam("context" "space-blogposts")
+        #decoratorParam("mode" "create-blogpost")
+
+    <body>
+        #parse ( "/template/includes/actionerrors.vm" )
+
+        <div style="padding: 10px">
+
+            <form method="POST" action="docreateblogpost.action?spaceKey=$generalUtil.urlEncode($spaceKey)">
+                #parse ("/pages/includes/alert-preview-start.vm")
+                    #tag( "Hidden" "name='title'" "value=title" )
+                    #tag( "Hidden" "name='content'" "value=content" )
+                <div class="wiki-content wiki-content-preview">
+                    $xHtmlContent
+                </div>
+                #parse ("/pages/includes/alert-preview-end.vm")
+            </form>
+            #parse ("/pages/includes/createpage-form.vm")
+        </div>
+        #end
+
+        <content tag="help-content">#parse ("/pages/help/createpage.vm")</content>
+    </body>
+</html>

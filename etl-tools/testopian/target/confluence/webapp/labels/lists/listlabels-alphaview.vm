@@ -1,0 +1,65 @@
+<html>
+<head>
+    <title>$action.getText("title.labels.all")</title>
+</head>
+
+<body>
+
+#set ($mode = "view-labels-all")
+#if ($action.space)
+	#set ($decoratorContext = "space-labels")
+    #set ($location = "system.space.labels")
+#else
+	#set ($decoratorContext = "labels")
+	#set ($location = "system.labels")
+#end
+
+#applyDecorator("root")
+#decoratorParam("helper" $action.helper)
+	#decoratorParam("context" $decoratorContext)
+	#decoratorParam("mode" $mode)
+
+
+	<content tag="key">$action.space.key</content>
+    <table width="100%">
+        <tr>
+            <td width="85%" valign="top">
+
+			#parse ("/labels/includes/sectionlinks.vm")
+
+            #if ($contents.size() > 0)
+                <p>
+
+                    #if ($action.space)
+                        $action.getText("below.are.labels.1", ["$action.alphaSupport.contents.size()", "$webwork.htmlEncode($action.space.name)"])
+                    #else
+                        #if ($action.alphaSupport.contents.size() < 1000)
+                            $action.getText("below.are.labels.2", ["$action.alphaSupport.contents.size()"])
+                        #else
+                            $action.getText("below.are.labels.3")
+                        #end
+                    #end
+
+                </p>
+
+                <p>
+                    #if ($action.space)
+                        <strong>$action.getText("labels.see.also"):</strong>
+                        <a href="$req.contextPath/labels/listlabels-alphaview.action">$action.getText("labels.from.all.spaces")</a>
+                    $action.getText("and.word")
+                        $action.getText("labels.all.your.personal.labels", ["$req.contextPath/users/viewmylabels.action"])
+                    #end
+                </p>
+                #parse( "/labels/includes/alphaview.vm" )
+            #else
+                <p>$action.getText("no.labels.defined")</p>
+            #end
+        #if ($contents.size() > 0)
+            <td valign="top">#parse( "/labels/includes/labels-sidebar.vm" )</td>
+        #end
+        </tr>
+    </table>
+
+#end
+</body>
+</html>

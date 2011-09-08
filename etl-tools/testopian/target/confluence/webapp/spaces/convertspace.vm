@@ -1,0 +1,56 @@
+<html>
+	<head>
+		<title>$action.getText("title.convert.space")</title>
+
+
+    </head>
+
+    #applyDecorator("root")
+        #decoratorParam("helper" $action.helper)
+        #decoratorParam("context" "space-administration")
+        #decoratorParam("mode"  "view-space-administration")
+
+        <body>
+            #applyDecorator ("root")
+                #decoratorParam ("context" "spaceadminpanel")
+                #decoratorParam ("selection" "editspace")
+                #decoratorParam ("title" "$action.getText('title.remove.space')")
+                #decoratorParam ("selectedTab" "admin")
+                #decoratorParam("helper" $action.helper)
+
+                #applyDecorator ("confirm")
+
+
+                    #fielderror ('error')
+
+
+                    #applyDecorator ("warning" "$action.getText('warning.word')")
+                    #set ($numberMails = $action.getNumberOfMail())
+                        #if ($numberMails > 0)
+                            $action.getText('alert.mail', [$numberMails])
+                        #end
+                        $action.getText('alert.convert')
+                    #end
+                    <p>
+                        $action.getText('convert.space.confirm', [$webwork.htmlEncode($space.name)])
+                    </p>
+                    <p>
+                        $action.getText('desc.convert.space.owner', [$!action.getUser().getName()])
+                        $action.getText('desc.convert.space.key', [$newSpaceKey])
+                    </p>
+
+                    #decoratorParam ("formAction" "doconvertspace.action?key=$generalUtil.urlEncode($space.key)")
+                    #decoratorParam ("formName" "convertspaceform")
+
+                    <br/>
+                    #tag( "Hidden" "name='newSpaceKey'" "value=newSpaceKey" )
+                    #tag( "Hidden" "name='usersToAdd'" "value=usersToAdd" )
+                    #tag( "Hidden" "name='updateLinks'" "value=updateLinks" )
+
+                #end
+            #end
+
+        </body>
+
+    #end
+</html>

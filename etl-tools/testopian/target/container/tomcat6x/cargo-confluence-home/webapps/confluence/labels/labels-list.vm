@@ -1,0 +1,7 @@
+#foreach($label in $labels)
+<div id="label-$label.id" class="confluence-label">
+    #labelLink($label)
+    <span class="remove-label-caption">$label.realTitle</span>
+    <a class="remove-label" href="#">$action.getText("delete.name")</a>
+</div>
+#end

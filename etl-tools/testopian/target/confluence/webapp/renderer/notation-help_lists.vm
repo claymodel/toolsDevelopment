@@ -1,0 +1,50 @@
+            <tr bgcolor=ffffff>
+                <td>
+                    $action.getText('bulletpoints.example')
+                </td>
+                <td>$action.getText('bulletpoints.desc')
+                    <p>
+                $action.getText('example.name'):
+                        <br/>
+                        <ul class="star">
+                            $action.getText('bulletpoints.example.rendered')
+                        </ul>
+                    </p>
+                </td>
+            </tr>
+            <tr bgcolor=ffffff>
+                <td>
+                    $action.getText('list.example')
+                </td>
+                <td>$action.getText('list.desc')
+                    <p>
+                $action.getText('example.name'):
+                        <br/>
+                        $action.getText('list.example.rendered')
+                    </p>
+                </td>
+            </tr>
+            <tr bgcolor=ffffff>
+                <td>
+                    $action.getText('numberedlist.example')
+                </td>
+                <td>$action.getText('numberedlist.desc')
+                    <p>
+                $action.getText('example.name'):
+                        <br/>
+                        $action.getText('numberedlist.example.rendered')
+                    </p>
+                </td>
+            </tr>
+            <tr bgcolor=ffffff>
+                <td>
+                    $action.getText('mixedlist.example')
+                </td>
+                <td>$action.getText('mixedlist.desc')
+                    <p>
+                        $action.getText('example.name'):
+                        <br/>
+                        $action.getText('mixedlist.example.rendered')
+                    </p>
+                </td>
+            </tr>

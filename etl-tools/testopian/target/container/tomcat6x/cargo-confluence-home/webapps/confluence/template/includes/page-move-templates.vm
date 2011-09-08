@@ -1,0 +1,196 @@
+<fieldset class="hidden parameters">
+    <input type="hidden" title="movePageDialogViewPageTitle" value="$i18n.getText('move.page.dialog.title.view', [$generalUtil.htmlEncode($page.title)])">
+    <input type="hidden" title="movePageDialogEditPageTitle" value="$i18n.getText('move.page.dialog.title.edit')">
+    <input type="hidden" title="movePageDialogMoveButton" value="$i18n.getText('move.name')">
+    <input type="hidden" title="movePageDialogCancelButton" value="$i18n.getText('cancel.name')">
+    <input type="hidden" title="movePageDialogBrowsePanelTip" value="$generalUtil.htmlEncode($i18n.getText('tip.edit.movepage'))">
+    <input type="hidden" title="movePageDialogSearchPanel" value="$i18n.getText('move.page.dialog.search.title')">
+    <input type="hidden" title="movePageDialogHistoryPanel" value="$i18n.getText('move.page.dialog.history.title')">
+    <input type="hidden" title="movePageDialogHistoryNoResults" value="$i18n.getText('move.page.dialog.history.no.results')">
+    <input type="hidden" title="movePageDialogLocationPanel" value="$i18n.getText('move.page.dialog.panel.location')">
+    <input type="hidden" title="movePageDialogLocationNotFound" value="$i18n.getText('move.page.dialog.location.not.found')">
+    <input type="hidden" title="movePageDialogBrowsePanel" value="$i18n.getText('move.page.dialog.browse.title')">
+    <input type="hidden" title="movePageDialogPanelLoadErrorMsg" value="$i18n.getText('move.page.dialog.panel.loaderror')">
+    <input type="hidden" title="movePageDialogPanelLoadErrorTip" value="$i18n.getText('move.page.dialog.panel.loaderror.tip')">
+    <input type="hidden" title="movePageDialogPanelLoadErrorStatus" value="$i18n.getText('move.page.dialog.panel.loaderror.status')">
+    <input type="hidden" title="movePageDialogNoSelectionErrorMsg" value="$i18n.getText('move.page.dialog.panel.noselection')">
+    <input type="hidden" title="movePageDialogSearchError" value="$i18n.getText('move.page.dialog.search.error')">
+    <input type="hidden" title="movePageDialogSearchNoResults" value="$i18n.getText('move.page.dialog.search.no.results')">
+    <input type="hidden" title="movePageDialogSearchResultCount" value="$i18n.getText('move.page.dialog.search.results.count')">
+    <input type="hidden" title="movePageDialogMoveFailed" value="$i18n.getText('move.page.dialog.move.failed')">
+    <input type="hidden" title="movePageDialogCannotChangeSpace" value="$i18n.getText('tip.cannot.move.page.between.spaces')">
+    <input type="hidden" title="pageTitle" value="$generalUtil.htmlEncode($!helper.page.title)"/>
+    <input type="hidden" title="parentPageTitle" value="$generalUtil.htmlEncode($!helper.page.parent.title)"/>
+    <input type="hidden" title="fromPageTitle" value="$generalUtil.htmlEncode($!action.fromPage.title)"/>
+    <input type="hidden" title="spaceKey" value="$generalUtil.htmlEncode($!helper.space.key)"/>
+    <input type="hidden" title="spaceName" value="$generalUtil.htmlEncode($!helper.space.name)"/>
+    <input type="hidden" title="movePageDialogInvalidLocation" value="$i18n.getText("move.page.dialog.invalid.location")"/>
+    <input type="hidden" title="movePageDialogOrderingTitle" value="$i18n.getText("move.page.dialog.ordering.title")"/>
+    <input type="hidden" title="movePageDialogBackButton" value="$i18n.getText("move.page.dialog.back.button")"/>
+    <input type="hidden" title="movePageDialogMoveAndOrderButton" value="$i18n.getText("move.page.dialog.order.button")"/>
+    <input type="hidden" title="movePageDialogNextButton" value="$i18n.getText("move.name")"/>
+</fieldset>
+
+<script type="text/x-template" title="movePageDialog">
+    <div class="row information">
+        <div class="inner">
+            <div class="element">
+                $i18n.getText("move.page.dialog.location.description", [$page.title])
+            </div>
+        </div>
+    </div>
+    <div class="form">
+        <fieldset>
+            #assistiveLegend("accessibility.page.location.dialog.known.location.legend")
+            <div class="row">
+                <label for="new-space">$i18n.getText("move.page.dialog.location.space")</label>
+                <div class="value new-space-value">
+                    <input id="new-space-key" name="new-space-key" type="hidden" value="$space.key">
+                    #if ($helper.page && $helper.page.id > 0 && !$permissionHelper.canRemove($remoteUser, $helper.page))
+                        <span class="space-input">
+                            <input id="new-space" name="new-space" value="$generalUtil.htmlEncode($space.name)" disabled="disabled">
+                        </span>
+                        <span class="description warning">$i18n.getText("tip.cannot.move.page.between.spaces")</span>
+                    #else
+                        <span class="space-input">
+                            <input id="new-space" name="new-space" value="$generalUtil.htmlEncode($space.name)">
+                        </span>
+                        <span class="description hidden">$i18n.getText("move.page.dialog.location.space.description")</span>
+                    #end
+                    <div class="new-space-dropdown aui-dd-parent autocomplete"></div>
+                </div>
+            </div>
+            <div class="row">
+                <label for="new-parent-page">$i18n.getText("move.page.dialog.location.parent.page")</label>
+                <div class="value new-parent-page-value">
+                    <span class="page-input">
+                        <input id="new-parent-page" name="new-parent-page" value="$generalUtil.htmlEncode($!page.parent.title)">
+                    </span>
+                    <span class="description">$i18n.getText("move.page.dialog.location.parent.page.description")</span>
+                    <div class="new-parent-page-dropdown aui-dd-parent autocomplete"></div>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+    <div class="location-info">
+        <div class="row">
+            <label>$i18n.getText("move.page.dialog.breadcrumb.current")</label>
+            <div class="value breadcrumbs-container">
+                <div class="breadcrumbs-line">
+                    <ul id="current-parent-breadcrumbs" class="breadcrumbs">
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <label>$i18n.getText("move.page.dialog.breadcrumb.new")</label>
+            <div class="value breadcrumbs-container">
+                <div class="breadcrumbs-line">
+                    <ul id="new-parent-breadcrumbs" class="breadcrumbs">
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+<script type="text/x-template" title="movePageErrors">
+    <div id="move-errors" class="hidden warning"></div>
+</script>
+<script type="text/x-template" title="movePageBreadcrumb">
+    <li><a class="{2}" title="{3}" tabindex="-1"><span>{0}</span></a></li>
+</script>
+<script type="text/x-template" title="movePageBreadcrumbLoading">
+    <li class="loading"><span>$i18n.getText("move.page.dialog.breadcrumb.loading")</span></li>
+</script>
+<script type="text/x-template" title="movePageBreadcrumbError">
+    <li class="warning last"><span>$i18n.getText("move.page.dialog.breadcrumb.error")</span></li>
+</script>
+<script type="text/x-template" title="movePageNoMatchingPages">
+    <ol><li><span class="warning">$i18n.getText("move.page.dialog.location.parent.page.no.results")</span></li></ol>
+</script>
+<script type="text/x-template" title="movePageNoMatchingSpaces">
+    <ol><li><span class="warning">$i18n.getText("move.page.dialog.location.space.no.results")</span></li></ol>
+</script>
+
+<script type="text/x-template" title="movePageSearchPanel">
+    <div class="row information">
+        <div class="inner">
+            <div class="element">
+                $i18n.getText('tip.edit.movepage.search', [$page.title])
+            </div>
+        </div>
+    </div>
+    <div id="move-page-search-container" class="row">
+        <div class="search-form">
+            <fieldset>
+                #assistiveLegend("accessibility.page.location.dialog.search.legend")
+                #assistiveLabel("accessibility.page.location.dialog.search.query.label" "move-page-search-query")
+                <input class="search-query" id="move-page-search-query">
+                #assistiveLabel("accessibility.page.location.dialog.search.space.label" "move-page-search-space")
+                #if ($helper.page && $helper.page.id > 0 && !$permissionHelper.canRemove($remoteUser, $helper.page))
+                    <select id="move-page-search-space" class="search-space" disabled="disabled">
+                        <option value="$!space.key" selected="selected">$generalUtil.htmlEncode($!space.name)</option>
+                    </select>
+                #else
+                    <select id="move-page-search-space" class="search-space">
+                        <option value="conf_all" selected="selected">$i18n.getText("inspace.allspace")</option>
+                        <option value="$!space.key">$generalUtil.htmlEncode($!space.name)</option>
+                    </select>
+                #end
+                <input type="button" value="$i18n.getText('search.name')">
+                #if ($helper.page && $helper.page.id > 0 && !$permissionHelper.canRemove($remoteUser, $helper.page))
+                    <div class="description warning">$i18n.getText("tip.cannot.move.page.between.spaces")</div>
+                #end
+            </fieldset>
+        </div>
+        <div class="search-results">
+        </div>
+    </div>
+</script>
+<script type="text/x-template" title="movePageSearchResultsLoading">
+    <div class="searching">$i18n.getText("move.page.dialog.search.searching")</div>
+</script>
+
+<script type="text/x-template" title="movePageHistoryPanel">
+    <div class="row information">
+        <div class="inner">
+            <div class="element">
+                $i18n.getText('tip.edit.movepage.history', [$page.title])
+            </div>
+        </div>
+    </div>
+    <div id="move-page-search-container" class="row">
+        <div class="search-results">
+        </div>
+    </div>
+</script>
+<script type="text/x-template" title="movePageHistoryLoading">
+    <div class="searching">$i18n.getText("move.page.dialog.history.loading")</div>
+</script>
+<script type="text/x-template" title="movePageBrowsePanel">
+    <div class="row information">
+        <div class="inner">
+            <div class="element">
+                $i18n.getText('tip.edit.movepage', [$page.title])
+            </div>
+        </div>
+    </div>
+    <div class="tree"></div>
+</script>
+<script type="text/x-template" title="movePagePanelLoading">
+    <span>$i18n.getText('move.page.dialog.loading')</span>
+</script>
+<script type="text/x-template" title="movePageBrowsePanelSpace">
+    <ul><li id='tree-root-node-item' class='root-node-list-item'><a class='root-node' href='#'>{0}</a></li></ul>
+</script>
+<script type="text/x-template" title="orderingPagePanel">
+<div id="orderingPlaceHolder"></div>
+</script>
+<script type="text/x-template" title="reorderCheckbox">
+<span id="reorderRequirement"><input id="reorderCheck" type="checkbox" name="reorderFlag" title="$i18n.getText('move.page.dialog.order.button.tooltip')"/><label for="reorderCheck" title="$i18n.getText('move.page.dialog.order.button.tooltip')">$i18n.getText('move.page.dialog.order.button')</label></span>
+</script>
+<script type="text/x-template" title="move-help-link">
+    <div class="dialog-help-link">
+        #doc("help.moving.page" "$action.getText('help.name')")
+    </div>
+</script>

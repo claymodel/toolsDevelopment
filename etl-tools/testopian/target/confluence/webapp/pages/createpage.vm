@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <title>$action.getText("title.add.${contentType}")</title>
+        <meta name="help-path" content="/includes/notation-quick-help.vm"/>
+
+    </head>
+
+    #set ($decorator = $req.getParameter("inline"))
+
+    #applyDecorator("root")
+        #decoratorParam("helper" $action.helper)
+        #decoratorParam("context" "${contentType}")
+        #decoratorParam("mode" "edit")
+        #decoratorParam("help-path" "/includes/notation-quick-help.vm")
+        #decoratorParam("infopanel-width" "25%")
+
+        <body>
+            #parse ("/pages/includes/createpage-form.vm")       
+
+            <content tag="help-content">
+                #parse ("/pages/help/createpage.vm")
+            </content>
+        </body>
+    #end
+
+    ## needs to be outside of the applyDecorator macro so that this tag bubbles up to main.vmd
+    <content tag="bodyClass">contenteditor create</content>
+
+</html>

@@ -1,0 +1,27 @@
+            <tr bgcolor=ffffff>
+                <td>!http://www.host.com/image.gif!
+                    <br/>$action.getText('or.name')
+                    <br/>!attached-image.gif!
+                </td>
+                <td>$action.getText('generalimage.desc')
+                </td>
+            </tr>
+            <tr bgcolor=ffffff>
+                <td>!spaceKey:pageTitle^image.gif!
+                    <br/>
+                    <br/>
+                    !/2007/05/23/My Blog Post^image.gif!
+                </td>
+                <td>$action.getText('otherpageimage.desc')
+                </td>
+            </tr>
+            <tr bgcolor=ffffff>
+            <td>!image.jpg|thumbnail!</td>
+            <td><p>$action.getText('thumbnail.desc')</p>
+            </td></tr>
+            <tr bgcolor=ffffff>
+                <td>!image.gif|align=right, vspace=4!</td>
+                <td>
+                    <p>$action.getText('attributes.desc')</p>
+                </td>
+            </tr>

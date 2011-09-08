@@ -1,0 +1,176 @@
+/*************************************************************
+ * NOTE: Smartsprites used to generate sprites automatically *
+ *************************************************************/
+
+#autocomplete-dropdown .autocomplete-macros .icon {
+    padding: 0;
+}
+
+/** sprite: macro-icons-dropdown; sprite-image: url('../../../images/sprites/macro-icons-dropdown.png'); sprite-layout: horizontal */
+#autocomplete-dropdown .autocomplete-macros li.autocomplete-blank .icon {
+    background-image: url(../../../images/icons/macrobrowser/dropdown/blank.png); /** sprite-ref: macro-icons-dropdown; */
+}
+#autocomplete-dropdown .autocomplete-macros li.autocomplete-placeholder .icon {
+    background-image: url(../../../images/icons/macrobrowser/dropdown/placeholder.png); /** sprite-ref: macro-icons-dropdown; */
+}
+
+#autocomplete-dropdown .autocomplete-macros li.autocomplete-macro-content-by-user .icon {
+    background-image: url(../../../images/icons/macrobrowser/dropdown/content-by-user.png); /** sprite-ref: macro-icons-dropdown; */
+}
+#autocomplete-dropdown .autocomplete-macros li.autocomplete-macro-children .icon {
+    background-image: url(../../../images/icons/macrobrowser/dropdown/children.png); /** sprite-ref: macro-icons-dropdown; */
+}
+#autocomplete-dropdown .autocomplete-macros li.autocomplete-macro-search .icon {
+    background-image: url(../../../images/icons/macrobrowser/dropdown/search.png); /** sprite-ref: macro-icons-dropdown; */
+}
+#autocomplete-dropdown .autocomplete-macros li.autocomplete-macro-index .icon {
+    background-image: url(../../../images/icons/macrobrowser/dropdown/pageindex.png); /** sprite-ref: macro-icons-dropdown; */
+}
+#autocomplete-dropdown .autocomplete-macros li.autocomplete-macro-blog-posts .icon {
+    background-image: url(../../../images/icons/macrobrowser/dropdown/blog-posts.png); /** sprite-ref: macro-icons-dropdown; */
+}
+#autocomplete-dropdown .autocomplete-macros li.autocomplete-macro-excerpt .icon {
+    background-image: url(../../../images/icons/macrobrowser/dropdown/excerpt.png); /** sprite-ref: macro-icons-dropdown; */
+}
+#autocomplete-dropdown .autocomplete-macros li.autocomplete-macro-excerpt-include .icon {
+    background-image: url(../../../images/icons/macrobrowser/dropdown/excerpt-include.png); /** sprite-ref: macro-icons-dropdown; */
+}
+#autocomplete-dropdown .autocomplete-macros li.autocomplete-macro-include .icon {
+    background-image: url(../../../images/icons/macrobrowser/dropdown/include.png); /** sprite-ref: macro-icons-dropdown; */
+}
+#autocomplete-dropdown .autocomplete-macros li.autocomplete-macro-gallery .icon {
+    background-image: url(../../../images/icons/macrobrowser/dropdown/gallery.png); /** sprite-ref: macro-icons-dropdown; */
+}
+#autocomplete-dropdown .autocomplete-macros li.autocomplete-macro-change-history .icon {
+    background-image: url(../../../images/icons/macrobrowser/dropdown/change-history.png); /** sprite-ref: macro-icons-dropdown; */
+}
+#autocomplete-dropdown .autocomplete-macros li.autocomplete-macro-popular-labels .icon {
+    background-image: url(../../../images/icons/macrobrowser/dropdown/popular-labels.png); /** sprite-ref: macro-icons-dropdown; */
+}
+#autocomplete-dropdown .autocomplete-macros li.autocomplete-macro-contentbylabel .icon {
+    background-image: url(../../../images/icons/macrobrowser/dropdown/contentbylabel.png); /** sprite-ref: macro-icons-dropdown; */
+}
+#autocomplete-dropdown .autocomplete-macros li.autocomplete-macro-favpages .icon {
+    background-image: url(../../../images/icons/macrobrowser/dropdown/favpages.png); /** sprite-ref: macro-icons-dropdown; */
+}
+#autocomplete-dropdown .autocomplete-macros li.autocomplete-macro-related-labels .icon {
+    background-image: url(../../../images/icons/macrobrowser/dropdown/related-labels.png); /** sprite-ref: macro-icons-dropdown; */
+}
+#autocomplete-dropdown .autocomplete-macros li.autocomplete-macro-recently-updated .icon {
+    background-image: url(../../../images/icons/macrobrowser/dropdown/recently-updated.png); /** sprite-ref: macro-icons-dropdown; */
+}
+#autocomplete-dropdown .autocomplete-macros li.autocomplete-macro-navmap .icon {
+    background-image: url(../../../images/icons/macrobrowser/dropdown/navmap.png); /** sprite-ref: macro-icons-dropdown; */
+}
+#autocomplete-dropdown .autocomplete-macros li.autocomplete-macro-listlabels .icon {
+    background-image: url(../../../images/icons/macrobrowser/dropdown/listlabels.png); /** sprite-ref: macro-icons-dropdown; */
+}
+#autocomplete-dropdown .autocomplete-macros li.autocomplete-macro-anchor .icon {
+    background-image: url(../../../images/icons/macrobrowser/dropdown/anchor.png); /** sprite-ref: macro-icons-dropdown; */
+}
+#autocomplete-dropdown .autocomplete-macros li.autocomplete-macro-quote .icon {
+    background-image: url(../../../images/icons/macrobrowser/dropdown/quote.png); /** sprite-ref: macro-icons-dropdown; */
+}
+#autocomplete-dropdown .autocomplete-macros li.autocomplete-macro-noformat .icon {
+    background-image: url(../../../images/icons/macrobrowser/dropdown/noformat.png); /** sprite-ref: macro-icons-dropdown; */
+}
+#autocomplete-dropdown .autocomplete-macros li.autocomplete-macro-panel .icon {
+    background-image: url(../../../images/icons/macrobrowser/dropdown/panel.png); /** sprite-ref: macro-icons-dropdown; */
+}
+#autocomplete-dropdown .autocomplete-macros li.autocomplete-macro-color .icon {
+    background-image: url(../../../images/icons/macrobrowser/dropdown/colour.png); /** sprite-ref: macro-icons-dropdown; */
+}
+#autocomplete-dropdown .autocomplete-macros li.autocomplete-macro-cheese .icon {
+    background-image: url(../../../images/icons/macrobrowser/dropdown/cheese.png); /** sprite-ref: macro-icons-dropdown; */
+}
+#autocomplete-dropdown .autocomplete-macros li.autocomplete-macro-jiraissues .icon {
+    background-image: url(../../../images/icons/macrobrowser/dropdown/jiraissues.png); /** sprite-ref: macro-icons-dropdown; */
+}
+#autocomplete-dropdown .autocomplete-macros li.autocomplete-macro-jiraportlet .icon {
+    background-image: url(../../../images/icons/macrobrowser/dropdown/jiraportlet.png); /** sprite-ref: macro-icons-dropdown; */
+}
+#autocomplete-dropdown .autocomplete-macros li.autocomplete-macro-note .icon {
+    background-image: url(../../../images/icons/macrobrowser/dropdown/note.png); /** sprite-ref: macro-icons-dropdown; */
+}
+#autocomplete-dropdown .autocomplete-macros li.autocomplete-macro-warning .icon {
+    background-image: url(../../../images/icons/macrobrowser/dropdown/warning.png); /** sprite-ref: macro-icons-dropdown; */
+}
+#autocomplete-dropdown .autocomplete-macros li.autocomplete-macro-info .icon {
+    background-image: url(../../../images/icons/macrobrowser/dropdown/info.png); /** sprite-ref: macro-icons-dropdown; */
+}
+#autocomplete-dropdown .autocomplete-macros li.autocomplete-macro-tip .icon {
+    background-image: url(../../../images/icons/macrobrowser/dropdown/tip.png); /** sprite-ref: macro-icons-dropdown; */
+}
+#autocomplete-dropdown .autocomplete-macros li.autocomplete-macro-pagetree .icon {
+    background-image: url(../../../images/icons/macrobrowser/dropdown/pagetree.png); /** sprite-ref: macro-icons-dropdown; */
+}
+#autocomplete-dropdown .autocomplete-macros li.autocomplete-macro-pagetreesearch .icon {
+    background-image: url(../../../images/icons/macrobrowser/dropdown/pagetreesearch.png); /** sprite-ref: macro-icons-dropdown; */
+}
+#autocomplete-dropdown .autocomplete-macros li.autocomplete-macro-web-widget,
+#autocomplete-dropdown .autocomplete-macros li.autocomplete-macro-widget .icon {
+    background-image: url(../../../images/icons/macrobrowser/dropdown/widgetconnector.png); /** sprite-ref: macro-icons-dropdown; */
+}
+#autocomplete-dropdown .autocomplete-macros li.autocomplete-macro-section .icon {
+    background-image: url(../../../images/icons/macrobrowser/dropdown/section.png); /** sprite-ref: macro-icons-dropdown; */
+}
+#autocomplete-dropdown .autocomplete-macros li.autocomplete-macro-column .icon {
+    background-image: url(../../../images/icons/macrobrowser/dropdown/column.png); /** sprite-ref: macro-icons-dropdown; */
+}
+#autocomplete-dropdown .autocomplete-macros li.autocomplete-macro-livesearch .icon {
+    background-image: url(../../../images/icons/macrobrowser/dropdown/livesearch.png); /** sprite-ref: macro-icons-dropdown; */
+}
+#autocomplete-dropdown .autocomplete-macros li.autocomplete-macro-code .icon {
+    background-image: url(../../../images/icons/macrobrowser/dropdown/code.png); /** sprite-ref: macro-icons-dropdown; */
+}
+#autocomplete-dropdown .autocomplete-macros li.autocomplete-macro-html .icon {
+    background-image: url(../../../images/icons/macrobrowser/dropdown/html.png); /** sprite-ref: macro-icons-dropdown; */
+}
+#autocomplete-dropdown .autocomplete-macros li.autocomplete-macro-rss .icon {
+    background-image: url(../../../images/icons/macrobrowser/dropdown/rssfeed.png); /** sprite-ref: macro-icons-dropdown; */
+}
+#autocomplete-dropdown .autocomplete-macros li.autocomplete-macro-bookmarks .icon {
+    background-image: url(../../../images/icons/macrobrowser/dropdown/bookmarks.png); /** sprite-ref: macro-icons-dropdown; */
+}
+#autocomplete-dropdown .autocomplete-macros li.autocomplete-macro-toc .icon {
+    background-image: url(../../../images/icons/macrobrowser/dropdown/toc.png); /** sprite-ref: macro-icons-dropdown; */
+}
+#autocomplete-dropdown .autocomplete-macros li.autocomplete-macro-spaces .icon {
+    background-image: url(../../../images/icons/macrobrowser/dropdown/spaces.png); /** sprite-ref: macro-icons-dropdown; */
+}
+#autocomplete-dropdown .autocomplete-macros li.autocomplete-macro-space-details .icon {
+    background-image: url(../../../images/icons/macrobrowser/dropdown/space-details.png); /** sprite-ref: macro-icons-dropdown; */
+}
+#autocomplete-dropdown .autocomplete-macros li.autocomplete-macro-network .icon {
+    background-image: url(../../../images/icons/macrobrowser/dropdown/network.png); /** sprite-ref: macro-icons-dropdown; */
+}
+#autocomplete-dropdown .autocomplete-macros li.autocomplete-macro-profile .icon {
+    background-image: url(../../../images/icons/macrobrowser/dropdown/profile.png); /** sprite-ref: macro-icons-dropdown; */
+}
+#autocomplete-dropdown .autocomplete-macros li.autocomplete-macro-status-list .icon {
+    background-image: url(../../../images/icons/macrobrowser/dropdown/status-list.png); /** sprite-ref: macro-icons-dropdown; */
+}
+#autocomplete-dropdown .autocomplete-macros li.autocomplete-macro-chart .icon {
+    background-image: url(../../../images/icons/macrobrowser/dropdown/chart.png); /** sprite-ref: macro-icons-dropdown; */
+}
+#autocomplete-dropdown .autocomplete-macros li.autocomplete-macro-viewdoc .icon {
+    background-image: url(../../../images/icons/macrobrowser/dropdown/viewfile-doc.png); /** sprite-ref: macro-icons-dropdown; */
+}
+#autocomplete-dropdown .autocomplete-macros li.autocomplete-macro-viewpdf .icon {
+    background-image: url(../../../images/icons/macrobrowser/dropdown/viewfile-pdf.png); /** sprite-ref: macro-icons-dropdown; */
+}
+#autocomplete-dropdown .autocomplete-macros li.autocomplete-macro-viewdppt .icon {
+    background-image: url(../../../images/icons/macrobrowser/dropdown/viewfile-ppt.png); /** sprite-ref: macro-icons-dropdown; */
+}
+#autocomplete-dropdown .autocomplete-macros li.autocomplete-macro-viewxls .icon {
+    background-image: url(../../../images/icons/macrobrowser/dropdown/viewfile-xls.png); /** sprite-ref: macro-icons-dropdown; */
+}
+#autocomplete-dropdown .autocomplete-macros li.autocomplete-macro-contributors .icon {
+    background-image: url(../../../images/icons/macrobrowser/dropdown/contributors.png); /** sprite-ref: macro-icons-dropdown; */
+}
+#autocomplete-dropdown .autocomplete-macros li.autocomplete-macro-contributors-summary .icon {
+    background-image: url(../../../images/icons/macrobrowser/dropdown/contributors-summary.png); /** sprite-ref: macro-icons-dropdown; */
+}
+#autocomplete-dropdown .autocomplete-macros li.autocomplete-macro-multimedia .icon {
+    background-image: url(../../../images/icons/macrobrowser/dropdown/multimedia.png); /** sprite-ref: macro-icons-dropdown; */
+}

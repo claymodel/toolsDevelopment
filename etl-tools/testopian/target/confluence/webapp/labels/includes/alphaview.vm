@@ -1,0 +1,18 @@
+<center>
+    <table width="95%" cellspacing="20">
+        #foreach ($key in $action.alphaSupport.keys)
+        #if ("1" == $velocityCount % 3)
+        <tr>
+            #end
+            <td valign="top" align="left" width="33%" bgcolor="#f0f0f0" style="padding:5px">
+                <div class="navBackgroundBox"
+                     style="float:left; padding:7px; margin:2px 4px 1px 2px; ">$key</div>
+                #labelsWithNone($action.alphaSupport.getContents($key) false)
+            </td>
+            #if ("0" == $velocityCount % 3)
+        </tr>
+        #end
+        #end
+    </table>
+</center>
+

@@ -1,0 +1,7 @@
+#* Makes Confluence global settings available to javascript *#
+<fieldset class="hidden parameters">
+    <input type="hidden" id="globalSettingsAttachmentMaxSize" value="$!settingsManager.globalSettings.attachmentMaxSize">
+    <input type="hidden" id="userLocale" value="$!action.locale">
+    <input type="hidden" id="staticResourceUrlPrefix" value="$staticResourceUrlPrefix">
+    <input type="hidden" id="contextPath" value="$req.contextPath">
+</fieldset>

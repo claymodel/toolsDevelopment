@@ -1,0 +1,42 @@
+<html>
+    <head>
+        <title>$action.getActionName($action.getClass().getName())</title>
+    </head>
+
+    <body>
+
+    #applyDecorator ("root")
+        #decoratorParam ("context" "spaceadminpanel")
+        #decoratorParam ("helper" $action.helper)
+        #decoratorParam ("selection" "mailaccounts")
+        #decoratorParam ("title" $action.getText("action.name"))
+        #decoratorParam ("selectedTab" "admin")
+
+        <form method="POST" action="doeditpopaccount.action" name="editPopAccount">
+            <table border="0" width="80%">
+				#bodytag ("TextField" "label='accountName'" "name='popMailAccount.name'" )
+				    #param ("labelwidth" "30%")
+				#end
+				#tag ("TextField" "label='description'" "name='popMailAccount.description'"  "size='50'")
+				#tag ("TextField" "label='hostname'" "name='popMailAccount.hostname'" )
+				#tag ("TextField" "label='port'" "name='popMailAccount.port'" )
+				#tag ("TextField" "label='username'" "name='popMailAccount.username'" )
+				#bodytag ("Password" "label='password'" "name='popMailAccount.password'")
+				    #param ("showPassword" true)
+				#end
+			    #tag ("Hidden" "name='key'")
+			    #tag ("Hidden" "name='popMailAccount.id'")
+			    #tag ("Hidden" "name='popMailAccount.enabled'")
+                <tr>
+                    <td colspan=2>
+                    <div align="center">#tag ("Submit" "name='confirm'" "value='save.name'" "theme='notable'" )
+                    #tag ("Submit" "name='cancel'" "value='cancel.name'" "theme='notable'" )</div>
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+    #end
+
+    </body>
+</html>

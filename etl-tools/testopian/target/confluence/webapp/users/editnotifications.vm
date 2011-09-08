@@ -1,0 +1,90 @@
+<html>
+	<head>
+		<title>$generalUtil.htmlEncode($pageTitle)</title>
+
+</head>
+
+    #applyDecorator("root")
+        #decoratorParam("context" "profile")
+        #decoratorParam("mode"  "edit-notifications-profile")
+        #decoratorParam("helper" $helper)
+
+        <body>
+            <div class="padded">
+            <table width="100%" cellpadding="0" cellspacing="0" border=0>
+                <tr>
+
+                    <td valign="top" width="99%">
+
+                        <p>$action.getText('notifications.desc')</p>
+
+                        <p>$action.getText('notifications.preferences.desc')</p>
+
+                        #set ($actionUndoLink = $action.undoLink)
+                        #if ($actionUndoLink)
+                            #applyDecorator("success")
+                            #decoratorParam("id" "watch-warning")
+                                <span>$i18n.getText('stop.watching.email.confirmation', $webwork.htmlEncode($actionUndoLink.contentName))</span>
+                                <a href=${req.contextPath}$actionUndoLink.url>$i18n.getText('undo.word')</a>
+                            #end
+                        #end
+
+                        #set ($spaceNotifications = $helper.action.spaceNotificationsForUser)
+                        #if ($spaceNotifications)
+                                <table class="tableview" width="100%" cellpadding="0" cellspacing="0">
+                                    <tr>
+                                        <th align="left" colspan="2" class="colHeaderLink">$action.getText('space.watches')</th>
+                                    </tr>
+                                    #foreach ($notification in $spaceNotifications)
+                                        <tr #alternateRowColors()>
+                                            <td>
+                                                <img src="$staticResourceUrlPrefix/images/icons/web_16.gif" height="16" width="16" border="0" align="absmiddle">
+                                                <a href="$req.contextPath/spaces/browsespace.action?key=$notification.space.key">$webwork.htmlEncode($notification.space.name)</a>
+                                                #if ($notification.type)
+                                                    <span class="smalltext">($i18n.getText('space.watching.blogs.only'))</span>
+                                                #end
+                                            </td>
+                                            <td align="right" width="1%">
+                                                <a href="${req.contextPath}/users/removespacenotification.action?spaceKey=$notification.space.key&contentType=$!notification.type.representation"><img src="$staticResourceUrlPrefix/images/icons/watch_cancel_16.gif" height=16 width=16 border=0 align=absmiddle title="$action.getText('stop.watching.space')"></a>
+                                            </td>
+                                        </tr>
+                                    #end
+                                </table>
+                            <br/>
+                        #end
+
+                        #set ($pageNotifications = $helper.action.pageNotificationsForUser)
+                        #if ($pageNotifications)
+                            <table class="tableview" width="100%"  cellpadding="0" cellspacing="0">
+                                <tr>
+                                    <th colspan="2" align="left" width="*" class="colHeaderLink">$action.getText('page.watches')</th>
+                                </tr>
+                                #foreach ($notification in $pageNotifications)
+                                <tr  #alternateRowColors()>
+                                    <td>
+                                        #contentLink($notification.page)
+                                        <!--<a href="$req.contextPath$notification.page.urlPath">$notification.page.title</a>-->
+                                    </td>
+                                    <td align="right" width="1%">
+                                        <a href="${req.contextPath}/users/removepagenotification.action?pageId=$notification.page.id"><img src="$staticResourceUrlPrefix/images/icons/watch_cancel_16.gif" height=16 width=16 border=0 align=absmiddle title="$action.getText('stop.watching.page')"></a>
+                                    </td>
+                                </tr>
+                                #end
+                            </table>
+                        #end
+
+                        #if (!$pageNotifications && !$spaceNotifications)
+                            <p><em>$action.getText('not.watching.anything')</em></p>
+                            <div id="text-watch-instructions">$action.getText('text.watch.instruction')</div>
+                        #end
+
+                    </td>
+                   
+                </tr>
+            </table>
+            </div>
+        </body>
+    #end
+</html>
+
+

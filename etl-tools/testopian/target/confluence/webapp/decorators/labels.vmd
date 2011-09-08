@@ -1,0 +1,33 @@
+<!--
+    LABEL DECORATOR
+    This decorator handles label contexts
+-->
+
+#set ($mode     = $params.get("mode"))
+#set ($context  = $params.get("context"))
+#set ($helper  = $params.get("helper"))
+#set ($infoPanelWidth = $params.get("infopanel-width"))
+
+#infoPanelInitFromParams()
+
+<div class="pagebody">
+    #parse ( "/template/includes/actionerrors.vm" )
+
+    <table class="labels" width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+            <td valign="top">
+            $body
+            </td>
+
+        ## INFO PANEL FOR ANY PAGE
+        #if ($infoPanelRequired)
+            <td width="$infoPanelWidth" valign="top" id="helptd">
+                #infoPanel(true true true true)
+            </td>
+        #end
+
+        </tr>
+    </table>
+</div>
+
+#parse ( "/breadcrumbs.vm" )

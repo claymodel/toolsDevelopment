@@ -1,0 +1,21 @@
+<html>
+    <head>
+        <title>$action.getActionName($action.getClass().getName())</title>
+        <meta name="help-path" content="/includes/notation-quick-help.vm"/>
+
+    </head>
+
+    #applyDecorator("root")
+        #decoratorParam("helper" $action.helper)
+        #decoratorParam("context" "page")
+        #decoratorParam("mode" "edit")
+        #decoratorParam("help-path" "/includes/notation-quick-help.vm")
+        #decoratorParam("infopanel-width" "25%")
+
+        <body>
+        #set ($formaction = "docopypage.action?idOfPageToCopy=${idOfPageToCopy}")
+        #parse ("/pages/includes/createpage-form.vm")
+        </body>
+    #end
+
+</html>

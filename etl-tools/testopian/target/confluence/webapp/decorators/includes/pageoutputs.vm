@@ -1,0 +1,9 @@
+<content tag="pageoutputs">
+    <ul id="page-view-panel">
+        <li>#printableicon()</li>
+        #if($page.type == "page")
+            <li>#pdficon()</li>
+         #end   
+        <li>#feedicon()</li>
+    </ul>
+</content>

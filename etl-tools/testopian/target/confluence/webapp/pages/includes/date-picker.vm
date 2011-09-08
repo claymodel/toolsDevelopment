@@ -1,0 +1,13 @@
+#requireResource("confluence.web.resources:calendar")
+
+<div class="inputSection">
+    <div id='date_tab'>
+        <span class="formtitle">$action.getText("posting.day"):</span>
+        <a href="" class="inline-control-link" id="date_edit">$action.getText("edit.name")</a>
+    </div>
+    <span id="show_e">$dateFormatter.formatServerDateFull($action.getPostingDate())</span>
+    <input type='text' value='' name='PostingDay' id='posting-day' readonly='1' style='display:none'/>
+    <fieldset class="hidden parameters">
+        <input type="hidden" id="calendarI18nFile" value="$action.getCalendarI18nFile()">
+    </fieldset>
+</div>

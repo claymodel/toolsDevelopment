@@ -1,0 +1,44 @@
+<html>
+<head><title>$!page.title</title>
+<meta name="help-path" content="/includes/notation-quick-help.vm"/>
+</head>
+<body>
+    <!-- call the page decorator -->
+    #applyDecorator("root")
+        #decoratorParam("helper" $action.helper)
+        #decoratorParam("context" $contentType)
+        #decoratorParam("mode" "edit")
+        #decoratorParam("help-path" "/includes/notation-quick-help.vm")
+        #decoratorParam("infopanel-width" "200px")
+
+
+    #set ($helper = $action.helper)
+
+    #if ($versionMismatch)
+
+        <div class="key-diffs" id="conflict-diffs">
+            <div class="key-title"><strong>$action.getText("space-key")</strong></div>
+            <div class="diff">
+                <div class="diff-added-lines">$action.getText("your.changes")</div>
+                <div class="diff-deleted-lines">$action.getText("changes.that.will.be.overridden")</div>
+            </div>
+        </div>
+
+        #if ($action.diff)
+            #set ($lineChunks = $action.diff.chunks)
+            #parse ("/template/includes/page-diffs.vm")
+        #else
+            <p>$i18n.getText('diff.pages.error.diffing')</p>
+        #end
+    #end
+
+    #parse("/includes/alert-locked.vm")
+    #parse("/pages/includes/editpage-form.vm")
+
+    #end
+
+    ## needs to be outside of the applyDecorator macro so that this tag bubbles up to main.vmd
+    <content tag="bodyClass">contenteditor edit</content>
+</body>
+</html>
+

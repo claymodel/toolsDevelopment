@@ -1,0 +1,18 @@
+<fieldset class="hidden parameters">
+    <input type="hidden" id="draftHeading" value="$!action.getText("draft.heading")">
+    <input type="hidden" id="loadingHeading" value="$action.getText("loading.name")">
+    <input type="hidden" id="draftNoChanges" value="$action.getText("draft.no.changes")">
+    <input type="hidden" id="discardDraft" value="$action.getText("discard.name")">
+    <input type="hidden" id="resumeDraft" value="$action.getText("edit.name")">
+    <input type="hidden" id="mergeDraft" value="$action.getText("edit.name")">
+</fieldset>
+
+<div id="draft-changes-dialog" class="hidden">
+    <div class="draft-changes-legend">
+        <strong>$action.getText("heading.key")</strong><br/>
+        <div class="diff-deleted-lines">$action.getText("these.lines.were.removed")</div>
+        <div class="diff-changed-lines">$action.getText("these.lines.were.changed")</div>
+        <div class="diff-added-lines">$action.getText("these.lines.were.added")</div>
+    </div>
+    <table id="diff-view"></table>
+</div>

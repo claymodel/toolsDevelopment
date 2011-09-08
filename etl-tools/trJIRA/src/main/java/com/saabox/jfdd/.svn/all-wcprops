@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/17/trunk/jfdd/src/main/java/com/saabox/jfdd
+END
+MySQLConnect.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/17/trunk/jfdd/src/main/java/com/saabox/jfdd/MySQLConnect.java
+END
+MySQLStmts.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/17/trunk/jfdd/src/main/java/com/saabox/jfdd/MySQLStmts.java
+END
+JFDDSync.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/17/trunk/jfdd/src/main/java/com/saabox/jfdd/JFDDSync.java
+END
+FeatureIssue.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/17/trunk/jfdd/src/main/java/com/saabox/jfdd/FeatureIssue.java
+END
+ConfigException.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/17/trunk/jfdd/src/main/java/com/saabox/jfdd/ConfigException.java
+END
+WorkflowStep.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/17/trunk/jfdd/src/main/java/com/saabox/jfdd/WorkflowStep.java
+END
+Feature.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/17/trunk/jfdd/src/main/java/com/saabox/jfdd/Feature.java
+END
+FeatureMilestone.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/17/trunk/jfdd/src/main/java/com/saabox/jfdd/FeatureMilestone.java
+END

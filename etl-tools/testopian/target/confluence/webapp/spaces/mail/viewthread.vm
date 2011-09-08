@@ -1,0 +1,179 @@
+<html>
+    <head>
+        <title>$action.getText("mail.thread.view.name", [$action.mail.canonicalSubject])</title>
+
+
+     </head>
+
+     #applyDecorator("root")
+         #decoratorParam("helper" $action.helper)
+         #decoratorParam("mode" "view-thread")
+         #decoratorParam("context" "mail")
+         #decoratorParam("mailpanel-width" "200px")
+
+             <content tag="spacekey">$page.space.key</content>
+
+            <body>
+
+            <p><input type="button" value="Open all" onClick="openAll();">
+            <input type="button" value="Close all" onClick="closeAll();">
+            <input id="summaryToggle" type="button" value="Hide Summaries" onClick="toggleSummaries();"></p>
+
+            #includeJavascript('/includes/js/menuExpandable3.js')
+
+
+            <style>
+            #menuList {
+              margin: 0px;
+              padding: 10px 0px 10px 15px;
+            }
+
+            li.menubar {
+              background: url($staticResourceUrlPrefix/images/icons/tree_square.gif) no-repeat 0.6em 0.3em;
+              list-style: none outside;
+            }
+
+            .menu, .submenu {
+              display: none;
+              margin-left: 15px;
+              padding: 0px;
+            }
+
+            .menu li, .submenu li {
+              background: url($staticResourceUrlPrefix/images/icons/tree_square.gif) no-repeat 0.6em 0.3em;
+              list-style: none outside;
+            }
+
+            a.actuator {
+              background-color: transparent;
+              padding-left: 15px;
+              text-decoration: none;
+            }
+
+            .menu li a, .submenu li a {
+              background-color: transparent;
+            }
+
+            .openPageHighlight {
+              background-color: #ffffcc;
+              padding: 2px;
+              border: 1px solid #ddd;
+            }
+
+            .excerpt {
+              margin-left: 20px;
+              margin-top: 0px;
+            }
+
+            #menu-top, #menu-top li
+            {
+                padding-left: 0px;
+                margin-left: 0px;
+            }
+            </style>
+            #macro (mailThreadLine $node)
+                #if (!$node.empty)
+                    <a href="#" id="actuator-${node.mailId}" class="actuator">&nbsp;</a>
+                        #if ($node == $action.positionInThread)<span class="openPageHighlight" id="openPage">#end
+                        <a href="$req.contextPath/display/${action.key}/mail/$node.mailId" title="View this mail">$generalUtil.escapeXml($node.title)</a> $generalUtil.escapeXml($generalUtil.findAndMaskEmail($node.from, $user))
+                        #if ($node == $action.positionInThread)</span>#end
+                    <p class="smalltext excerpt" id="excerpt-$node.mailId">$generalUtil.escapeXml($action.getExcerpt($node.mailId))</p>
+                #else
+                    <a href="#" id="actuator-${node.mailId}" class="actuator">&nbsp;</a>
+                    (message missing)
+                #end
+            #end
+
+            #macro(mailThreadChildren $parent)
+              #if ($parent.children.size() > 0)
+              <ul id="menu-${parent.mailId}" #if ($parent.parent.parent) class="submenu" #else class="menu" #end>
+              #foreach ($child in $parent.children)
+                <li>
+                    #mailThreadLine($child)
+                    #mailThreadChildren ($child)
+                </li>
+              #end
+              </ul>
+              #end
+            #end
+
+            #set ($thread = $action.containingThread)
+            <div id="mainMenu">
+                <ul id="menu-top" class="menuList">
+                   <li class="menubar">
+                    #mailThreadLine($thread)
+                    #mailThreadChildren($thread)
+                   </li>
+                </ul>
+            </div>
+
+        #macro(mailThreadInitializeChildren $parent)
+            initializeMenu("menu-${parent.mailId}", "actuator-${parent.mailId}");
+          #foreach ($child in $parent.children)
+            #mailThreadInitializeChildren ($child)
+          #end
+        #end
+
+        <script type="text/javascript">
+        <!--
+            window.onload = function() {
+                #mailThreadInitializeChildren ($action.containingThread)
+
+                #set ($current = $action.positionInThread)
+                #if ($current)
+                    #foreach ($parent in $action.getParents(0))
+                        menuStatus('open', 'menu-$parent.mailId', 'actuator-$parent.mailId');
+                    #end
+                    menuStatus('open', 'menu-$current.mailId', 'actuator-$current.mailId');
+                #end
+
+                var openPageSpan = document.getElementById("openPage")
+                if (openPageSpan) {
+                    window.scrollTo(0, openPageSpan.offsetTop - 150);
+                }
+            }
+            function toggleSummaries()
+            {
+                button = document.getElementById("summaryToggle");
+                var hide = false
+
+                if (button.value == "Hide Summaries")
+                {
+                    var hide = true;
+                }
+
+                var elements = document.getElementsByTagName("p");
+                var foo = 0;
+
+                for (var i = 0; i < elements.length; i++)
+                {
+                    var elId = elements[i].id;
+
+                    if (elId.substring(0, 8) == 'excerpt-')
+                    {
+                        if (hide)
+                        {
+                            elements[i].style.display = "none";
+                        }
+                        else
+                        {
+                            elements[i].style.display = "block";
+                        }
+                    }
+                }
+
+                if (hide)
+                {
+                    button.value="Show Summaries";
+                }
+                else
+                {
+                    button.value="Hide Summaries";
+                }
+            }
+        //-->
+        </script>
+        </body>
+
+    #end
+</html>

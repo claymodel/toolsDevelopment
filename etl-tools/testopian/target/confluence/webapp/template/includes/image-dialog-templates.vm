@@ -1,0 +1,58 @@
+<script type="text/x-template" title="imageNotThumbnailable">$i18n.getText('unsupported.file.error')</script>
+<script type="text/x-template" title="attachedImages">
+    #if ($permissionHelper.canAttachFile($action.remoteUser, $action.attachmentSourceContent))
+    <div id="upload-attachment">
+        <form action="$req.contextPath/pages/attachfile.action" method="post" enctype="multipart/form-data">
+            <label for="file_0">$i18n.getText("image.browser.upload.label")</label>
+            <input name="file_0" type="file">
+        </form>
+        <div class="image-uploading hidden">$i18n.getText("image.browser.upload.image.uploading")</div>
+        <div class="warning hidden"></div>
+    </div>
+    #end
+    <div id="attached-images">
+        <div class="loading-message">$i18n.getText('image.browser.loading')</div>
+        <ul class="image-list"></ul>
+    </div>
+    <fieldset class="bottom-panel">{0}</fieldset>
+</script>
+<script type="text/x-template" title="imageDialogNoAttachments">
+    <p class="no-attachments">$i18n.getText('image.browser.no.attachments')</p>
+</script>
+<script type="text/x-template" title="imageDialogErrorRetrievingAttachments">
+    <p class="warning">$i18n.getText('image.browser.error.retrieving.attachments')</p>
+</script>
+<script type="text/x-template" title="webImage">
+    <div class="insert-web-image">
+        <p><label>$i18n.getText('image.browser.imageurl.label') <input type="text" class="image-url" value="http://"></label> <input type="button" class="image-preview" value="$i18n.getText('image.browser.preview.button')"></p>
+        <p class="faraway image-preview-area"></p>
+        <p class="hidden image-preview-error">$i18n.getText('image.browser.preview.error.message')</p>
+        <p class="hidden image-preview-throbber">&nbsp;</p>
+    </div>
+    <fieldset class="bottom-panel">{0}</fieldset>
+</script>
+<script type="text/x-template" title="imagePropertiesForm">
+    <label class="align-option">$i18n.getText('image.browser.align.label') <select class="img-align">
+        <option value="none">$i18n.getText('image.browser.align.none.value')</option>
+        <option value="left">$i18n.getText('image.browser.align.left.value')</option>
+        <option value="right">$i18n.getText('image.browser.align.right.value')</option>
+        <option value="center">$i18n.getText('image.browser.align.center.value')</option>
+    </select></label>
+    <label class="border-option"><input type="checkbox" class="img-border" checked="checked"> $i18n.getText('image.browser.border.label')</label>
+    <label class="thumbnail-option"><input type="checkbox" class="img-thumbnail"> $i18n.getText('image.browser.thumbnail.label')</label>
+</script>
+<script type="text/x-template" title="imageDialogImage">
+    <li class="attached-image">
+        <div class="image-container loading">
+            <img class="thumbnail" src="{0}" alt="" width="{1}" height="{2}" style="margin-top: {3}px">
+            <a href="{4}" class="zoom">Zoom</a>
+        </div>
+        <span class="caption" title="{5}">{5}</span>
+    </li>
+</script>
+<script type="text/x-template" title="insert-image-did-you-know">
+    <div class="dialog-tip">
+        $action.getText("insert.image.did.you.know")
+    </div>
+</script>
+

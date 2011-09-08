@@ -1,0 +1,29 @@
+<dl>
+    <dt class="first">$action.getText("notation.quickhelp.text.formatting")</dt>
+    <dd class="text-formatting"><code>*$action.getText("notation.quickhelp.text.formatting.bold")*</code> <strong>$action.getText("notation.quickhelp.text.formatting.bold")</strong></dd>
+    <dd class="text-formatting"><code>_$action.getText("notation.quickhelp.text.formatting.italic")_</code> <em>$action.getText("notation.quickhelp.text.formatting.italic")</em></dd>
+    <dd class="text-formatting"><code>-$action.getText("notation.quickhelp.text.formatting.strike")-</code> <del>$action.getText("notation.quickhelp.text.formatting.strike")</del></dd>
+    <dd class="text-formatting"><code>+$action.getText("notation.quickhelp.text.formatting.under")+</code> <u>$action.getText("notation.quickhelp.text.formatting.under")</u></dd>
+
+    <dt>$action.getText("notation.quickhelp.headings")
+    <dd><code>h1.</code> $action.getText("notation.quickhelp.headings.large")</dd>
+    <dd><code>h3.</code> $action.getText("notation.quickhelp.headings.medium")</dd>
+    <dd><code>h5.</code> $action.getText("notation.quickhelp.headings.small")</dd>
+
+    <dt>$action.getText("notation.quickhelp.lists")</dt>
+    <dd><code>*</code> $action.getText("notation.quickhelp.lists.bulleted")</dd>
+    <dd><code>#</code> $action.getText("notation.quickhelp.lists.numbered")</dd>
+
+    <dt>$action.getText("notation.quickhelp.tables")</dt>
+    <dd><pre>||$action.getText("notation.quickhelp.tables.head1") ||$action.getText("notation.quickhelp.tables.head2")||
+| $action.getText("notation.quickhelp.tables.colA1") | $action.getText("notation.quickhelp.tables.colA2") |
+| $action.getText("notation.quickhelp.tables.colB1") | $action.getText("notation.quickhelp.tables.colB2") |</pre></dd>
+
+    <dt>$action.getText("notation.quickhelp.linking")</dt>
+    <dd><code>[$action.getText("notation.quickhelp.linking.title")#$action.getText("notation.quickhelp.linking.anchor")]</code> $action.getText("notation.quickhelp.linking.page")</dd>
+    <dd><code>[$action.getText("notation.quickhelp.linking.dev"):$action.getText("notation.quickhelp.linking.title")]</code> $action.getText("notation.quickhelp.linking.space", ["dev"])</dd>
+    <dd><code>[$action.getText("notation.quickhelp.linking.remotehost")]</code> $action.getText("notation.quickhelp.linking.remotelink")</dd>
+    <dd><code>[$action.getText("notation.quickhelp.linking.phrase")@$action.getText("notation.quickhelp.linking.shortcut.example")]</code> $action.getText("notation.quickhelp.linking.shortcut")</dd>
+    <dd><code>[$action.getText("notation.quickhelp.linking.alias")|$action.getText("notation.quickhelp.linking.any")]</code> $action.getText("notation.quickhelp.linking.customtitle")
+</dl>
+<a id="notation-help-link" href="$req.contextPath/renderer/notationhelp.action" onClick="window.open('$req.contextPath/renderer/notationhelp.action','notation_help','width=780, height=580, resizable, scrollbars'); return false;">$action.getText("notation.quickhelp.full.notation.guide")</a>

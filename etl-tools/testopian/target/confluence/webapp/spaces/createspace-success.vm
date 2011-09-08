@@ -1,0 +1,53 @@
+<html>
+	<head>
+		<title>$action.getText("title.add.space.success")</title>
+	</head>
+
+	<body>
+		#parse ( "/template/includes/actionerrors.vm" )
+
+		#if ($actionErrors.size() == 0)
+            <div class="centered">
+                <table align="center" border="0" cellpadding="0" cellspacing="0" width="90%">
+                    <tr>
+                        <td>
+                            $action.getText("create.space.successful.message")
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="$req.contextPath/display/$space.key"><img src="$staticResourceUrlPrefix/images/icons/home_16.gif" height=16 width=16 border=0 align=absmiddle title="$i18n.getText('action.space.home')"></a>
+                            <a href="$req.contextPath/display/$space.key">$action.getText("action.item.view.space.home.page")</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="$req.contextPath/pages/editpage.action?spaceKey=$generalUtil.urlEncode($space.key)&title=${generalUtil.urlEncode($space.homePage.title)}"><img src="$staticResourceUrlPrefix/images/icons/edit_16.gif" height=16 width=16 border=0 align=absmiddle title="$i18n.getText('edit.page.name')"></a>
+                            <a href="$req.contextPath/pages/editpage.action?spaceKey=$generalUtil.urlEncode($space.key)&title=${generalUtil.urlEncode($space.homePage.title)}">$action.getText("action.item.edit.space.home.page")</a><br/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="$req.contextPath/spaces/viewspacesummary.action?key=$generalUtil.urlEncode($space.key)"><img src="$staticResourceUrlPrefix/images/icons/web_16.gif" height=16 width=16 border=0 align=absmiddle title="Browse Space"></a>
+                            <a href="$req.contextPath/spaces/browsespace.action?key=$generalUtil.urlEncode($space.key)">Browse Space</a><br/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="$req.contextPath/pages/createpage.action?spaceKey=$generalUtil.urlEncode($space.key)"><img src="$staticResourceUrlPrefix/images/icons/add_page_16.gif" height=16 width=16 border=0 align=absmiddle title="$action.getText("action.add.page")"></a>
+                            <a href="$req.contextPath/pages/createpage.action?spaceKey=$generalUtil.urlEncode($space.key)">$action.getText("action.item.add.page")</a><br/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="$req.contextPath/spaces/spacepermissions.action?key=$generalUtil.urlEncode($space.key)"><img src="$staticResourceUrlPrefix/images/icons/lock_16.gif" height=16 width=16 border=0 align=absmiddle title="$action.getText("action.space.permissions")"></a>
+                            <a href="$req.contextPath/spaces/spacepermissions.action?key=$generalUtil.urlEncode($space.key)">$action.getText("action.item.edit.space.permissions")</a><br/>
+                        </td>
+                    </tr>
+                </table>
+			</div>
+		#end
+
+		#parse ( "/breadcrumbs.vm" )
+	</body>
+</html>

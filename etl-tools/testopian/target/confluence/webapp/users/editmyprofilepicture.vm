@@ -1,0 +1,110 @@
+<html>
+	<head>
+		<title>$generalUtil.htmlEncode($pageTitle)</title>
+    </head>
+
+    #requireResource("confluence.web.resources:jquery")
+    #requireResource("confluence.web.resources:userprofilepicture")
+
+    #applyDecorator("root")
+        #decoratorParam("context" "profile")
+        #decoratorParam("mode"  "edit-profile")
+        #decoratorParam("helper" $action.helper)
+        #decoratorParam("infopanel-width" "200px")
+
+        <body>
+            $action.getText("user.profile.picture.edit.blurb")<br/><br/>
+
+            #if ($fieldErrors)
+              #if ($fieldErrors.get("userProfilePictureName"))
+                <table width="450" cellpadding="2" cellspacing="4">
+                  #foreach ($error in $fieldErrors.get("userProfilePictureName"))
+                  <tr>
+                    <td colspan="2" class="error"><span class="errorMessage">
+                    #set( $message = $i18n.getText(${error}) )
+                    #if( $message && $message != "" )
+                      $message
+                    #else
+                      $error
+                    #end
+                    </span></td>
+                  </tr>
+                  #end
+                </table>
+              #end
+            #end
+
+            <form name="uploadprofilepictureform" method="POST" action="uploadprofilepicture.action" enctype="multipart/form-data">
+               #form_xsrfToken()
+               <table width="450" cellpadding="2" cellspacing="4">
+                      #if ($fieldErrors.get("pictureUpload"))
+                          #foreach ($error in $fieldErrors.get("pictureUpload"))
+                           <tr>
+                            <td colspan="2" class="error"><span class="errorMessage">
+                            #set( $message = $i18n.getText(${error}) )
+                            #if( $message && $message != "" )
+                              $message
+                            #else
+                              $error
+                            #end
+                            </span></td>
+                           </tr>
+                          #end
+                      #end
+                    <tr><td nowrap align="right" valign="top">
+                            <label class="label" for="pictureUpload">$action.getText("user.profile.picture.upload"):</label>
+                        </td>
+                        <td width="270">
+                            <div class="smalltext">$action.getText("user.profile.picture.upload.instructions")</div>
+                            <p>
+                            <input type="file" id="pictureUpload" name="pictureUpload"/>&nbsp;#tag( "Submit" "name='upload'" "value='upload.button'" "theme='notable'" )
+                            </p>
+                        </td>
+                    </tr>
+               </table>
+            </form>
+
+            <form name="choosedefaultpictureform" method="POST" action="doeditmyprofilepicture.action" enctype="application/x-www-form-urlencoded">
+               #form_xsrfToken()
+               <fieldset class="hidden parameters">
+                   <input type="hidden" id="i18n-accessibility-profile-picture-available" value="$action.getText('accessibility.profile.picture.available')">
+                   <input type="hidden" id="i18n-accessibility-profile-picture-selected" value="$action.getText('accessibility.profile.picture.selected')">
+               </fieldset>
+               <table width="450" cellpadding="2" cellspacing="4">
+                  <tr#if($fieldErrors.get("userProfilePictureName"))class="error"#end>
+                    <td nowrap align="right" valign="top">
+                        <label class="label">$action.getText("user.profile.picture.choose"):</label>
+                    </td>
+                    <td width="270" valign="top">
+
+                        #foreach ($item in $action.availableProfilePictures)
+                           ## For the default pictures just use the filename
+                           ## but for uploaded pictures use the full download path.
+                           #if ($item.isUploaded())
+                               #set($value = $item.fileName)
+                           #else
+                               #set($value = $item.downloadPath)
+                           #end
+                           <input class="userphoto-radio" type="radio" name="userProfilePictureName" value="$generalUtil.htmlEncode($value)"
+                                  id="userProfilePictureName.$generalUtil.htmlEncode($item.fileName)" #if( $action.userProfilePictureName && $item.fileName && $action.userProfilePictureName == $item.fileName )checked="checked"#end/>
+                           <label for="userProfilePictureName.$generalUtil.htmlEncode($item.fileName)">
+                               #if( $action.userProfilePictureName && $item.fileName && $action.userProfilePictureName == $item.fileName )
+                                <img src="$req.contextPath$item.downloadPath" alt="$action.getText("accessibility.profile.picture.selected"): $generalUtil.htmlEncode($item.fileName)" class="userphoto userphoto-selected#if ($item.uploaded) userphoto-uploaded#end" width="48" height="48">
+                               #else
+                                <img src="$req.contextPath$item.downloadPath" alt="$action.getText("accessibility.profile.picture.available"): $generalUtil.htmlEncode($item.fileName)" class="userphoto#if ($item.uploaded) userphoto-uploaded#end" width="48" height="48">
+                               #end
+                           </label>
+                        #end
+                    </td>
+                  </tr>
+                  <tr><td/>
+                    <td align="left">
+                        #tag( "Submit" "name='delete'" "value='delete.name'" "theme='notable'" "id=userphoto-delete-button")
+                        #tag( "Submit" "name='save'" "value='user.profile.picture.set.as'" "theme='notable'" )
+                    </td>
+                  </tr>
+             </table>
+            </form>
+        </body>
+#end
+</html>

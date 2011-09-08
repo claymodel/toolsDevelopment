@@ -1,0 +1,71 @@
+<tr>
+	#if ($parameters.label)
+	<td valign="top" #if($parameters.tdcolor)bgcolor="#${parameters.tdcolor}"#end align="right" class="label">$parameters.label:</td>
+	<td id="textarea-holder">
+	#else
+	<td colspan="2" id="textarea-holder">
+	#end
+
+		<input name="selectedText" id="selectedText" type="hidden">
+		<!-- two hidden fields to store textarea parts for mozilla based browsers -->
+		<input type="hidden" name="sel1" id="sel1"><!--sel1: text before the selection-->
+		<input type="hidden" name="sel2" id="sel1"><!--sel2: text after the selection-->
+
+		<textarea name="$!webwork.htmlEncode($parameters.name)"
+				  cols="$!webwork.htmlEncode($parameters.cols)"
+				  rows="$!webwork.htmlEncode($parameters.rows)"
+		#if ($parameters.nameValue)		   value="$!webwork.htmlEncode($parameters.nameValue)"		#end
+		#if ($parameters.disabled && $parameters.disabled == true) disabled="disabled"										#end
+		#if ($parameters.readonly)		   readonly="readonly"										#end
+		#if ($parameters.tabindex)		   tabindex="$!webwork.htmlEncode($parameters.tabindex)"	#end
+		#if ($parameters.id)			   id="$!webwork.htmlEncode($parameters.id)"				#end
+		style="width: 100%; font:12px monospace"
+		>$!webwork.htmlEncode($parameters.nameValue)</textarea>
+	</td>
+</tr>
+
+<script type="text/javascript">
+(function() {
+	try {
+		var textarea = document.getElementById("textarea-holder").getElementsByTagName("textarea")[0];
+		var link = document.getElementById("textarea-holder").getElementsByTagName("a")[0];
+	} catch(e) {
+		if (console) {
+			console.log("Textarea wasn't found");
+			console.log(e);
+			return false;
+		}
+	}
+	
+	textarea.onclick = textarea.onselect = textarea.onkeyup = function(e) {
+		var ev = e || event;
+		var target = ev.target || ev.srcElement;
+		if (this.createTextRange && target.tagName.toLowerCase() == "textarea") // test for IE browsers
+		{
+			this.caretPos = document.selection.createRange().duplicate();
+		}
+		if (window.getSelection)
+		{
+			// for netscape, mozilla, gecko and Safari
+			this.sel = this.value.substr(this.selectionStart, this.selectionEnd - this.selectionStart);
+			this.sel1 = this.value.substr(0, this.selectionStart);
+			this.sel2 = this.value.substr(this.selectionEnd);
+		}
+		else if (document.selection && document.selection.createRange)
+		{
+			// for IE
+			var str = document.selection.createRange().text;
+			this.focus();
+			var sel = document.selection.createRange();
+			this.sel = sel.text;
+			return;
+		}
+	};
+	
+	link.onclick = function() {
+		textarea.onclick();
+		window.open(this.href, 'link_inserter', 'width=620, height=400, resizable, scrollbars=yes');
+		return false;
+	};
+})();
+</script>

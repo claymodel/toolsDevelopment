@@ -1,0 +1,15 @@
+<p>$action.getText('user.macro.help',[$docBean.getLink('help.user.macros')])</p>
+<p>$action.getText('user.macro.help.visible')</p>
+<p>
+    <strong>$action.getText('user.macro.help.macro.body.title')</strong>
+    <br/>
+    $action.getText('user.macro.help.macro.body.desc')
+</p>
+<p>
+    <strong>$action.getText('user.macro.help.macro.body.processing.title')</strong>
+    <br/>
+    $action.getText('user.macro.help.macro.body.processing.desc')
+</p>
+<p>
+   $action.getText('user.macro.help.wiki.output.tip') 
+</p>

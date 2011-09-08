@@ -1,0 +1,22 @@
+#if ($pollResult)
+    #if ($pollResult.isSuccess())
+        <p><div align="center" class="tipMacro" style="padding: 5px">
+        Connection test successful.
+        </div></p>
+    #else
+        <p><div align="center" class="warningMacro" style="padding: 5px">
+            Connection attempt to this mail account failed. Error message: <br/><br/>
+            <code>$pollResult.getErrorMessage()</code><br/>
+
+            #if ($pollResult.getErrorMessage().indexOf('No trusted certificate found') != -1 || $pollResult.getErrorMessage().indexOf('SSLHandshakeException') != -1)
+                <br/>Please follow the fix outlined in <a href="http://confluence.atlassian.com/x/z8oB">this document</a> to remedy this.
+            #elseif ($pollResult.getErrorMessage().indexOf('UnknownHostException') != -1)
+                <br/>Please check that the hostname: <strong>$hostname</strong> is correct.
+            #elseif ($pollResult.getErrorMessage().indexOf('Authentication failed') != -1 || $pollResult.getErrorMessage().indexOf('Bad login') != -1)
+                <br/>Please check that your username and password are correct.
+            #elseif ($pollResult.getErrorMessage().indexOf('Javamail could not find provider') != -1)
+                <br/>Please make sure you have Javamail version 1.3.2 or later in your class path.
+            #end
+        </div></p>
+    #end
+#end

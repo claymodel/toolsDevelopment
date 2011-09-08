@@ -1,0 +1,200 @@
+#*
+This is a template for a textarea. It also supports wysiwyg and markup text areas.
+
+-- Required Parameters:
+--   * $formname       - the name of the form the text area is in
+--   * $name           - name of the textarea input that gets submitted
+--   * $contenType     - the type of the content the textarea will be displayed for.
+--   * $contentId      - the id of the content the textarea will be displayed for. Use 0 for new pages.
+                         If not specified, it will fallback to using the page or draft id.
+
+-- Optional Parameters:
+--   * $rows           - number of rows for the text area.
+--   * $cols           - number of cols for the text area.
+--   * $width          - width of the text area.
+--   * $disabled       - if true, the text area is disabled.
+--   * $readonly       - if specified, the text area is set to readonly.
+--   * $tabindex       - tab index of the text area.
+--   * $heartbeat      - if 'true' and the editor's ajax is enabled, heartbeats are used - otherwise false
+--   * $saveDrafts     - if 'true' and the editor's ajax is enabled, drafts are saved - otherwise false
+*#
+
+#if($action.useWysiwyg && $action.editor.resourcesKey)
+    #requireResource($action.editor.resourcesKey)
+    #requireResourcesForContext("wysiwyg-editor")    
+#end
+
+#requireResource("confluence.web.resources:page-editor")
+#requireResourcesForContext("macro-browser")
+
+#if (!$parameters.id)
+    #set ($parameters.id = $parameters.name)
+#end
+#if (!$parameters.width)
+    #set ( $width = $parameters.width )
+#end
+#if ($parameters.heartbeat && $parameters.heartbeat == "true")
+    #set( $heartbeat = true)
+#else
+    #set ( $heartbeat = false )
+#end
+#if ($parameters.saveDrafts && $parameters.saveDrafts == "true")
+    #set( $saveDrafts = true)
+#else
+    #set ( $saveDrafts = false )
+#end
+
+## TODO: check if these params are need - are they used anywhere? tinymce?
+#set( $height = $parameters.rows * 16 )
+#if (!$parameters.toolbarExpanded)
+    #set( $toolbarExpanded = "true")
+#else
+    #set ( $toolbarExpanded = $parameters.toolbarExpanded )
+#end
+#if( !$parameters.initialFocus)
+    #set( $initialFocus = "true")
+#else
+    #set( $initialFocus = $parameters.initialFocus)
+#end
+#if (!$parameters.edit)
+    #set( $edit = "false")
+#else
+    #set ( $edit = $parameters.edit )
+#end
+#if ($action.wysiwygContent)
+  #set($wysiwygContent = $action.wysiwygContent)
+#else
+  #set($wysiwygContent = $parameters.wysiwygContent)
+#end
+#if ($parameters.nameValue)
+    #set($wikiContent = $parameters.nameValue)
+#else
+    #set ($wikiContent = $parameters.wikiContent)
+#end
+#if ($parameters.contentId)
+    #set($contentId = $parameters.contentId)
+#else
+    #if ($pageId.toString() == "0" && $draft.id)
+        #set($contentId = $draft.id)
+    #else
+        #set($contentId = $pageId)
+    #end
+#end
+
+<fieldset class="hidden parameters">
+    <input type="hidden" id="contentId" value="$contentId">
+    <input type="hidden" id="contentType" value="$parameters.contentType">
+    <input type="hidden" id="useWysiwyg" value="$action.useWysiwyg">
+    <input type="hidden" id="saveDrafts" value="$saveDrafts">
+    <input type="hidden" id="draftType" value="$!parameters.draftType">
+    <input type="hidden" id="heartbeat" value="$heartbeat">
+    <input type="hidden" id="newPage" value="$!draft.newPage">
+    <input type="hidden" id="maxThumbWidth" value="$!settingsManager.getGlobalSettings().maxThumbWidth">
+    <input type="hidden" id="editorMode" value="$generalUtil.htmlEncode($action.mode)">
+    <input type="hidden" id="paramsHeight" value="$height">
+    <input type="hidden" id="isDevMode" value="$action.isDevMode()">
+    <input type="hidden" id="parametersName" value="${parameters.name}">
+    <input type="hidden" id="parametersId" value="$parameters.id">
+    <input type="hidden" id="actionLocale" value="$action.locale">
+    <input type="hidden" id="actionMarkup" value="$action.MARKUP">
+    <input type="hidden" id="actionRichtext" value="$action.RICHTEXT">
+    <input type="hidden" id="actionPreview" value="$action.PREVIEW">
+    <input type="hidden" id="spaceKey" value="$spaceKey">
+    <input type="hidden" id="spaceName" value="$space.name">
+    <input type="hidden" id="remoteUser" value="$!remoteUser.name">
+    <input type="hidden" id="editorPluginResourcePrefix" value="$webResourceManager.getStaticResourcePrefix($action.editorVersion)">
+    ## for the macro browser
+    <input type="hidden" title="showHiddenUserMacros" value="$!permissionHelper.isConfluenceAdministrator($action.remoteUser)">
+    <input type="hidden" id="gadgetPreviewWarning" value="$action.getText('gadget.preview.warning')">
+
+    <input type="hidden" id="attachmentSourceContentId" value="$action.attachmentSourceContent.id"/>
+    <input type="hidden" id="canAttachFiles" value="$permissionHelper.canAttachFile($action.remoteUser, $action.attachmentSourceContent)"/>
+
+    ## used by tinymce
+    #if($parameters.formname)
+        <input type="hidden" id="formName" value="$parameters.formname">
+    #end
+</fieldset>
+
+    #if ($parameters.label)
+        <strong>$parameters.label:</strong>
+    #end
+
+    <ul id="editor-tabs" class="tab-navigation">
+        #if ($action.useWysiwyg)
+        <li id="wysiwygTab" class="tab #if($action.mode == $action.RICHTEXT) current#end">
+            <a href="#">$action.getText("show.wysiwyg")</a>
+        </li>
+        #end
+
+        <li id="markupTab" class="tab #if ($action.mode == $action.MARKUP) current#end">
+            <a href="#">$action.getText("show.wiki.markup")</a>
+        </li>
+
+        <li id="previewTab" class="tab #if ($action.mode == $action.PREVIEW) current#end">
+            <a href="#">$action.getText("show.preview")</a>
+        </li>
+
+        <li id="wysiwygWaitImage" class="notab loading">$action.getText("editor.loading")</li>
+
+        #if ($action.useWysiwyg && $remoteUser)
+        <li class="notab editor-settings">
+           <a id="makeRichTextDefault" href="#" class="hidden">$action.getText("make.rich.text.default")</a>
+           <a id="makeMarkupDefault" href="#" class="hidden">$action.getText("make.markup.default")</a>
+        </li>
+        #end
+    </ul>
+
+    <div id="linkinserters" class="toolbar #if(!$action.showMarkup) hidden#end" >
+        #set ($webItemContext = $action.webInterfaceContext)
+        #set ($firstSection = true)
+        #foreach ($section in $webInterfaceManager.getDisplayableSections("system.editor.action", $webItemContext))
+            <ul class="toolbar-section $!section.key #if($firstSection)first#end">
+            #set ($location = "$section.location/$section.key")
+            #foreach ($item in $webInterfaceManager.getDisplayableItems("$location", $webItemContext))
+                #set ($linkTitle = $item.label.getDisplayableLabel($req, $webItemContext))
+                <li class="toolbar-button"><a id="$item.link.id" href="#" title="$linkTitle" #if($item.styleClass)class="$item.styleClass"#end>
+                    <label>$linkTitle</label>
+                    <span class="editor-icon"></span>
+                </a></li>
+            #end
+            </ul>
+            #set ($firstSection = false)
+        #end
+    </div>
+
+    #if ($action.useWysiwyg)
+        #renderVelocityTemplate($action.editor.javascriptTemplate)
+
+        <div id="wysiwyg" #if($action.showMarkup) class="hidden" #end>
+            ## the div closing tag is on the same line to fix an IE collapsing bug
+            #renderVelocityTemplate($action.editor.divContentsTemplate)</div>
+    #end
+
+    <div id="markup" #if ($action.useWysiwyg && !$action.showMarkup)class="hidden"#end>
+        <textarea id="markupTextarea" name="$!webwork.htmlEncode($parameters.name)"
+                      cols="$!webwork.htmlEncode($parameters.cols)"
+                      rows="$!webwork.htmlEncode($parameters.rows)"
+
+            #if ($parameters.disabled && $parameters.disabled == true) disabled="disabled"                                      #end
+            #if ($parameters.readonly)         readonly="readonly"                                      #end
+            #if ($parameters.tabindex)         tabindex="$!webwork.htmlEncode($parameters.tabindex)"    #end
+            style="#if ($width)width:$width; #end"
+            class="monospaceInput"
+            >$!webwork.htmlEncode($!wikiContent)</textarea>
+    </div>
+    <input id="selectedText" name="selectedText" type="hidden">
+    ## two hidden fields to store textarea parts for mozilla based browsers
+    <input type="hidden" name="sel1">## sel1: text before the selection
+    <input type="hidden" name="sel2">## sel2: text after the selection
+    <input type="hidden" name="inPreview" value="$action.inPreview"/>
+    <input type="hidden" name="mode" value="$generalUtil.htmlEncode($action.mode)"/>
+    <input type="hidden" name="xhtml" value="$action.xhtml"/>
+
+    <div id="preview" class="#if(!$action.preview)hidden#end">
+        ## We don't add the preview content here because we will never start in preview mode and it will always be refreshed when switching tabs
+        ## It was also causing problems with the inclusion of a macro in the page source (CONF-4533)
+        <div id="previewArea"></div>
+    </div>
+    #parse("/template/includes/macro-browser-templates.vm")
+    #parse("/template/includes/image-dialog-templates.vm")

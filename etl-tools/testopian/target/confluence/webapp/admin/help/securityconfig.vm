@@ -1,0 +1,85 @@
+$action.getText('securityconfig.help.description')
+
+<p>
+     <strong>$action.getText('external.user.management'):</strong><br>
+     $action.getText('external.user.management.description')
+     <br>
+     $action.getText('default.off')
+     <br>
+     #doc("help.disabling.built-in.user.management" "$action.getText('more.about.user.management')")
+</p>
+<p>
+    <strong>$action.getText('public.signup'):</strong><br>
+    $action.getText('public.signup.description')
+    <br>
+    $action.getText('default.on')
+    <br>
+    #doc("help.setting.up.public.access" "$action.getText('more.about.public.signup')")
+
+    <br>
+</p>
+
+<p>
+    <strong>$action.getText('hide.external.links.from.search.engines'):</strong><br>
+    $action.getText('hide.external.links.description')
+    <br>
+    $action.getText('default.on')
+    <br>
+    #doc("help.managing.external.referrers" "$action.getText('more.about.external.links')")
+</p>
+
+<p>
+  <strong>$action.getText('user.email.visibility')</strong>
+  <br>
+  $action.getText('user.email.visibility.description')
+  <br>
+  $action.getText('default.public')
+  <br>
+  #doc("help.user.email.visibility" "$action.getText('more.about.user.visibility')")
+</p>
+
+<p>
+    <strong>$action.getText('remote.api.anonymous.access'):</strong><br>
+    $action.getText('remote.api.anonymous.access.description')
+    <br>
+    $action.getText('default.off')
+</p>
+
+<p>
+    <strong>$action.getText('anti.xss.mode'):</strong><br>
+    $action.getText('anti.xss.mode.description')
+    <br>
+    $action.getText('default.on')
+</p>
+
+<p>
+    <strong>$action.getText('rss.max.items'):</strong><br>
+    $action.getText('rss.max.items.description')
+    <br>
+    $action.getText('default.rss.max.items')
+</p>
+
+<p>
+    <strong>$action.getText('sys.info.500'):</strong><br>
+    $action.getText('sys.info.500.description')
+    <br>
+    $action.getText('default.off')
+</p>
+
+<p>
+    <strong>$action.getText('secure.admin.sessions'):</strong><br>
+    $action.getText('secure.admin.sessions.description')
+    <br>
+    $action.getText('default.on')
+    <br>
+    #doc("help.secure.admin.sessions" "$action.getText('more.about.secure.admin.sessions')")
+</p>
+
+<p>
+    <strong>$action.getText('xsrf.addComments'):</strong><br>
+    $action.getText('xsrf.addComments.description')
+    <br>
+    $action.getText('default.on')
+</p>
+
+        

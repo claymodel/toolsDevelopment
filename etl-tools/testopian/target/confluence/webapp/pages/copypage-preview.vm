@@ -1,0 +1,43 @@
+<html>
+    <head>
+        <title>$action.getText("preview.and.edit") &ndash; $title</title>
+    </head>
+
+    <body>
+        #parse ( "/template/includes/actionerrors.vm" )
+
+        #applyDecorator("root")
+            #decoratorParam("helper" $action.helper)
+            #decoratorParam("context" "space")
+            #decoratorParam("mode" "create-page")
+            #decoratorParam("help-path" "/includes/notation-quick-help.vm")
+            #decoratorParam("infopanel-width" "25%")
+
+            <div style="padding: 10px">
+
+            #parse ("/pages/includes/alert-preview-start.vm")
+            <div class="wiki-content wiki-content-preview">
+                $xHtmlContent
+            </div>
+            #parse ("/pages/includes/alert-preview-end.vm")
+
+            <form method="POST" action="docopypage.action?spaceKey=$generalUtil.urlEncode($spaceKey)">
+                #tag( "Hidden" "name='title'" "value=title" )
+                #tag( "Hidden" "name='content'" "value=content" )
+                #tag( "Hidden" "name='parentPageId'" "value=parentPageId" )
+                #if( $linkCreation )
+                    #tag( "Hidden" "name='linkCreation'" "value=linkCreation" )
+                #end
+
+            </form>
+            #set ($formaction = "docopypage.action?idOfPageToCopy=${idOfPageToCopy}")
+            #parse ("/pages/includes/createpage-form.vm")
+
+            </div>
+
+    		#parse ( "/breadcrumbs.vm" )
+        #end
+
+        <content tag="help-content">#parse ("/pages/help/createpage.vm")</content>
+    </body>
+</html>

@@ -1,0 +1,23 @@
+<p>
+    <strong>$action.getText('external.referrers'):</strong><br/>
+    $action.getText('external.referrers.description')
+    <br/>
+    $action.getText('default.off')
+    <br/>
+</p>
+<p>
+    <strong>$action.getText('external.referrers.show'):</strong><br/>
+    $action.getText('external.referrers.show.description')
+    <br/>
+</p>
+<p>
+   <strong>$action.getText('exclude.ext.referrer.prefixes'):</strong><br/>
+   $action.getText('exclude.ext.referrer.prefixes.description')
+    <br/>
+    <br/>
+ #doc("help.managing.external.referrers" "$action.getText('more.about.external.referrers')")
+</p>
+
+
+
+

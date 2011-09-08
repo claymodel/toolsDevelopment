@@ -1,0 +1,75 @@
+#* Must specify $package *#
+
+
+#includeJavascript ('/includes/js/ajax.js')
+  <script>
+     function reloadProgressBar()
+     {
+        statusDiv = document.getElementById("status");
+
+        xmlhttp = getXmlHttp();
+        xmlhttp.open("GET", "$req.contextPath/$!{package}longrunningtaskxml.action");
+        xmlhttp.onreadystatechange=function()
+        {
+            if (xmlhttp.readyState==4) {
+                resp = xmlhttp.responseXML;
+                document.getElementById("taskCurrentStatus").innerHTML = getTagContent(resp, "currentStatus");
+                document.getElementById("taskElapsedTime").innerHTML = getTagContent(resp, "elapsed");
+                document.getElementById("taskTimeRemaining").innerHTML = getTagContent(resp, "remaining");
+                document.getElementById("percentComplete").innerHTML = getTagContent(resp, "percentComplete");
+
+                percentCompleteText = getTagContent(resp, "percentComplete");
+                progressComplete = parseInt(percentCompleteText, 10);
+                isSuccessful = getTagContent(resp,"isSuccessful");
+
+                if (progressComplete > 99)
+                {
+                    document.getElementById("taskProgressBar").removeChild(document.getElementById("taskGrayBar"));
+                    window.clearInterval(repeatingThingy);
+
+                    document.getElementById("status").innerHtml = "$action.getText('task.idle')";
+                }
+                if (progressComplete > 0)
+                {
+                    greenBar = document.getElementById("taskGreenBar");
+                    if (greenBar == null)
+                    {
+                        progressBar = document.getElementById("taskProgressBar");
+                        greenBar = document.createElement("td");
+
+                        greenBar.id = "taskGreenBar";
+                        greenBar.className="greenBar";
+                        greenBar.innerHTML = "&nbsp;";
+                        progressBar.insertBefore(greenBar, progressBar.firstChild);
+                    }
+                    if (isSuccessful == "false")
+                    {
+                        greenBar.className="redBar";
+                    }
+                    greenBar.width = percentCompleteText + "%";
+                }
+            }
+        }
+        xmlhttp.send(null)
+     }
+
+     function getTagContent(response, tagName)
+     {
+        return response.getElementsByTagName(tagName)[0].firstChild.data
+     }
+  </script>
+
+   #if ($action.task)
+       <div id="status" class="functionbox" style="width: 550px">
+            #set ($task = $action.task)
+            #parse("/template/xhtml/longrunningtask.vm")
+       </div>
+       <div id="debug"></div>
+   #end
+
+   #if ($action.task && !$action.task.complete)
+   <script>
+    var repeatingThingy = window.setInterval("reloadProgressBar()", 5000);
+   </script>
+   #end
+

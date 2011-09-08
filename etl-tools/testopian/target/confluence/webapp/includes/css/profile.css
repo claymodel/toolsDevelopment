@@ -1,0 +1,125 @@
+ul.profile-links {
+    margin-left: 0;
+    padding-left: 0;
+}
+
+ul.profile-links li {
+    list-style: none;
+    margin-left: 0;
+    padding-left: 0;
+}
+
+.editprofile .captcha {
+    text-align: right;
+}
+
+.profile-page .edit-link {
+    font-size: 12px;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+ul.profile-action-section {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.profile-action-section a:link,
+.profile-action-section a:hover,
+.profile-action-section a:visited {
+    text-decoration: none;
+    color: #666;
+}
+.profile-action-section a:hover {
+    text-decoration: underline;
+}
+
+.profile-info .extra-info {
+    padding-bottom: 5px;
+    display:block;
+}
+
+.profile-action-section li {
+    margin: 0;
+    padding-top: 10px;
+}
+.profile-action-section li a {
+    padding: 0;
+    padding-left: 22px;
+    display: block;
+    background-repeat: no-repeat;
+    background-position: 0 2px;
+}
+
+.profile-action-section li #profile-user-stop-follow {
+    background-image: url( ../../../images/icons/fol_on_16.png );
+}
+.profile-action-section li #profile-user-follow {
+    background-image: url( ../../../images/icons/fol_off_16.png );
+}
+.profile-action-section li #profile-space-stop-favourite {
+    background-image: url( ../../../images/icons/fav_on_16.png );
+}
+.profile-action-section li #profile-space-start-favourite {
+    background-image: url( ../../../images/icons/fav_off_16.png );
+}
+
+.profile-page .section-3 form.aui div.viewMode {
+    width: 250px;
+    overflow: hidden;
+    padding: 0 0 0 140px;
+}
+
+/* CONF-15610 - specific style for mime type field in user email settings*/
+.profile-page form.aui div.viewMode #mimeType.field-value {
+    font-weight: bold;
+}
+
+.layout-container {
+    background: #fff;
+    overflow: hidden;
+    width: 100%;
+}
+
+.layout-container .section-1, .layout-container .section-3 {
+    display: inline;
+}
+
+.layout-container .section-1 {
+    float: left;
+    width: 150px;
+}
+
+.layout-container .section-2 {
+    display: table;
+    height: 1%;
+    padding: 0 10px;
+}
+
+.layout-container .section-2>div:before {
+    content: "~~~~~ ~~~~~ ~~~~~ ~~~~~ ~~~~~ ~~~~~ ~~~~~ ~~~~~ ~~~~~ ~~~~~ ~~~~~ ~~~~~ ~~~~~ ~~~~~ ~~~~~ ~~~~~ ~~~~~ ~~~~~ ~~~~~ ~~~~~ ~~~~~ ~~~~~ ~~~~~ ~~~~~ ~~~~~ ~~~~~ ~~~~~ ~~~~~ ~~~~~ ~~~~~ ~~~~~ ~~~~~ ~~~~~ ~~~~~ ~~~~~ ~~~~~ ~~~~~ ~~~~~ ~~~~~ ~~~~~ ~~~~~ ~~~~~ ~~~~~ ~~~~~ ~~~~~ ~~~~~ ~~~~~ ~~~~~ ~~~~~ ~~~~~ ~~~~~ ~~~~~ ~~~~~ ~~~~~ ~~~~~ ~~~~~ ~~~~~ ~~~~~ ~~~~~ ~~~~~ ~~~~~ ~~~~~ ~~~~~ ~~~~~ ~~~~~ ~~~~~ ~~~~~ ~~~~~ ~~~~~ ~~~~~";
+    display: block;
+    overflow: hidden;
+    height: 0;
+    visibility: hidden;
+}
+
+.layout-container .section-3 {
+    float: right;
+    width: 400px; 
+}
+
+#profile-about-me-content {
+    overflow: hidden;
+    _height: 1%;
+}
+
+#password-dialog.aui-dialog .dialog-panel-body {
+    padding: 12px 18px;
+}
+
+form#confirm-password span.field-value {
+    width: 100%;
+}

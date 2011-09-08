@@ -1,0 +1,1 @@
+(function(a){AJS.Data=a.extend({},AJS.Data,{get:function(c){var b=a("meta[name=ajs-"+c+"]");return b.length?b.attr("content"):undefined},getBoolean:function(b){return this.get(b)==="true"}})})(AJS.$);

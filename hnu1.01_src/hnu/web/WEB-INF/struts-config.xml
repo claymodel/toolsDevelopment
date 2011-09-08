@@ -1,0 +1,187 @@
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.0//EN" "http://jakarta.apache.org/struts/dtds/struts-config_1_0.dtd">
+<struts-config>
+    <!-- ========== Data Source Configuration =============================== -->
+    <data-sources />
+    <!-- ========== Form Bean Definitions ================================== -->
+    <form-beans type="org.apache.struts.action.ActionFormBean">
+        <form-bean name="showconfigForm" type="hnu.admin.form.ConfigForm" />
+        <form-bean name="updateconfigForm" type="hnu.admin.form.ConfigForm" />
+        <form-bean name="usersForm" type="hnu.admin.form.UsersForm" />
+        <form-bean name="adminsForm" type="hnu.admin.form.AdminsForm" />
+        <form-bean name="groupsForm" type="hnu.admin.form.GroupsForm" />
+        <form-bean name="editStaffProfileForm" type="hnu.staff.form.EditStaffProfileForm" />
+        <form-bean name="ticketsForm" type="hnu.admin.form.TicketsForm" />
+        <form-bean name="statusForm" type="hnu.admin.form.StatusForm" />
+        <form-bean name="addadminForm" type="hnu.admin.form.AddAdminForm" />
+        <form-bean name="addgroupForm" type="hnu.admin.form.AddgroupForm" />
+        <form-bean name="addstatusForm" type="hnu.admin.form.AddstatusForm" />
+        <form-bean name="loginStaffForm" type="hnu.staff.form.LoginStaffForm" />
+        <form-bean name="addStaffForm" type="hnu.admin.form.AddStaffForm" />
+        <form-bean name="adduserForm" type="hnu.admin.form.AddUserForm" />
+        <form-bean name="userForm" type="hnu.user.form.UserForm" />
+        <form-bean name="loginuserForm" type="hnu.user.form.LoginuserForm" />
+        <form-bean name="staffForm" type="hnu.admin.form.StaffForm" />
+        <form-bean name="groupMembersForm" type="hnu.admin.form.GroupMembersForm" />
+        <form-bean name="resetPasswordForm" type="hnu.admin.form.ResetPasswordForm" />
+        <form-bean name="loginForm" type="hnu.LoginForm" />
+        <form-bean name="userhomeForm" type="hnu.user.form.UserHomeForm" />
+        <form-bean name="newTicketForm" type="hnu.user.form.NewTicketForm" />
+        <form-bean name="showTicketHistoryForm" type="hnu.user.form.ShowTicketHistoryForm" />
+        <form-bean name="staffworkonticketForm" type="hnu.staff.form.StaffworkonticketForm" />
+        <form-bean name="activateForm" type="hnu.user.form.ActivateForm" />
+        <form-bean name="staffsearchticketForm" type="hnu.staff.form.StaffsearchticketForm" />
+    </form-beans>
+    <!-- ========== Global Forward Definitions =============================== -->
+    <global-forwards type="org.apache.struts.action.ActionForward">
+        <forward name="editUser" path="/user/fillUserDetails.do" redirect="true" />
+        <forward name="myhome" path="/user/fillUserHome.do" redirect="true" />
+        <forward name="staffHome" path="/staff/staffHome.jsp" redirect="true" />
+        <forward name="adminHome" path="/admin/adminhome.jsp" redirect="true" />
+        <forward name="Login" path="login.jsp" redirect="true" />
+        <forward name="newTicket" path="/user/fillTicket.do" redirect="true" />
+        <forward name="registerUser" path="/user/fillUserDetails.do" redirect="true" />
+        <forward name="userHome" path="/user/fillUserHome.do" redirect="true" />
+
+        <forward name="adminHome" path="/admin/adminhome.jsp" redirect="true" />
+        <forward name="Login" path="login.jsp" redirect="true" />
+        <forward name="newTicket" path="/user/fillTicket.do" redirect="true" />
+    </global-forwards>
+    <!-- ========== Action Mapping Definitions =============================== -->
+    <action-mappings type="org.apache.struts.action.ActionMapping">
+        <action name="updateconfigForm" type="hnu.admin.action.ConfigAction" path="/admin/updateconfig" input="/admin/config.jsp" scope="request" validate="true">
+            <forward name="success" path="/admin/config.jsp" />
+            <forward name="failure" path="/admin/config.jsp" />
+        </action>
+        <action name="adminsForm" type="hnu.admin.action.AdminsAction" path="/admin/deleteadmins" input="/admin/admins.jsp" scope="request" validate="true">
+            <forward name="success" path="/admin/admins.jsp" />
+            <forward name="failure" path="/admin/admins.jsp" />
+        </action>
+        <action name="usersForm" type="hnu.admin.action.UsersAction" path="/admin/deleteusers" input="/admin/users.jsp" scope="request" validate="true">
+            <forward name="success" path="/admin/users.jsp" />
+            <forward name="failure" path="/admin/users.jsp" />
+        </action>
+        <action name="groupsForm" type="hnu.admin.action.GroupsAction" path="/admin/deletegroups" input="/admin/groups.jsp" scope="request" validate="true">
+            <forward name="success" path="/admin/groups.jsp" />
+            <forward name="failure" path="/admin/groups.jsp" />
+        </action>
+        <action name="statusForm" type="hnu.admin.action.StatusAction" path="/admin/deletestatus" input="/admin/status.jsp" scope="session" validate="true">
+            <forward name="success" path="/admin/status.jsp" />
+            <forward name="failure" path="/admin/status.jsp" />
+        </action>
+        <action name="ticketsForm" type="hnu.admin.action.TicketsAction" path="/admin/deletetickets" input="/admin/tickets.jsp" scope="request" validate="true">
+            <forward name="success" path="/admin/tickets.jsp" />
+            <forward name="failure" path="/admin/tickets.jsp" />
+        </action>
+        <action name="addstatusForm" type="hnu.admin.action.AddstatusAction" path="/admin/addstatus" input="/admin/addstatus.jsp" scope="request" validate="true">
+            <forward name="success" path="/admin/addstatus.jsp" />
+            <forward name="failure" path="/admin/addstatus.jsp" />
+        </action>
+        <action name="addadminForm" type="hnu.admin.action.AddadminAction" path="/admin/addadmin" input="/admin/addadmin.jsp" scope="request" validate="true">
+            <forward name="success" path="/admin/addadmin.jsp" />
+            <forward name="failure" path="/admin/addadmin.jsp" />
+        </action>
+        <action name="adduserForm" type="hnu.admin.action.AddUserAction" path="/admin/adduser" input="/admin/adduser.jsp" scope="request" validate="true">
+            <forward name="success" path="/admin/adduser.jsp" />
+            <forward name="failure" path="/admin/adduser.jsp" />
+        </action>
+        <action name="addgroupForm" type="hnu.admin.action.AddgroupAction" path="/admin/addgroup" input="/admin/addgroup.jsp" scope="request" validate="true">
+            <forward name="success" path="/admin/addgroup.jsp" />
+            <forward name="failure" path="/admin/addgroup.jsp" />
+        </action>
+        <action name="addStaffForm" type="hnu.admin.action.AddStaffAction" path="/admin/addstaff" input="/admin/addstaff.jsp" scope="request" validate="true">
+            <forward name="success" path="/admin/addstaff.jsp" />
+            <forward name="failure" path="/admin/addstaff.jsp" />
+        </action>
+        <action name="staffForm" type="hnu.admin.action.StaffAction" path="/admin/deletestaff" input="/admin/staff.jsp" scope="request" validate="true">
+            <forward name="success" path="/admin/staff.jsp" />
+            <forward name="failure" path="/admin/staff.jsp" />
+        </action>
+        <action name="groupMembersForm" type="hnu.admin.action.GroupmembersAction" path="/admin/groupmembers" input="/admin/groupmembers.jsp" scope="session" validate="true">
+            <forward name="success" path="/admin/changegroupmembers.do" redirect="false" />
+            <forward name="failure" path="/admin/changegroupmembers.do" redirect="false" />
+        </action>
+        <action name="changegroupmembers" type="hnu.admin.action.GroupMembersFormFillAction" path="/admin/changegroupmembers" scope="session" validate="false">
+            <forward name="success" path="/admin/groupmembers.jsp" />
+            <forward name="failure" path="/admin/groupmembers.jsp" />
+        </action>
+        <action name="resetPasswordForm" type="hnu.admin.action.ResetpasswordAction" path="/admin/resetpassword" input="/admin/resetpassword.jsp" scope="request" validate="true">
+            <forward name="success" path="/admin/resetpassword.jsp" />
+            <forward name="failure" path="/admin/resetpassword.jsp" />
+        </action>
+        <action name="editStaffProfileForm" type="hnu.staff.action.EditStaffProfileAction" path="/staff/editStaffProfile" input="/staff/editStaffProfile.jsp" scope="session" validate="true">
+            <forward name="failure" path="/staff/editStaffProfile.jsp" redirect="false" />
+            <forward name="success" path="/staff/staffHome.jsp" redirect="true" />
+        </action>
+        <action type="hnu.staff.action.EditProfileFillFormbeanAction" path="/staff/fillProfileForm" scope="session" validate="false">
+            <forward name="success" path="/staff/editStaffProfile.jsp" redirect="true" />
+            <forward name="failure" path="/staff/editStaffProfile.jsp" redirect="false" />
+        </action>
+        <action type="hnu.staff.action.TakeTickets" path="/staff/takeTickets" scope="session" validate="false">
+            <forward name="success" path="/staff/staffHome.jsp" redirect="true" />
+            <forward name="failure" path="/staff/staffHome.jsp" redirect="false" />
+        </action>
+        <action path="/staff/getMessages" scope="session" validate="false" type="hnu.staff.action.GetMessages">
+            <forward name="success" path="/staff/workonticket.jsp" redirect="true" />
+            <forward name="failure" path="/staff/staffHome.jsp" redirect="false" />
+        </action>
+        <action name="staffworkonticketForm" type="hnu.staff.action.StaffworkonticketAction" path="/staff/staffworkonticket" input="/staff/workonticket.jsp" scope="session" validate="true">
+            <forward name="success" path="/staff/refrsesscontent.do" redirect="true" />
+            <forward name="failure" path="/staff/workonticket.jsp" redirect="false" />
+        </action>
+        <action type="hnu.staff.action.StaffStats" path="/staff/staffStats" scope="session" validate="false">
+            <forward name="success" path="/staff/staffStats.jsp" redirect="true" />
+            <forward name="failure" path="/staff/staffHome.jsp" redirect="false" />
+        </action>
+        <action name="staffsearchticketForm" type="hnu.staff.action.StaffsearchticketAction" path="/staff/staffsearchticket" input="/staff/staffsearchticket.jsp" scope="request" validate="true">
+            <forward name="failure" path="/staff/staffsearchticket.jsp" redirect="false" />
+            <forward name="success" path="/staff/searchResults.jsp" redirect="true" />
+        </action>
+        <action name="loginForm" type="hnu.LoginAction" path="/login" input="/login.jsp" scope="session" validate="true" unknown="true">
+            <forward name="failure" path="/login.jsp" redirect="false" />
+        </action>
+        <action type="hnu.staff.action.RefrSessContent" path="/staff/refrsesscontent" scope="session" validate="false" /><action name="loginuserForm" path="/user/loginuser" type="hnu.user.action.LoginuserAction" input="/user/loginuser.jsp" scope="request" validate="true">
+            <forward name="userLoginFailure" path="/user/loginuser.jsp" />
+            <forward name="showPersonal" path="/user/fillUserHome.do" />
+        </action>
+        <action name="userForm" path="/user/user" type="hnu.user.action.UserAction" input="/user/user.jsp" scope="session" validate="true">
+            <forward name="showUser" path="/user/fillUserDetails.do" />
+            <forward name="success" path="/user/registered.jsp" />
+            <forward name="failure" path="/user/fillUserDetails.do" />
+        </action>
+        <action name="userhomeForm" path="/user/userhome" type="hnu.user.action.UserHomeAction" input="/user/userhome.jsp" scope="session" validate="true">
+            <forward name="reload" path="/user/fillUserHome.do" />
+            <forward name="success" path="/user/fillTicketHistory.do" />
+        </action>
+        <action type="hnu.user.action.FillUserHome" path="/user/fillUserHome" scope="request" validate="true">
+            <forward name="success" path="/user/userhome.jsp" />
+            <forward name="failure" path="/login.jsp" />
+        </action>
+        <action name="newTicketForm" type="hnu.user.action.NewTicketAction" path="/user/newTicket" input="/user/newTicket.jsp" scope="session" validate="true">
+            <forward name="success" path="/user/fillUserHome.do" />
+            <forward name="failure" path="/user/newTicket.jsp" />
+        </action>
+        <action type="hnu.user.action.FillTicketAction" path="/user/fillTicket" scope="request" validate="true">
+            <forward name="showNewTicket" path="/user/newTicket.jsp" />
+            <forward name="failure" path="/user/userhome.jsp" />
+        </action>
+        <action name="showTicketHistoryForm" type="hnu.user.action.ShowTicketHistoryAction" path="/user/showtickethistory" input="/user/showtickethistory.jsp" scope="session" validate="true">
+            <forward name="success" path="/user/fillTicketHistory.do" />
+            <forward name="failure" path="/user/showtickethistory.jsp" />
+        </action>
+        <action type="hnu.user.action.FillTicketHistoryAction" path="/user/fillTicketHistory" scope="request" validate="false">
+            <forward name="success" path="/user/showtickethistory.jsp" />
+            <forward name="failure" path="/user/userhome.jsp" />
+        </action>
+        <action type="hnu.user.action.FillUserDetails" path="/user/fillUserDetails" scope="request" validate="false">
+            <forward name="success" path="/user/user.jsp" />
+            <forward name="failure" path="/user/userhome.jsp" />
+        </action>
+        <action name="activateForm" type="hnu.user.action.ActivateAction" path="/user/activate" input="/user/activate.jsp" scope="session" validate="true">
+            <forward name="success" path="/user/fillUserHome.do" />
+        </action>
+        <action type="hnu.user.action.FillActivateAction" path="/user/activateAction" scope="request" validate="true">
+            <forward name="success" path="/user/activate.jsp" />
+        </action>
+
+    </action-mappings>
+</struts-config>

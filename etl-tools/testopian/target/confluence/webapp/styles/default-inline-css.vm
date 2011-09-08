@@ -1,0 +1,10 @@
+## A combined css stylsheet is returned with the default styles inlined in one file.
+## Use for exports and mail notifications.
+
+$!webResourceManager.getResourceContent("confluence.web.resources:master-styles")
+
+#parse("/styles/colors-css.vm")
+
+$!webResourceManager.getResourceContent("com.atlassian.confluence.themes.default:styles")
+
+

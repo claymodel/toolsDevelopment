@@ -1,0 +1,13 @@
+<html>
+<head>
+    <title>$action.getText("view.source")</title>
+</head>
+
+<body>
+    <div class="monospaceInput">
+        <div class="padded">
+            $action.formattedPageContent
+        </div>
+    </div>
+</body>
+</html>

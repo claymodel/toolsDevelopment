@@ -1,0 +1,77 @@
+<div id="macro-browser-templates" class="hidden">
+    ## browse macros page
+    <ol id="macro-summaries-template" class="macro-list"></ol>
+    <ul>
+    <li id="macro-summary-template" class="macro-list-item">
+        <h3 class="macro-title"></h3>
+        <div class="macro-desc"></div>
+    </li>
+    </ul>
+    ## insert macro page
+    <div id="macro-insert-template">
+        <input class="macro-name" type="hidden"/>
+        <div class="macro-preview-container dialog-panel">
+            <div class="macro-preview-header">
+                <ul class="macro-preview-links">
+                    <li><a class="refresh-link" href="#">$action.getText('macro.browser.preview.refresh.link')</a></li>
+                </ul>
+                <span>$action.getText('preview.name')</span>
+            </div>
+            <div class="macro-preview"></div>
+        </div>
+        <div class="macro-input-fields dialog-panel"></div>
+    </div>
+    <span id="macro-doco-link-template">
+        <a href="#" class="macro-doco-link">$action.getText("macro.browser.documentation.link")</a>
+    </span>
+    <div id="macro-freeform-template" class="macro-freeform-div">
+        <div class="macro-freeform-desc">$action.getText('macro.browser.freeform.desc')</div>
+        <div class="macro-freeform-input">
+            {<span class="macro-name-display"></span><input type="text" class="macro-text"/>}
+        </div>
+        <div class="macro-example hidden">
+            <h3 class="underlined">$action.getText("macro.browser.freeform.example.title")</h3>
+        </div>
+        <div class="macro-help hidden">
+            <h3 class="underlined">$action.getText("macro.browser.freeform.desc.title")</h3>
+        </div>
+    </div>
+    <div id="macro-param-template" class="macro-param-div">
+        <label></label>
+        <input type="text" class="text"/>
+    </div>
+    <div id="macro-param-checkbox-template" class="macro-param-div boolean-param">
+        <label></label>
+        <input type="checkbox" value="true"/>
+    </div>
+    <div id="macro-param-select-template" class="macro-param-div">
+        <label></label>
+        <select></select>
+    </div>
+    <div id="macro-param-hidden-text-template" class="macro-param-div">
+        <label></label>
+        <input type="text" class="text"/>
+        <input type="hidden"/>
+    </div>
+    <div id="macro-param-hidden-template" class="macro-param-div">
+        <input type="hidden"/>
+    </div>
+    <div id="macro-param-desc-template" class="macro-param-desc"></div>
+    <div id="macro-body-template" class="macro-body-div">
+        <label>$action.getText("macro.browser.body.label")</label>
+        <textarea class="monospaceInput textarea" type="text" rows="10"></textarea>
+    </div>
+    <div id="macro-param-smartfield-no-suggestion-template">
+        <ol>
+            <li><a href="#" class="message"><span>$action.getText("macro.browser.smartfields.no.suggestion")</span></a></li>
+        </ol>
+    </div>
+    <script type="text/x-template" title="macro-browser-help-link">
+        <div class="dialog-help-link">
+            #doc("help.working.with.macro.browser" "$action.getText('help.name')")
+        </div>
+    </script>
+    <script type="text/x-template" title="macro-browser-gadget-url">
+        <a class='macro-uri' href='{url}' title='{url}' target='_blank'>$I18n.getText('macro.browser.gadget.url')</a>
+    </script>
+</div>

@@ -1,0 +1,71 @@
+add to the startup [service]
+
+sudo chown jira: -R /opt/atlassian/jira
+
+-Duser.timezone=  
+JVM_SUPPORT_RECOMMENDED_ARGS="-Duser.timezone=America/Los_Angeles"
+
+
+jira - usermysql -u root -p
+mysql -u root -p
+
+drop database jiradb_4_3_4;
+
+create database jiradb_4_3_4 character set utf8;
+
+
+GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,DROP,ALTER,INDEX on jiradb_4_3_4.* TO 'jirauser'@'localhost' IDENTIFIED BY 'Ii112dToday';
+
+GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,DROP,ALTER,INDEX on jiradb_4_3_4.* TO 'root'@'localhost' IDENTIFIED BY 'Ii112dToday';
+
+mysql -u root -p jiradb_4_3_4 < jiradb_4_3_4_backup.Aug3.sql 
+
+
+
+/opt/java/jdk1.6.0_21
+/home/jira/jira-data-434
+/usr/local/atlassian/atlassian-jira-4.3.4-standalone
+
+
+
+
+#!/bin/sh -e
+# JIRA (drsanjira3/jira/) startup script
+#chkconfig: 2345 80 05
+#description: JIRA
+ 
+# Define some variables
+# Name of app ( JIRA, Confluence, etc )
+APP=jira
+# Name of the user to run as
+USER=jira
+# Location of application's bin directory
+BASE=/usr/local/atlassian/atlassian-jira-4.3.4-standalone
+# Location of Java JDK
+export JAVA_HOME=/opt/java/jdk1.6.0_21
+ 
+case "$1" in
+  # Start command
+  start)
+    echo "Starting $APP"
+    /bin/su -m $USER -c "cd $BASE/logs && $BASE/bin/startup.sh &> /dev/null"
+    ;;
+  # Stop command
+  stop)
+    echo "Stopping $APP"
+    /bin/su -m $USER -c "$BASE/bin/shutdown.sh &> /dev/null"
+    echo "$APP stopped successfully"
+    ;;
+   # Restart command
+   restart)
+        $0 stop
+        sleep 5
+        $0 start
+        ;;
+  *)
+    echo "Usage: /etc/init.d/$APP {start|restart|stop}"
+    exit 1
+    ;;
+esac
+ 
+exit 0

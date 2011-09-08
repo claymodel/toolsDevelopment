@@ -1,0 +1,9 @@
+#bodytag( "Submit" "name='confirm'" "value='add.name'" "theme='notable'" "tabindex=9")
+    #param ("accessKey" "s")
+#end
+<!--
+#bodytag( "Submit" "name='preview'" "value='preview.name'" "theme='notable'" "tabindex=10")
+    #param ("accessKey" "p")
+#end
+-->
+#tag( "Submit" "name='cancel'" "value='cancel.name'" "theme='notable'" "tabindex=11")

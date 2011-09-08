@@ -1,0 +1,47 @@
+<script type="text/x-template" title="manage-watchers-dialog">
+<div class="dialog-content">
+    <div class="column page-watchers">
+        <h3>$i18n.getText('manage.watchers.page.watchers.title')</h3>
+        <p class="description">$i18n.getText('manage.watchers.page.watchers.description')</p>
+        <form action="$req.contextPath/json/addwatch.action" method="POST">
+            #form_xsrfToken()
+            <input type="hidden" name="pageId" value="$action.page.id"/>
+            <input type="hidden" id="add-watcher-username" name="username" value=""/>
+            <label for="add-watcher-user">$i18n.getText('manage.watchers.user.search.label')</label>
+            <input id="add-watcher-user" name="userFullName" type="search" class="autocomplete-user"
+               value="" placeholder="$i18n.getText('manage.watchers.user.search.placeholder')" autocomplete="off"
+               data-max="10" data-target="#add-watcher-username" data-dropdown-target="#add-watcher-dropdown"
+               data-template="{title}" data-none-message="$i18n.getText('manage.watchers.user.search.no.results')">
+            <input id="add-watcher-submit" type="submit" name="add" value="$i18n.getText('manage.watchers.add.watcher.label')">
+            <div id="add-watcher-dropdown" class="aui-dd-parent autocomplete"></div>
+            <div class="status hidden"></div>
+        </form>
+        <ul class="user-list">
+            <li class="loading">$i18n.getText('manage.watchers.loading')</li>
+            <li class="no-users hidden">$i18n.getText('manage.watchers.no.page.watchers')</li>
+        </ul>
+    </div>
+    <div class="column space-watchers">
+        <h3>$i18n.getText('manage.watchers.space.watchers.title')</h3>
+        <p class="description">$i18n.getText('manage.watchers.space.watchers.description')</p>
+        <ul class="user-list">
+            <li class="loading">$i18n.getText('manage.watchers.loading')</li>
+            <li class="no-users hidden">$i18n.getText('manage.watchers.no.space.watchers')</li>
+        </ul>
+    </div>
+</div>
+</script>
+<script type="text/x-template" title="manage-watchers-user">
+    <li class="watch-user">
+        <img class="profile-picture confluence-userlink" src="{iconUrl}" data-username="{username}">
+        <a class="confluence-userlink" href="{url}" data-username="{username}">{fullName} <span class="username">({username})</span></a>
+        <span class="remove-watch" title="$i18n.getText('manage.watchers.remove.watcher.label')"
+            data-username="{username}">$i18n.getText('manage.watchers.remove.watcher.label')</span>
+    </li>
+</script>
+<script type="text/x-template" title="manage-watchers-help-link">
+    <div class="dialog-help-link">
+        #doc("help.manage.watchers" "$action.getText('help.name')")
+    </div>
+</script>
+

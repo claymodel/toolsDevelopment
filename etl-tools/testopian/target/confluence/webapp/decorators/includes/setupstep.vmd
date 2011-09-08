@@ -1,0 +1,23 @@
+<div class="menuheading">Setup Steps</div>
+<ol class="menu-section-list">
+        #foreach ($step in $setupPersister.completedSteps)
+            #if ($step.value != "invisible")
+                <li class="completed">
+                    $action.getText($step.value)
+                </li>
+            #end
+        #end
+        #foreach ($step in $setupPersister.uncompletedSteps)
+            #if ($step.value != "invisible")
+                #if ($setupPersister.currentStep == "complete")
+                    <li class="completed">
+                       #elseif ($step.key == $setupPersister.currentStep)
+                    <li class="active">
+                       #else
+                    <li class="incomplete">
+                #end
+                        $action.getText($step.value)
+                </li>
+            #end
+        #end
+</ol>

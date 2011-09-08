@@ -1,0 +1,35 @@
+        <tr bgcolor=ffffff>
+            <td>
+                !quicktime.mov!
+                <br />
+                <br />
+                !spaceKey:pageTitle^attachment.mov!
+                <br />
+                <br />
+                !quicktime.mov|width=300,height=400!
+                <br />
+                <br />
+                !media.wmv|id=media!
+            </td>
+            <td>
+                $action.getText('embed.desc')
+                <br />
+                <br />
+                $action.getText('embed.supported.formats')
+                <br />
+                $action.getText('embed.other.tpes.are.permitted')
+                <br />
+                <br />
+                $action.getText('embed.common.properties.are')
+                <ul>
+                    <li>width - $action.getText('embed.width.desc')</li>
+                    <li>height - $action.getText('embed.height.desc')</li>
+                    <li>id - $action.getText('embed.id.desc')</li>
+                </ul>
+                <br />
+                $action.getText('embed.remote.servers.not.permitted')<br />
+                <strong>$action.getText('styling.name')</strong>
+                <br />
+                $action.getText('embed.default.styling.desc')
+            </td>
+        </tr>

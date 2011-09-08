@@ -1,0 +1,58 @@
+<html>
+    <head>
+        <title>$action.getActionName($action.getClass().getName())</title>
+        <meta name="help-path" content="/importexport/help/backup.vm"/>
+    </head>
+
+    <body>
+        <content tag="selectedWebItem">backup</content>
+        #parse ( '/template/includes/actionerrors.vm' )
+    
+        #if ($actionErrors.size() == 0)
+            <h3>$i18n.getText('title.backup')</h3>
+            
+            <form name="backupform" action="dobackup.action">
+                #form_xsrfToken()
+                <input type="checkbox" name="archiveBackup" value="true"> $i18n.getText('archive.to.backup.folder')<br>
+                <input type="checkbox" name="backupAttachments" value="true" #if ($backupAttachments) checked #end> $i18n.getText('backupaction.backup.attachments')<br>
+                #if ($downloadEnabled)
+                    <p>$i18n.getText('backupaction.backup.download.enabled')</p>
+                #else
+                    <p>$i18n.getText('backupaction.backup.download.disabled')</p>
+                #end
+                #tag ("Submit" "name='backup'" "value='backup-action'" "theme='notable'" )
+            </form>
+
+            <h3>$i18n.getText('title.restore')</h3>
+
+            <p>$i18n.getText('there.are.two.types')
+            <ol>
+                <li>$i18n.getText('site.backups') <i>$i18n.getText('and.word')</i>
+                <li>$i18n.getText('single.space.backups')
+            </ol><br>
+            $i18n.getText('restoring.space.backups.desc')
+
+            <div class="warningMacro informationMacroPadding">
+                <strong>$i18n.getText('warning.word')</strong>
+                <p>
+            $i18n.getText('restoring.entire.site.note')
+            <ul>
+            <li>$i18n.getText('restoring.entire.site.note.point1')
+            <li>$i18n.getText('restoring.entire.site.note.point2')
+            <li>$i18n.getText('restoring.entire.site.note.point3')
+            </ul> </p>
+
+            <p>$i18n.getText('restoring.large.file.note')</p>
+
+            </div>
+
+            <p/>
+
+            #set ($upload-and-restore-form-action = "restore.action")
+            #set ($restore-local-file-form-action = "restore-local-file.action")
+            #parse ('/importexport/includes/restore-include.vm')
+        #end
+
+	    #parse ( '/breadcrumbs.vm' )
+    </body>
+</html>

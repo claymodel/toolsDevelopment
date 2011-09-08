@@ -1,0 +1,2 @@
+./emulator -scale 0.78 -data userdata.img -ramdisk ramdisk.img -kernel kernel-qemu -system system.img -skin HVGA -sdcard unittest.img &
+

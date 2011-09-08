@@ -1,0 +1,21 @@
+#if (!$textUtil.stringSet($formaction))
+    #set ($formaction = "docreate${contentType}.action")
+#end
+#if ($contentType == "page")
+    #set ($useContentPermissions = true)
+    #set ($useLocationEditor = true)
+    #set ($useTemplate = true)
+#elseif ($contentType == "blogpost")
+    #set ($useDatePicker = true)
+#end
+#bodytag ("Component" "template='content-editor.vm'" "theme='custom'")
+    #param ("formName" "createpageform")
+    #param ("formAction" "$formaction")
+    #param ("contentType" $contentType)
+    #param ("useContentPermissions" $useContentPermissions)
+    #param ("useTemplate" $useTemplate)
+    #param ("useLocationEditor" $useLocationEditor)
+    #param ("useDatePicker" $useDatePicker)
+    #param ("mode" "create")
+    #param ("defaultContentTitle" $action.getText("untitled.${contentType}.title"))
+#end

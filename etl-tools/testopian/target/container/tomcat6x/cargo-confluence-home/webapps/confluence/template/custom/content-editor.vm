@@ -1,0 +1,247 @@
+#*
+This is the main content editor template for creating and editing.
+
+-- Required Parameters:
+--   * $formName       - determines the name of the form
+--   * $formAction     - determines the action of the form
+--   * $contentType    - type of content (currently 'page' or 'blogpost' supported)
+--   * $mode           - determines the mode of the editor (currently 'edit' or 'create' supported)
+
+-- Optional Parameters:
+--   * $useVersionComment     - show the version comment form
+--   * $useMinorEdit          - show the minor edit checkbox
+--   * $useContentPermissions - show the content permissions form
+--   * $useTemplate           - show the create from template link
+--   * $useDatePicker         - show the date picker for publish date
+--   * $useLocationEditor     - show the content location form
+--   * $defaultContentTitle   - the default content title if new content doesn't have a supplied title
+*#
+
+#set ($formName              = $parameters.formName)
+#set ($formAction            = $parameters.formAction)
+#set ($contentType           = $parameters.contentType)
+#set ($mode                  = $parameters.mode)
+#set ($useVersionComment     = $parameters.useVersionComment)
+#set ($useMinorEdit          = $parameters.useMinorEdit)
+#set ($useContentPermissions = $parameters.useContentPermissions)
+#set ($useTemplate           = $parameters.useTemplate)
+#set ($useLocationEditor     = $parameters.useLocationEditor)
+#set ($useDatePicker         = $parameters.useDatePicker)
+#set ($defaultContentTitle   = $parameters.defaultContentTitle)
+
+##TODO fix this - a lot of templates rely on $formname
+#set ($formname              = $formName)
+
+#requireResource("confluence.web.resources:page-editor")
+#if ($mode == "create")
+    #requireResource("confluence.web.resources:create-page-editor")
+#end
+
+## put this here so the tinymce resources are served earlier
+#if($action.useWysiwyg && $action.editor.resourcesKey)
+    #requireResource($action.editor.resourcesKey)
+    #requireResourcesForContext("wysiwyg-editor")
+#end
+#requireResourcesForContext("editor")
+
+#parse ("/template/includes/draft-changes.vm")
+#parse ("/template/includes/page-move-templates.vm")
+#parse ("/pages/includes/page-permissions.vm")
+
+<fieldset class="hidden parameters">
+    <input type="hidden" id="spaceKey" value="$spaceKey">
+    <input type="hidden" id="pageId" value="$pageId">
+    <input type="hidden" id="originalParentPage" value="$generalUtil.htmlEncode($!parentPageString)">
+    <input type="hidden" title="parentPageId" value="$!parentPage.id">    
+    <input type="hidden" id="formName" value="$formName">
+    <input type="hidden" id="defaultContentTitle" value="$!defaultContentTitle">
+    <input type="hidden" title="browsePageTreeMode" value="$mode">
+</fieldset>
+
+#if ($mode == "edit")
+    #set($formAction = "$formAction?pageId=$pageId")
+#end
+
+<form id="$formName" name="$formName" method="post" action="$formAction" class="editor">
+    #form_xsrfToken()
+    #tag ("Hidden" "id=labelsShowing" "name='labelsShowing'" "value=labelsShowing")
+    #tag ("Hidden" "id=restrictionsShowing" "name='restrictionsShowing'"  "value='false'")
+    #tag ("Hidden" "id=locationShowing" "name='locationShowing'" "value='$!action.locationShowing'")
+
+    ## TODO - Move hidden tags out if possible.
+    #if ($mode == "create")
+        #tag ("Hidden" "name='fromPageId'" "value='$fromPageId'")
+        #tag ("Hidden" "name='spaceKey'" "value=spaceKey")
+
+        #set($titleWritten = "$textUtil.stringSet($action.title)")
+        #tag ("Hidden" "id=titleWritten" "name='titleWritten'" "value='$titleWritten'")
+
+        #set ($isLinkCreation = $linkCreation.equalsIgnoreCase( "true" ) || $linkCreation.equalsIgnoreCase( "yes" ))
+        #tag("Hidden" "name='linkCreation'" "value='$isLinkCreation'")
+        #if ($isLinkCreation)
+            #tag ("Hidden" "id=hidden-content-title" "name='title'" "value=title") ## this is required due to the disabled title field on link creation
+        #end
+    #else
+        #tag ("Hidden" "id=originalVersion" "name='originalVersion'" "value=originalVersion")
+        #tag ("Hidden" "id=orginalContent" "name='originalContent'" "value=content")
+        #tag ("Hidden" "id=conflictingVersion" "name='conflictingVersion'" "value='$action.page.version'")
+    #end
+
+    <div id="wiki-editor">
+         ## Remove content link - this has been left in for other themes such as clickr, leftnav, classic.
+         #if ($mode == "edit" && $permissionHelper.canRemove($remoteUser, $page))
+            <div class="remove-control">
+                 #if ($contentType == "blogpost")
+                     #removeBlogPostLinkAndImageAndText()
+                 #else
+                     #removePageLinkAndImageAndText()
+                 #end
+            </div>
+         #end
+
+        ## Title text field
+        <div id="content-title-div" class="inputSection">
+            #bodytag ("Component" "label='title.name'" "id=content-title-label" "value='content-title'" "template='assistive.vm'" "theme='aui'")
+                #param ("type" "label")
+            #end
+            #fielderror ('title')
+            ## A text field size of 43 was purposely chosen for this title field to render properly in 1024x768
+            #bodytag ("TextField" "name='title'" "size=43" "theme='notable'")
+                #param ("id" "content-title")
+                #param ("value" "$!generalUtil.htmlEncode($title)")
+                #param ("labelwidth" "100")
+                #param ("tdcolor" "f0f0f0")
+                #param ("cssClass" "pagetitle")
+                #param ("disabled" "$isLinkCreation")
+                #param ("tabindex" "1")
+                #param("autocomplete", "off")
+            #end
+        </div>
+        
+        #parse ("/includes/alert-anonymous.vm")
+        #parse ("/pages/includes/captcha-form-elements.vm")
+        #parse ("/pages/includes/editpage-notifications.vm")
+
+        ## Template links
+        #if($useTemplate)
+            <div class="inputSection">
+                #if ($action.templateApplied)
+                    <div>
+                        $action.getText("editor.template.using.template", ["$pageTemplate.name"])
+                        <a href="#" class="editor-template-link">$action.getText("editor.template.choose.another")</a>
+                    </div>
+                #elseif  (($globalPageTemplates && !$globalPageTemplates.isEmpty()) || ($spacePageTemplates && !$spacePageTemplates.isEmpty()))
+                    <div>
+                        <a href="#" class="editor-template-link">$action.getText("editor.template.select")</a>
+                    </div>
+                #end
+            </div>
+        #end
+
+        ## Content editor
+        <div class="inputSection">
+            <div class="submit-buttons">
+                #parse ("/pages/includes/edit-page-submit-buttons.vm")
+            </div>
+            <div id="draft-status">
+            </div>
+            #if($mode=="edit")
+                #set ($editMode = "true")
+            #end
+            <div id="editorDiv">
+                #bodytag ("Component" "name='content'" "template='wiki-textarea.vm'" "theme='notable'")
+                    #param ("formname" "$formName")
+                    #param ("spaceKey" "$generalUtil.urlEncode($spaceKey)")
+                    #param ("rows" 30)
+                    #param ("cols" 80)
+                    #param ("tabindex" "5")
+                    #param ("edit" "$!editMode")
+                    #param ("heartbeat" "true")
+                    #param ("draftType" "$contentType")
+                    #param ("contentType" "$contentType")
+                    #param ("saveDrafts" "true")
+                #end
+            </div>
+        </div>
+
+        ## Comment field and minor edit checkbox
+        <div class="inputSection">
+            #if($useMinorEdit)
+                <div class="minor-edit">
+                    <input id="minorEdit" type="checkbox" name="minorEdit" value="true" #if ($minorEdit) checked="checked" #end >
+                    <label for="minorEdit">
+                        <span class="smalltext">$action.getText('minor.edit')</span>
+                    </label>
+                </div>
+            #end
+            #if ($useVersionComment)
+                #fielderror ("versionComment")
+                <span class="formtitle">$action.getText('page.change')</span>
+                #bodytag( "TextField" "name='versionComment'" "tabindex=6" "size=40" "theme='simple'")
+                    #param ("cssClass" "monospaceInput")
+                    #param ("cssStyle" "width: 50%")
+                #end
+            #end
+        </div>
+
+        ## Content location editor
+        #if($useLocationEditor)
+            <div class="inputSection">
+                <span class="formtitle">$action.getText("location.name"):</span>
+                <span id="location_info">
+                    <span id="space_info" #if(!$space.name)class="hidden"#end>
+                        <span id="space_content">$generalUtil.htmlEncode($spaceManager.getSpace($newSpaceKey).name)</span>
+                    </span>
+                    <span id="parent_info" #if(!$parentPageString)class="hidden"#end> &gt;
+                        <span id="parent_content">$generalUtil.htmlEncode($parentPageString)</span>
+                    </span>
+                </span>
+                <a href="#" class="inline-control-link" id="edit-move-page-dialog-link">$action.getText('edit.name')</a>                
+            </div>
+        #end
+        <input id="parentPageString" type="hidden" name="parentPageString" value="$generalUtil.htmlEncode($!parentPageString)">
+        <input id="hierarchy_checkbox" type="hidden" name="moveHierarchy" value="true">
+        <input id="position" type="hidden" name="position" value="">
+        <input id="targetId" type="hidden" name="targetId" value="">
+        <input id="draftId" type="hidden" name="draftId" value="$action.draftId">
+        ## initialise newSpaceKey to current space which signifies no space move
+        <input id="newSpaceKey" type="hidden" name="newSpaceKey" value="$!spaceKey">
+
+        <!-- content permissions -->
+        #if ($useContentPermissions && $action.hasSetPagePermissionsPermission())
+            <div id="edit-permissions-section" class="inputSection">
+                ## Permissions heading and show/hide toggle
+                <div id="permissions_tab">
+                    <span class="formtitle">$action.getText("restrictions.name"):</span>
+                    <a href="#" class="inline-control-link" id="permissions-show-hide-link">$action.getText("edit.name")</a>
+                    <span id="page-permissions-unsaved-changes-msg" class="hidden">$action.getText("page.perms.unsaved.changes")</span>
+                </div>
+                <div id="page-permissions-summary">
+                    #set ($viewSummary = $!viewPermissionsSummary)
+                    #set ($editSummary = $!editPermissionsSummary)
+                    <div id="permissions-view-summary" #if($viewSummary == "")class="hidden"#end><span>$action.getText("restrictions.viewing"): </span><span class="summary-content">$!viewSummary</span></div>
+                    <div id="permissions-edit-summary" #if($editSummary == "")class="hidden"#end><span>$action.getText("restrictions.editing"): </span><span class="summary-content">$!editSummary</span></div>
+                </div>
+                ## The actual data submitted on page save.
+                <div id="hidden-permission-fields" class="hidden">
+                    <input id="viewPermissionsUsers" type="text" name="viewPermissionsUsers" value="$!viewPermissionsUsers">
+                    <input id="editPermissionsUsers" type="text" name="editPermissionsUsers" value="$!editPermissionsUsers">
+                    <input id="viewPermissionsGroups" type="text" name="viewPermissionsGroups" value="$!viewPermissionsGroups">
+                    <input id="editPermissionsGroups" type="text" name="editPermissionsGroups" value="$!editPermissionsGroups">
+                </div>
+            </div>
+        #end
+
+        <div class="inputSection">
+            #parse ("/pages/includes/page-labels-form.vm")
+        </div>
+
+        #if ($useDatePicker)
+            #parse ("/pages/includes/date-picker.vm")
+        #end
+
+        <div class="submit-buttons bottom">
+            #parse ("/pages/includes/edit-page-submit-buttons.vm")
+        </div>
+    </div>
+</form>

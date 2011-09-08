@@ -1,0 +1,103 @@
+<html>
+    <head>
+        <title>$action.getText("title.diff.page") - $!page.title #if ($originalPage && $revisedPage)(v.$!originalPage.version vs v.$!revisedPage.version)#else(Page versions not found)#end</title>
+    </head>
+
+    #set ($confPage = $action.page)
+    #set ($pageType = $confPage.getType())
+    #set ($helper = $action.helper)
+    #set ($commentToShow = $revisedPage.version - 1 == $originalPage.version && $stringUtils.isNotEmpty($revisedPage.versionComment))
+
+    #applyDecorator("root")
+        #decoratorParam("helper" $action.helper)
+        #decoratorParam("mode" "view-information")
+        #decoratorParam("context" "$pageType")
+
+        <body>
+
+            #if ($actionErrors.size() == 0)
+            <table width="100%"><tr><td valign="top">
+
+                #macro (printCurrentIfLatestVersion $pageVersion)
+                    #if ($action.getLatestVersion().version == $pageVersion) Current#else Version $pageVersion#end#end
+
+                <div>
+                    <table cellspacing="10px">
+                    <tr>
+                    <td align="center">
+                        <div class="basicPanelContainer">
+                            <div class="basicPanelBody">
+                                <span class="stepdesc">
+                                $action.getText("version.by.user.on.date",  ["viewpage.action?pageId=${originalPage.id}", "$originalPage.version", "#usernameLink($originalPage.lastModifierName)", "$dateFormatter.formatDateTime($originalPage.lastModificationDate)", "$dateFormatter.formatDateTime($originalPage.lastModificationDate)" ])
+                                </span><br/>
+                            </div>
+                            #set ($previousVersionId = $action.getPageIdOfVersionBefore($originalPage))
+                            #if ($previousVersionId > 0)
+                            <div class="basicPanelTitle">
+                                <span class="stepdesc">
+                                        #set ($previousVersionBeforeOriginalPage = $originalPage.version - 1)
+                                        <a href="diffpages.action?originalId=$previousVersionId&pageId=$originalPage.id">&lt;&lt; $action.getText("changes.from.date.to.date", ["<strong>$previousVersionBeforeOriginalPage</strong>", "<strong>$originalPage.version</strong>"]) </a>
+                                </span><br>
+                            </div>
+                            #end
+                        </div>
+                    </td>
+                    <td align="center" class="formtitle" valign="middle">$action.getText("compared.with")</td>
+                    <td align="center">
+                        <div class="basicPanelContainer">
+                            <div class="basicPanelBody">
+                                <span class="stepdesc">
+
+                                    #if ($action.getLatestVersion().version == $revisedPage.version)
+                                        $action.getText("current.by.user.on.date", ["viewpage.action?pageId=${revisedPage.id}","#usernameLink($revisedPage.lastModifierName)","$dateFormatter.formatDateTime($revisedPage.lastModificationDate)"])
+                                    #else
+                                        $action.getText("version.by.user.on.date",  ["viewpage.action?pageId=${revisedPage.id}", "$revisedPage.version", "#usernameLink($revisedPage.lastModifierName)", "$dateFormatter.formatDateTime($revisedPage.lastModificationDate)", "$dateFormatter.formatDateTime($revisedPage.lastModificationDate)" ])
+                                    #end
+
+                                </span><br/>
+                                #if ($commentToShow)
+                                  <span id="show-version-comment">(<a href="#">$action.getText("show.comment")</a>)</span>
+                                  <span id="hide-version-comment" style="display:none;">(<a href="#">$action.getText("hide.comment")</a>)</span>
+                                #end
+                            </div>
+                            #set ($nextVersionId = $action.getPageIdOfVersionAfter($revisedPage))
+                            #if ($nextVersionId > 0)
+                            <div class="basicPanelTitle">
+                                <span class="stepdesc">
+                                    #set ($nextVersionAfterRevised = $revisedPage.version + 1)
+                                    <a href="diffpages.action?originalId=$revisedPage.id&pageId=$nextVersionId">$action.getText("changes.to.version.to.version", ["<strong>$revisedPage.version</strong>", "<strong>$nextVersionAfterRevised</strong>"]) &gt;&gt;</a>
+                                </span><br>
+                            </div>
+                            #end
+                        </div>
+                    </td>
+                    </tr>
+                    </table>
+                </div>
+
+            </td><td valign="top" width="30%">
+            <div class="legend">
+                <strong>$action.getText("heading.key")</strong><br/>
+                <div class="diff-deleted-lines">$action.getText("these.lines.were.removed")</div>
+                <div class="diff-changed-lines">$action.getText("these.lines.were.changed")</div>
+                <div class="diff-added-lines">$action.getText("these.lines.were.added")</div>
+            </div>
+            </td></tr></table>
+
+            #versionComment()<br/>
+            #if ($action.diff)
+                <h2 class="section-title">$action.getText("there.are.num.changes", ["$action.diff.numChanges"])</h2>
+                <a href="$req.contextPath/pages/viewpreviousversions.action?pageId=$action.getLatestVersion().id">$action.getText("view.page.history")</a>
+
+                #set ($lineChunks = $action.diff.chunks)
+                #parse ("/template/includes/page-diffs.vm")
+            #else
+                <p>$i18n.getText('diff.pages.error.diffing')</p>
+            #end
+
+        #end
+
+        </body>
+
+    #end
+</html>

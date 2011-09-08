@@ -1,0 +1,104 @@
+#requireResource("confluence.web.resources:space-admin")
+
+<html>
+<head>
+    <title>$action.getText("title.edit.space.details")</title>
+
+
+</head>
+
+#applyDecorator("root")
+#decoratorParam("helper" $action.helper)
+#decoratorParam("context" "space-administration")
+#decoratorParam("mode" "view-space-administration")
+
+#applyDecorator ("root")
+#decoratorParam ("context" "spaceadminpanel")
+#decoratorParam ("selection" "editspace")
+#decoratorParam ("title" $action.getText("action.name"))
+#decoratorParam ("selectedTab" "admin")
+#decoratorParam("helper" $action.helper)
+
+#if( !$remoteUser )
+#parse ("/includes/alert-anonymous.vm")
+#end
+
+<form name="editspace" method="POST" action="doeditspace.action?key=$generalUtil.urlEncode($space.key)" class="aui edit-space-details">
+    <h2>$action.getText('title.edit.space.details')</h2>
+    #form_xsrfToken()
+    <div class="field-group">
+        <label for="name">$action.getText("space-name"):</label>
+        <input type="text" class="text" id="name" name="name" value="$!name">
+    </div>
+    <div class="field-group">
+        <label for="description">$action.getText("space-desc"):</label>
+        <input type="textarea" class="textarea" id="description" name="description" value="$!description">
+    </div>
+    <div class="field-group">
+        <label for="selectedHomePage">$action.getText("space-homepage"):</label>
+        <select class="select" id="selectedHomePage" name="selectedHomePage">
+            #foreach ($availablePage in $availablePages)
+                <option value="$availablePage.title" #if($availablePage.title==$selectedHomePage)selected#end>$availablePage.title</option>
+            #end
+        </select>
+        <div class="description">$action.getText("text.space.home")</div>
+    </div>
+    <div class="buttons-container">
+      <div class="buttons">
+         <input class="button submit" type="submit" id="confirm" name="confirm" value="$action.getText("update.name")">
+         <a href="viewspacedetails.action?key=${key}">$action.getText("cancel.name")</a>
+      </div>
+    </div>
+</form>
+
+#if ($convertableToPersonalSpace && $permissionHelper.canAdminister($remoteUser, $space))
+    <form name="convertspace" method="POST" action="$req.contextPath/spaces/convertspace.action?key=$generalUtil.urlEncode($space.key)" class="aui edit-space-details">
+        <h2>$action.getText('title.convert.to.personal.space')</h2>
+        
+        <p class="stepdesc">
+            #if ($permissionHelper.isConfluenceAdministrator($remoteUser))
+            $action.getText('text.global.admin.convert')
+            #else
+            $action.getText('text.space.admin.convert')
+            #end
+            <br>
+            $action.getText('text.update.links')
+        </p>
+
+        #form_xsrfToken()
+        <div class="field-group">
+            <label for="updateLinks">$action.getText("update.links"):</label>
+            <input type="checkbox" class="checkbox" id="updateLinks" name="updateLinks" checked="true" value="true">
+        </div>
+        #if ($permissionHelper.isConfluenceAdministrator($remoteUser))
+            #if($fieldErrors.get('usererror'))
+                #fielderror('usererror')
+            #end
+            <div class="field-group">
+                <label>$action.getText("editspace.choose.owner"):</label>
+                <input type="text" class="text" id="usersToAdd" name="usersToAdd" value="$!usersToAdd">
+                ## User picker
+                #bodytag ("Component" "theme='custom'" "template='popup-link.vm'")
+                    #param ("url" "$req.contextPath/spaces/openuserpicker.action?key=$!key&startIndex=0")
+                    #param ("windowName" "EntitiesPicker")
+                    #param ("windowProperties" "status=yes,resizable=yes,top=100,left=200,width=700,height=680,scrollbars=yes")
+                    #param ("imgSrc" "$staticResourceUrlPrefix/images/icons/srch_16.gif")
+                    #param ("imgTitle" $action.getText('find.users'))
+                    #param ("onPopupSubmit" "AJS.Confluence.SpaceDetails.setUsersToAddTextField")
+                    #param ("linkId" "entitypicker-popup-link")
+                #end
+                ## 'Add' button
+                <input name="usersToAddButton" type="submit" value="$action.getText('add.word')" />
+            </div>
+        #end
+        <div class="buttons-container">
+          <div class="buttons">
+             <input class="button submit" type="submit" id="convert" name="confirm" value="$action.getText("button.convert.space")">
+             <a href="viewspacedetails.action?key=${key}">$action.getText("cancel.name")</a>
+          </div>
+        </div>
+    </form>
+#end
+#end
+#end
+</html>

@@ -1,0 +1,81 @@
+<html>
+    <head>
+        <title>$action.getActionName($action.getClass().getName())</title>
+    </head>
+
+    #applyDecorator("root")
+        #decoratorParam("helper" $action.helper)
+        #decoratorParam("context" "space-administration")
+        #decoratorParam("mode"  "view-space-administration")
+
+        #applyDecorator ("root")
+            #decoratorParam ("context" "spaceadminpanel")
+            #decoratorParam ("selection" "mailaccounts")
+            #decoratorParam ("title" $action.getText("action.name"))
+            #decoratorParam ("selectedTab" "admin")
+            #decoratorParam("helper" $action.helper)
+
+            <ul class="static-menu">
+                <li><a href="addmailaccount.action?key=$generalUtil.urlEncode($key)">$action.getText("add.mail.account")</a></li>
+            </ul>
+
+            #if ($mailAccounts.size() > 0)
+                <table align="center" border="0" cellpadding="0" cellspacing="0" width="90%"><tr><td>
+                    <table class="grid" width="99%" border="0">
+                        <tr>
+                            <th>
+                                <strong>$action.getText("column.name")</strong>
+                            </th>
+                            <th class="colHeaderLink">
+                                <strong>$action.getText("column.description")</strong>
+                            </th>
+                            <th class="colHeaderLink">
+                                <strong>$action.getText("column.host")</strong>
+                            </th>
+                            <th class="colHeaderLink">
+                                <strong>$action.getText("column.status")</strong>
+                            </th>
+                            <th class="colHeaderLink">
+                                <strong>$action.getText("column.operations")</strong>
+                            </th>
+                        </tr>
+
+
+            #foreach ($mailAccount in $mailAccounts)
+                <tr>
+                    <td>
+                        <strong>$mailAccount.name</strong>
+                    </td>
+                    <td align="center">
+                        $mailAccount.description
+                    </td>
+                    <td align="center">
+                        $mailAccount.hostname
+                    </td>
+                    <td align="center">
+                        <strong>#if ($mailAccount.status && $mailAccount.enabled) <em class="good">OK</em> #elseif ($mailAccount.disabled) <em class="disabled">$action.getText("disabled.word.caps")</em> #else <em class="bad">$action.getText("error.word.caps")</em>#end</strong>
+                    </td>
+                    <td class="colHeaderLink" nowrap width="1%">
+                        <a id="edit $mailAccount.name" href="editmailaccount.action?key=$generalUtil.urlEncode($key)&id=$mailAccount.id">$action.getText("edit.name")</a> |
+                        <a id="remove $mailAccount.name" href="removemailaccount.action?key=$generalUtil.urlEncode($key)&id=$mailAccount.id&#url_xsrfToken()" onClick="return confirm('$action.getText("remove.mailaccount.confirm")');">$action.getText("remove.name")</a> |
+
+                        #if ($mailAccount.enabled)
+                            <a id="disable $mailAccount.name" href="enabledisablemail.action?key=$generalUtil.urlEncode($key)&id=$mailAccount.id&#url_xsrfToken()">$action.getText("mail.disable")</a>
+                        #else
+                            <a id="enable $mailAccount.name" href="enabledisablemail.action?key=$generalUtil.urlEncode($key)&id=$mailAccount.id&#url_xsrfToken()" >$action.getText("mail.enable")</a>
+                        #end
+                    </td>
+                </tr>
+            #end
+                 </table>
+                </td></tr></table>
+            #else
+            $action.getText("no.mail.accounts.available")<br/><br/>
+            #end
+
+        #end
+
+        </body>
+
+    #end
+</html>

@@ -1,0 +1,24 @@
+mySql DB Preparation
+-----------------------------
+mysql -u username -p password
+
+create database playready;
+
+create table pvPlayReady(id int not null auto_increment primary key, testId varchar(10),result varchar(10),comments varchar(500)); 
+
+
+delete from pvPlayReady;
+
+alter table pvPlayReady AUTO_INCREMENT=1;
+
+change the username and password inside the two perl scripts
+
+
+Running the Script
+---------------------
+STEP 1:
+./xlsPlayReadyRead.pl PV.xls
+
+STEP 2:
+./xlsPlayReadyWrite.pl SHARP.xls OUT.xls
+

@@ -1,0 +1,46 @@
+#macro(helptab $sectionKey)
+    #set ($selected = "")
+    #if ($action.section == $sectionKey)
+        #set ($selected = "active")
+    #end
+    <li id="help-section-link-${sectionKey}" class="help-section-link ${selected}">
+        <a href="notationhelp.action?section=${sectionKey}">$action.getText("notation.help.section.title.${sectionKey}")</a>
+    </li>
+#end
+<html>
+    <head>
+        <title>$action.getText("title.notation-help")</title>
+        <meta name="decorator" content="popup"/>
+        #requireResource("confluence.web.resources:ajs")
+        #requireResource("confluence.web.resources:notation-help")
+    </head>
+    <body>
+        <a id="print-friendly-help-toggle" href="#" title="$action.getText('help.tips.print')">$action.getText('help.tips.print')</a>
+        <table border="0" width="100%" cellpadding="5" cellspacing="0">
+            <tr>
+                <td id="lefthand-nav" width="180" valign="top" nowrap="nowrap">
+                    <ul class="navmenu">
+                        #applyDecorator ("menupanel" "$action.getText('sections.name')")
+                            #helptab ("all")
+                            #foreach ($sectionKey in $action.sectionKeys)
+                                #if ($action.hasHelpForSection($sectionKey))
+                                    #helptab ($sectionKey)
+                                #end
+                            #end
+                        #end
+                    </ul>
+                </td>
+                <td valign="top">
+                    #foreach ($sectionKey in $action.sectionKeys)
+                        #if ($action.hasHelpForSection($sectionKey))
+                            #parse("renderer/notation-help-section.vm")
+                        #end
+                    #end
+                </td>
+            </tr>
+        </table>
+        <fieldset class="hidden parameters">
+            <input type="hidden" id="contextPath" value="$req.contextPath">
+        </fieldset>
+    </body>
+</html>

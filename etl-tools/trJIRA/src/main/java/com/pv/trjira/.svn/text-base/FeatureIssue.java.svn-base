@@ -1,0 +1,192 @@
+/**
+ * FeatureIssue.java
+ *
+ * This file was auto-generated from WSDL
+ * by the Apache Axis 1.3 Oct 05, 2005 (05:23:37 EDT) WSDL2Java emitter.
+ */
+
+package com.saabox.jfdd;
+
+public class FeatureIssue implements java.io.Serializable {
+
+	private java.lang.String assignee;
+
+	private java.lang.String[] attachmentNames;
+
+	private java.util.Calendar created;
+
+	private java.lang.String description;
+
+	private java.util.Calendar duedate;
+
+	private java.lang.String environment;
+
+	private java.lang.Long estimate;
+
+	private java.lang.String key;
+
+	private java.lang.Long originalEstimate;
+
+	private java.lang.String priority;
+
+	private java.lang.String project;
+
+	private java.lang.String reporter;
+
+	private java.lang.String resolution;
+
+	private java.lang.String status;
+
+	private java.lang.String summary;
+
+	private java.lang.String type;
+
+	private java.util.Calendar updated;
+
+	private java.lang.Long votes;
+
+	public java.lang.String getAssignee() {
+		return assignee;
+	}
+
+	public void setAssignee(java.lang.String assignee) {
+		this.assignee = assignee;
+	}
+
+	public java.lang.String[] getAttachmentNames() {
+		return attachmentNames;
+	}
+
+	public void setAttachmentNames(java.lang.String[] attachmentNames) {
+		this.attachmentNames = attachmentNames;
+	}
+
+	public java.util.Calendar getCreated() {
+		return created;
+	}
+
+	public void setCreated(java.util.Calendar created) {
+		this.created = created;
+	}
+
+	public java.lang.String getDescription() {
+		return description;
+	}
+
+	public void setDescription(java.lang.String description) {
+		this.description = description;
+	}
+
+	public java.util.Calendar getDuedate() {
+		return duedate;
+	}
+
+	public void setDuedate(java.util.Calendar duedate) {
+		this.duedate = duedate;
+	}
+
+	public java.lang.String getEnvironment() {
+		return environment;
+	}
+
+	public void setEnvironment(java.lang.String environment) {
+		this.environment = environment;
+	}
+
+	public java.lang.Long getEstimate() {
+		return estimate;
+	}
+
+	public void setEstimate(java.lang.Long estimate) {
+		this.estimate = estimate;
+	}
+
+	public java.lang.String getKey() {
+		return key;
+	}
+
+	public void setKey(java.lang.String key) {
+		this.key = key;
+	}
+
+	public java.lang.Long getOriginalEstimate() {
+		return originalEstimate;
+	}
+
+	public void setOriginalEstimate(java.lang.Long originalEstimate) {
+		this.originalEstimate = originalEstimate;
+	}
+
+	public java.lang.String getPriority() {
+		return priority;
+	}
+
+	public void setPriority(java.lang.String priority) {
+		this.priority = priority;
+	}
+
+	public java.lang.String getProject() {
+		return project;
+	}
+
+	public void setProject(java.lang.String project) {
+		this.project = project;
+	}
+
+	public java.lang.String getReporter() {
+		return reporter;
+	}
+
+	public void setReporter(java.lang.String reporter) {
+		this.reporter = reporter;
+	}
+
+	public java.lang.String getResolution() {
+		return resolution;
+	}
+
+	public void setResolution(java.lang.String resolution) {
+		this.resolution = resolution;
+	}
+
+	public java.lang.String getStatus() {
+		return status;
+	}
+
+	public void setStatus(java.lang.String status) {
+		this.status = status;
+	}
+
+	public java.lang.String getSummary() {
+		return summary;
+	}
+
+	public void setSummary(java.lang.String summary) {
+		this.summary = summary;
+	}
+
+	public java.lang.String getType() {
+		return type;
+	}
+
+	public void setType(java.lang.String type) {
+		this.type = type;
+	}
+
+	public java.util.Calendar getUpdated() {
+		return updated;
+	}
+
+	public void setUpdated(java.util.Calendar updated) {
+		this.updated = updated;
+	}
+
+	public java.lang.Long getVotes() {
+		return votes;
+	}
+
+	public void setVotes(java.lang.Long votes) {
+		this.votes = votes;
+	}
+
+}

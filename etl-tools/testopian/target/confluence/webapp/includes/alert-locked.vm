@@ -1,0 +1,10 @@
+#if ($page.isLockedAgainst($remoteUser))<div align="center"><div class="lockAlert">
+    $action.getText("page.currently.locked")
+    <p>
+
+    <ul style="text-align: left;">
+    #foreach ($permission in $page.permissions)
+       <li>$permission.type permission set by #usernameLink($permission.creatorName) at $dateFormatter.formatDateTime($permission.creationDate)</li>
+    #end
+    </ul>
+</div></div>#end

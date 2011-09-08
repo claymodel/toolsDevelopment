@@ -1,0 +1,14 @@
+#if ($versionMismatch)
+    #bodytag ("Submit" "name='overwrite'" "value='overwrite.name'" "theme='notable'")
+        #param ("tabindex" "101")
+    #end
+#else
+   #bodytag ("Submit" "name='confirm'" "value='update.name'" "theme='notable'")
+        #param ("tabindex" "102")
+        #param ("accessKey" "s")
+   #end
+#end
+&nbsp;&nbsp;
+#bodytag( "Submit" "name='cancel'" "value='cancel.name'" "theme='notable'" )
+    #param ("tabindex" "104")
+#end

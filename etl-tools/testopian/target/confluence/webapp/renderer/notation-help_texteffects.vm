@@ -1,0 +1,48 @@
+            <tr bgcolor=ffffff>
+                <td>*$action.getText('strong.name')*</td>
+                <td>$action.getText('strong.desc')
+                </td>
+            </tr>
+            <tr bgcolor=ffffff>
+                <td>_$action.getText('emphasis.name')_</td>
+                <td>$action.getText('emphasis.desc')
+                </td>
+            </tr>
+            <tr bgcolor=ffffff>
+                <td>??$action.getText('citation.name')??</td>
+                <td>$action.getText('citation.desc')
+                </td>
+            </tr>
+            <tr bgcolor=ffffff>
+                <td>-$action.getText('strikethrough.name')-</td>
+                <td>$action.getText('strikethrough.desc')
+                </td>
+            </tr>
+            <tr bgcolor=ffffff>
+                <td>+$action.getText('underlined.name')+</td>
+                <td>$action.getText('underline.desc')
+                </td>
+            </tr>
+            <tr bgcolor=ffffff>
+                <td>^$action.getText('superscript.name')^</td>
+                <td>$action.getText('superscript.desc')
+                </td>
+            </tr>
+            <tr bgcolor=ffffff>
+                <td>~$action.getText('subscript.name')~</td>
+                <td>$action.getText('subscript.desc')
+                </td>
+            </tr>
+            <tr bgcolor=ffffff>
+                <td>{{$action.getText('monspaced.name')}}</td>
+                <td>$action.getText('monspaced.desc')
+                </td>
+            </tr>
+            <tr bgcolor=ffffff>
+                <td>bq. $action.getText('blockquote.desc')</td>
+                <td>$action.getText('blockquote.instruction')
+                    <p>
+                $action.getText('blockquote.example')
+                    </p>
+                </td>
+            </tr>

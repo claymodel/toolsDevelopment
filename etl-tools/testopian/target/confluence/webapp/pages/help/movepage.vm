@@ -1,0 +1,9 @@
+$action.getText('movepage.page.description')
+
+<p>
+$action.getText('movepage.update.link.automation')
+</p>
+
+<p>
+$action.getText('movepage.note')
+</p>

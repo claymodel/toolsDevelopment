@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>$title - Confluence</title>
+
+    <link rel="stylesheet" type="text/css" href="$req.contextPath/includes/css/setup.css">
+    #favicon()
+</head>
+<body class="setup">
+<div id="full-height-container">
+<div id="PageContent">
+    ## Display the locale flags (see setuplicence.vm)
+    #if ($sitemeshPage.getProperty("page.localeflags"))
+        <div style="float: right">
+            $sitemeshPage.getProperty("page.localeflags")
+        </div>
+    #end
+
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+        <tr>
+            <td rowspan=2 class="logocell">
+                <a class="logocell-device" href="$req.contextPath/"><img src="$staticResourceUrlPrefix/images/confluence_logo.gif" border="0"></a>
+                <a class="logocell-text" href="$req.contextPath/"><img src="$staticResourceUrlPrefix/images/logo2.gif" border="0"></a>
+            </td>
+        </tr>
+    </table>
+
+    <table border="0" cellpadding="0" cellspacing="12" width="100%">
+        <tr>
+            <td valign="top" width="200">
+                <div class="navmenu">
+                    #parse ("/decorators/includes/setupstep.vmd")
+                </div>
+            </td>
+
+            <td valign="top" class="pagebody">
+                <div class="pageheader">
+                    <span class="pagetitle">$title</span>
+                </div>
+                $body
+            </td>
+        </tr>
+    </table>
+</div>
+
+#set ($showHSQLWarning = true)
+#parse ("/decorators/includes/footer.vm")
+</div>

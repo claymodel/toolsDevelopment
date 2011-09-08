@@ -1,0 +1,76 @@
+<html>
+	<head>
+		<title>$action.getText('title.edit.email.preferences')</title>
+    </head>
+
+    #applyDecorator("root")
+        #decoratorParam("context" "profile")
+        #decoratorParam("mode"  "edit-profile")
+        #decoratorParam("helper" $action.helper)
+        #decoratorParam("infopanel-width" "200px")
+
+        <body>
+
+            <div class="thickPadded">
+            $action.getText("user.email.preferences.edit.blurb")<br/>
+            <br/>
+
+
+    <form name="configurenotificationsform" method="POST" action="doeditemailpreferences.action">
+    <!--span class="formtitle">$action.getText("notification.preferences.header")</span-->
+        <table  width="450" cellspacing="4" border="0" class="greyBox">
+            <tr>
+                <td width="1%" valign="middle"><input type="checkbox" name="notifyByEmail" id="notifyByEmail" value="true" #if ($notifyByEmail && $notifyByEmail.toString() == 'true') checked#end></td>
+                <td valign="middle" class="label"><label for="notifyByEmail">$action.getText('receive.daily.change.email')</label></td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>
+                    <span class="smalltext">$action.getText('receive.daily.change.email.desc')</span>
+                </td>
+            </tr>
+            <tr>
+                <td width="1%" valign="middle"><input type="checkbox" name="notifyForMyOwnActions" id="notifyForMyOwnActions" value="true" #if ($notifyForMyOwnActions && $notifyForMyOwnActions.toString() == 'true') checked="checked" #end></td>
+                <td valign="middle" class="label"><label for="notifyForMyOwnActions">$action.getText('notify.for.my.own.actions')</label></td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>
+                    <span class="smalltext">$action.getText('notify.for.my.own.actions.desc')</span>
+                </td>
+            </tr>
+            <tr>
+                <td width="1%" valign="middle"><input type="checkbox" name="showDiffInEmailNotifications" id="showDiffInEmailNotifications" value="true" #if ($showDiffInEmailNotifications && $showDiffInEmailNotifications.toString() == 'true') checked="checked" #end></td>
+                <td valign="middle" class="label"><label for="showDiffInEmailNotifications">$action.getText('email.prefs.show.diff')</label></td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>
+                    <span class="smalltext">$action.getText('email.prefs.show.diff.desc')</span>
+                </td>
+            </tr>
+            <tr>
+                <td width="1%">&nbsp;</td>
+                <td valign="top" class="label">
+                    $helper.getText('email.format'): #tag( "Select" "name='mimeType'" "value=mimeType" "list=mimeTypes" "listKey=value" "listValue=key" "theme='notable'")
+                </td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>
+                    <span class="smalltext">$action.getText('email.format.desc')</span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <br />
+                    #tag( "Submit" "name='confirm'" "value='update.name'" "theme='notable'" )
+                    #tag( "Submit" "name='cancel'" "value='cancel.name'" "theme='notable'" )
+                </td>
+            </tr>
+        </table>
+     </form>
+</div>
+</body>
+#end
+</html>

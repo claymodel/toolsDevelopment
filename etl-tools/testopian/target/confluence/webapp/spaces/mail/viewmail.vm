@@ -1,0 +1,18 @@
+<html>
+    <head>
+        <title>$!mail.title</title>
+
+
+    </head>
+
+    #applyDecorator("root")
+        #decoratorParam("helper" $action.mailHelper)
+        #decoratorParam("mode" "view")
+        #decoratorParam("context" "mail")
+        #decoratorParam("mailpanel-width" "200px")
+
+        <content tag="spacekey">$page.space.key</content>
+
+    #end
+
+</html>

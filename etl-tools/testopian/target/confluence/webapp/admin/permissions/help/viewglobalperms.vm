@@ -1,0 +1,13 @@
+<html><head><title>$action.getText('globalpermissions.description')</title></head>
+<body>
+<p>$action.getText('these.permission.types.are.available')</p>
+<ul>
+    <li><strong>$action.getText('system.administrator.permission'):</strong> $action.getText('system.administrator.permission.description')</li>
+    <li><strong>$action.getText('confluence.administrator.permission'):</strong> $action.getText('confluence.administrator.permission.description')</li>
+    <li><strong>$action.getText('create.space.permission'):</strong> $action.getText('create.space.permission.description')</li>
+    <li><strong>$action.getText('attach.files.to.profile.permission'):</strong> $action.getText('attach.files.to.profile.permission.description') </li>
+    <li><strong>$action.getText('use.confluence.permission'):</strong> $action.getText('use.confluence.permission.description') </li>
+</ul>
+<p>#doc("help.global.permissions.overview" "$action.getText('more.about.global.permissions')")</p>
+</body>
+</html>

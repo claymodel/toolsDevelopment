@@ -1,0 +1,14 @@
+<dl>
+    <dt class="first">$action.getText("notation.quickhelp.text.formatting")</dt>
+    <dd class="text-formatting"><code>*$action.getText("notation.quickhelp.text.formatting.bold")*</code> <strong>$action.getText("notation.quickhelp.text.formatting.bold")</strong></dd>
+    <dd class="text-formatting"><code>_$action.getText("notation.quickhelp.text.formatting.italic")_</code> <em>$action.getText("notation.quickhelp.text.formatting.italic")</em></dd>
+
+    <dt>$action.getText("notation.quickhelp.headings")
+    <dd><code>h1.</code> $action.getText("notation.quickhelp.headings.large")</dd>
+    <dd><code>h5.</code> $action.getText("notation.quickhelp.headings.small")</dd>
+
+    <dt>$action.getText("notation.quickhelp.lists")</dt>
+    <dd><code>*</code> $action.getText("notation.quickhelp.lists.bulleted")</dd>
+    <dd><code>#</code> $action.getText("notation.quickhelp.lists.numbered")</dd>
+</dl>
+<a id="notation-help-link" href="$req.contextPath/renderer/notationhelp.action" onClick="window.open('$req.contextPath/renderer/notationhelp.action','notation_help','width=780, height=580, resizable, scrollbars'); return false;">$action.getText("notation.quickhelp.full.notation.guide")</a>

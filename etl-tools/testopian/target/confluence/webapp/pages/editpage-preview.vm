@@ -1,0 +1,47 @@
+<html>
+<head>
+    <title>$action.getText("preview.and.edit") &ndash; $title</title>
+    <meta name="help-path" content="/pages/help/editpage.vm">
+
+</head>
+<body>
+<script language="javascript">
+    //overriding placement of focus in effects.js for the preview
+    function placeFocus() {}
+</script>
+
+    <!-- call the page decorator -->
+    #applyDecorator("root")
+        #decoratorParam("helper" $action.helper)
+        #decoratorParam("mode" "edit-preview")
+        #decoratorParam("context" $contentType)
+        #decoratorParam("help-path" "/includes/notation-quick-help.vm")
+        #decoratorParam("infopanel-width" "200px")
+
+        #parse ( "/template/includes/actionerrors.vm" )
+
+        #parse ("/pages/includes/alert-preview-start.vm")
+        <div class="wiki-content wiki-content-preview">
+            $xHtmlContent
+        </div>
+        #parse ("/pages/includes/alert-preview-end.vm")
+
+        <div style="width: 100%;">
+            <form method="POST" action="doedit${contentType}.action?pageId=$page.id">
+                #if ($contentType == "page")
+                    #tag( "Hidden" "name='parentPageTitle'" "value=parentPageTitle" )
+                    #tag ("Hidden" "name='originalVersion'" "value=originalVersion")
+                #elseif ($contentType == "blogpost")
+                    #tag( "Hidden" "name='content'" "value=content" )
+                    #tag ("Hidden" "name='postingDay'" "value=postingDay")
+                    #tag ("Hidden" "name='originalVersion'" "value=originalVersion")
+                #end
+            </form>
+
+            #parse ("/pages/includes/editpage-form.vm")
+
+        </div>
+    #end
+
+</body>
+</html>

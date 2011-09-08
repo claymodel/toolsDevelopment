@@ -1,0 +1,43 @@
+<table width="95%" border=0 cellspacing=0 cellpadding=5>
+	<tr><td>
+    <form name="edittemplateform" method="POST" action="doeditpagetemplate.action?pageTemplateId=${pageTemplate.id}&key=$!key">
+        #form_xsrfToken()
+	    #tag ("Hidden" "id=labelsShowing" "name='labelsShowing'" "value='false'")
+
+        <div class="headerFloatLeft">
+        #fielderror ('name')        	
+        #bodytag( "TextField" "label='page.template.name'" "name='name'" "theme='notable'")
+            #param ("cssClass" "monospaceInput")
+        #end
+        </div>
+        <div class="headerFloatLeft">
+        #bodytag( "TextField" "label='page-template-description'" "name='description'" "size=50" "theme='notable'")
+            #param ("cssClass" "monospaceInput")
+        #end
+        </div>
+        <br style="clear:both"/>
+
+        #bodytag( "Textarea" "label=''" "name='content'" "rows=30" "cols=100" "theme='simple'")
+            #param ("cssClass" "monospaceInput")
+        #end
+
+        <p/>
+
+        <!--labels section-->
+        ## set page empty because only space relevant labels can be considered
+        #set ($page = "")        
+        #parse ("/pages/includes/page-labels-form.vm")        
+        <p/>        
+        
+        <div class="headerFloatLeft">
+            #if ($versionMismatch)
+                #tag( "Submit" "name='overwrite'" "value='overwrite.name'" "theme='notable'" )
+            #else
+                #tag( "Submit" "name='confirm'" "value='update.name'" "theme='notable'" )
+                #tag( "Submit" "name='preview'" "value='preview.name'" "theme='notable'" )
+            #end
+            #tag( "Submit" "name='cancel'" "value='cancel.name'" "theme='notable'" )
+        </div>
+    </form>
+    </td></tr>
+</table>
