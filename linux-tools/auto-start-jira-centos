@@ -1,0 +1,51 @@
+Create a Service
+
+vi /etc/init.d/jira433
+#!/bin/sh
+#chkconfig: 345 99 10
+#description: Jira433 auto start-stop script.
+ 
+case "$1" in
+start)
+echo -n "Starting jira4.3.3"
+ 
+/usr/local/atlassian/jira433/bin/start-jira.sh &
+;;
+stop)
+echo -n "Shutting down jira4.3.3"
+echo -n " "
+/usr/local/atlassian/jira433/bin/stop-jira.sh &
+ 
+;;
+restart)
+## Stop the service and regardless of whether it was
+## running or not, start it again.
+$0 stop
+$0 start
+;;
+ 
+esac
+	The first lines should be like this for a typical service file
+
+#!/bin/sh
+#chkconfig: 345 99 10
+#description: Jira433 auto start-stop script.
+
+Make the Service Executable
+chmod +x /etc/init.d/jira433
+
+Add the Service in the list
+chkconfig --add jira433
+
+Enable the Service
+chkconfig jira433 on
+
+Check if the Service is on or not
+chkconfig jira433 --list
+
+Update the start-up script to start the Service as user jira
+vi /etc/rc.d/rc.local
+su - jira
+service jira433 restart
+
+-elias hasnat

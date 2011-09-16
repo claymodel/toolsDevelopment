@@ -1,0 +1,74 @@
+Supported OS: Debian, Ubuntu
+
+Enable the following Modules in Apache
+
+a2enmod proxy    
+a2enmod proxy_http
+
+Setup support in your servlet container. Note: Be careful that there is no direct HTTP listener opened by the
+servlet container. If, for example, there's an HTTP connector listening on
+port 8080 and no interceding firewall, users would be able to directly access
+the servlet on port 8080, which bypasses Apache. This also means they would
+bypass Shibboleth authentication and authorization.
+
+vi /usr/local/tomcat/conf/server.xml
+
+Make sure the following is in your server.xml file
+<!-- Set context path for access to 8080 over port 80 -->
+<Connector port="8080" maxHttpHeaderSize="8192"
+maxThreads="150" minSpareThreads="25" maxSpareThreads="75"
+enableLookups="false" redirectPort="8443" acceptCount="100"
+connectionTimeout="10000" disableUploadTimeout="true"
+proxyName="YOUR.DOMAIN.EDU" proxyPort="80"/>
+<!-- Set context path for access over SSL -->
+<Connector port="8443" maxHttpHeaderSize="8192"
+maxThreads="150" minSpareThreads="25" maxSpareThreads="75"
+enableLookups="false" disableUploadTimeout="true"
+acceptCount="100" scheme="https" secure="true"
+clientAuth="false" sslProtocol="TLS"
+proxyName="YOUR.DOMAIN.EDU" proxyPort="443" />
+
+Configure Apache to route requests to your servlet Add a line to your Apache
+
+configuration, such as in httpd.conf, to map requests on the proper virtual
+hosts to your application.
+
+vi /etc/apache2/sites-available/default
+
+Add the following:
+
+ProxyRequests On
+ProxyPreserveHost On
+ProxyStatus On
+       
+# Use proxy to restrict the need for a port in the URL
+ProxyPass /yourwebapp http://localhost:8080/yourwebapp/
+ProxyPassReverse /yourwebapp http://localhost:8080/yourwebapp/
+
+Now repeat if your virtual host will be SSL enabled.
+
+vi /etc/apache2/sites-available/default-ssl
+
+Add the following:
+
+ProxyRequests On
+ProxyPreserveHost On
+ProxyStatus On
+       
+
+       
+# Use proxy to restrict the need for a port in the URL
+ProxyPass /yourwebapp http://localhost:8080/yourwebapp/
+ProxyPassReverse /yourwebapp http://localhost:8080/yourwebapp/
+
+Stop and Restart Apache/Tomcat
+
+/etc/init.d/apache2 stop
+/etc/init.d/tomcat restart
+/etc/init.d/apache2 start
+
+Test access
+
+http://YOUR.DOMAIN.COM/yourwebapp
+
+-elias hasnat

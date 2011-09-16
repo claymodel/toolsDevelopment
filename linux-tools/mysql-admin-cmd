@@ -1,0 +1,23 @@
+Get Size of all database tables
+SELECT TABLE_SCHEMA AS 'Database', TABLE_NAME AS 'Table',
+CONCAT(ROUND(((DATA_LENGTH + INDEX_LENGTH - DATA_FREE) / 1024 / 1024),2)," Mb") AS Size FROM INFORMATION_SCHEMA.TABLES;
+
+Replace YOUR_DB_NAME with your database name in following 2 examples:
+
+Get Size of specific database tables
+SELECT TABLE_SCHEMA AS 'Database', TABLE_NAME AS 'Table',
+CONCAT(ROUND(((DATA_LENGTH + INDEX_LENGTH - DATA_FREE) / 1024 / 1024),2)," MB") AS Size FROM INFORMATION_SCHEMA.TABLES where TABLE_SCHEMA like '%YOUR_DB_NAME%' ;
+
+Get size of entire DB
+SELECT
+CONCAT(sum(ROUND(((DATA_LENGTH + INDEX_LENGTH - DATA_FREE) / 1024 / 1024),2))," MB") AS Size FROM INFORMATION_SCHEMA.TABLES where TABLE_SCHEMA like '%YOUR_DB_NAME%' ;
+
+Changing the Storage Engine
+CREATE TEMPORARY TABLE table1 (...) ENGINE=InnoDB;
+CREATE TEMPORARY TABLE table2 ENGINE=MEMORY
+SELECT * FROM table3 WHERE ...;
+ALTER TABLE t1 ENGINE=InnoDB;
+ALTER TABLE t2 ENGINE=HEAP;
+
+
+-elias hasnat

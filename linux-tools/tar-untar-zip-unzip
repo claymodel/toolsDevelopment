@@ -1,0 +1,9 @@
+tar untar zip unzip
+=======================
+zip -r zipped_file.zip /tmp/something/
+unzip zipped_file.zip
+ 
+tar -cvzf tared_file.tar.gz /tmp/something/
+tar -zxvf tared_file.tar.gz
+
+-elias hasnat

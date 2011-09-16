@@ -1,0 +1,49 @@
+RPM Package for Java Applications RPM-Maven-Plugin
+===================================================
+
+Step 1: Create RPM package from Java application
+
+Step 2: Install RPM in CentOS
+
+This will enable the Automated Build and Deployment
+
+rpm-maven-plugin
+
+If we have a single package(RPM) output instead of java war or jars, it would be easier for deploying in thousands of servers/nodes with in just one click using puppet client-server infrastructure.
+I was looking for a way how to generate rpm from java applications. At-last Kohsuke kawaguchi san's Jenkins-CI development shows a solution.
+
+The RPM package could be installed along with automated start-up service script.
+
+Firstly:
+
+create a maven project using the netbeans of eclipse IDE
+
+Edit the project file
+vi pom.xml
+
+Add the rpm plugin rpm-maven-plugin
+<groupId>org.codehaus.mojo</groupId>
+<artifactId>rpm-maven-plugin</artifactId>
+<version>2.0.1</version>
+
+RPM configuration mapping
+
+reference : http://www-uxsup.csx.cam.ac.uk/~jw35/docs/rpm_config.html
+<mapping>
+<directory>${app.home}/conf</directory>
+<configuration>true</configuration>
+<sources>
+<source><location>${project.build.outputDirectory}/app.properties
+</location>
+<destination>app.sample.properties</destination>
+</source>
+</sources>
+</mapping>
+
+compile:
+mvn clean package
+
+rpm verify:
+rpm -qlp ~/workspace/maven-rpm/target/rpm/rpm-package/RPMS/noarch/rpm-package-0.0.1-SNAPSHOT20110811090715.noarch.rpm
+
+-elias hasnat

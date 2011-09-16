@@ -1,0 +1,53 @@
+Including Library Manually into Maven Local Repository
+==========================================================
+    Step1: Find out the Location:
+    Step2: Select the artifactIds, package names
+    Step3: Install into the maven repository
+    Done!
+
+Step1: Find out the Location:
+
+The library location:
+======================
+/root/workspace/recently-updated-xmlrpc-plugin/trunk/lib/confluence-remote-java-wrapper-v3.jar
+Step2: Select the artifactIds, package names
+
+Desired packages to be included in to the maven repository:
+===========================================================
+
+confluence-remote-java-wrapper
+-------------------------------
+1) biz.artemis.confluence.xmlrpcwrapper
+
+confluence-remote-java-wrapper-util
+------------------------------------
+2) biz.artemis.util
+Step3: Install into the maven repository
+mvn install:install-file \-Dfile=/root/workspace/recently-updated-xmlrpc-plugin/trunk/lib/confluence-remote-java-wrapper-v3.jar \-DgroupId=biz.artemis.confluence.xmlrpcwrapper \-DartifactId=confluence-remote-java-wrapper \-Dversion=3 \-Dpackaging=jar
+ 
+mvn install:install-file \-Dfile=/root/workspace/recently-updated-xmlrpc-plugin/trunk/lib/confluence-remote-java-wrapper-v3.jar \-DgroupId=biz.artemis.util \-DartifactId=confluence-remote-java-wrapper-util \-Dversion=3 \-Dpackaging=jar
+ 
+mvn install:install-file \-DgroupId=org.openengsb.wrapped \-DartifactId=org.apache.xmlrpc-all \-Dversion=3.1.3.w1 \-Dpackaging=bundle \-Dfile=/root/Downloads/org.apache.xmlrpc-all-3.1.3.w1.jar
+
+Step4: Update the pom.xml file
+
+Update the pom.xml files for the 2 packages:
+=============================================
+<dependency>
+<groupId>biz.artemis.confluence.xmlrpcwrapper</groupId>
+<artifactId>confluence-remote-java-wrapper</artifactId>
+<version>3</version>
+</dependency>
+<dependency>
+<groupId>biz.artemis.util</groupId>
+<artifactId>confluence-remote-java-wrapper-util</artifactId>
+<version>3</version>
+</dependency>
+<dependency>
+<groupId>org.openengsb.wrapped</groupId>
+<artifactId>org.apache.xmlrpc-all</artifactId>
+<version>3.1.3.w1</version>
+</dependency>
+
+-elias hasnat
+

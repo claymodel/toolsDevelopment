@@ -1,0 +1,10 @@
+From the my.cnf
+[mysqld]
+max_allowed_packet = 16M;
+
+service mysql restart
+
+Check the change in mysql console
+show variables
+
+-elias hasnat

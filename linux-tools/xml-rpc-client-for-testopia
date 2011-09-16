@@ -1,0 +1,34 @@
+XMLRPC java client application example for accessing Testopia/Bugzilla perl based web services.
+
+import org.apache.xmlrpc.XmlRpcClient;
+ 
+import java.util.Hashtable;
+import java.util.Vector;
+ 
+public class RPCClient
+{
+ 
+    public static void main(String[] args)
+    {
+         try
+        {
+ 
+ 
+            XmlRpcClient client = new XmlRpcClient("http://sbtestopia/tr_xmlrpc.cgi");
+            client.setBasicAuthentication("me@mycompany","password");
+ 
+            Vector params = new Vector();
+            params.add(new java.lang.Integer(2));
+ 
+            Hashtable result = (Hashtable) client.execute("TestPlan.get", params);
+ 
+            System.out.println(result);
+        }
+         catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+}
+
+-elias hasnat

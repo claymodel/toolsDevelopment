@@ -1,0 +1,221 @@
+cd workspace/
+ 
+mvn archetype:create -DgroupId=com.pv.example -DartifactId=example_app
+ 
+cd example_app/
+ 
+root@hasnatlnx01:~/workspace/example_app# mvn test
+ 
+[INFO] BUILD SUCCESSFUL
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 1 second
+[INFO] Finished at: Tue Aug 02 17:11:33 JST 2011
+[INFO] Final Memory: 14M/149M
+[INFO] ------------------------------------------------------------------------
+root@hasnatlnx01:~/workspace/example_app#
+ 
+ 
+root@hasnatlnx01:~/workspace/example_app# mvn compiler:compile
+ 
+ 
+if we want to compile using jdk1.6 we can define in the pom.xml file about the compiler version accordingly
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+xmlns:xsi=  "http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation=  "http://maven.apache.org/POM/4.0.0
+http://maven.apache.org/maven-v4_0_0.xsd">
+       <build>
+         <plugins>
+           <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-compiler-plugin</artifactId>
+              <configuration>
+                   <source>1.6</source>
+                   <target>1.6</target>
+              </configuration>
+           </plugin>
+         </plugins>
+       </build>
+ </project>
+ 
+ 
+ 
+ 
+ AppTest.java.
+ 
+ package com.pv.example;
+ import junit.framework.Test;
+ import junit.framework.TestCase;
+ import junit.framework.TestSuite;
+ import com.pv.example.App;
+ 
+ public class AppTest extends TestCase
+ {
+       public void testApp()
+       {
+           assertTrue( App.now().length() > 0 );
+       }
+ }
+ 
+ 
+ App.java
+ 
+package com.pv.example;
+ 
+public class App
+{
+       public static String now()
+       {
+            return new java.util.Date().toString();
+       }
+ }
+ 
+ 
+vi pom.xml
+ 
+ <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.8.2</version>
+      <type>jar</type>
+    </dependency>
+  </dependencies>
+ 
+ 
+mvn install
+ 
+cd workspace/
+ 
+mvn archetype:create -DgroupId=com.pv.example  -DartifactId=example_webapp   -DarchetypeArtifactId=maven-archetype-webapp
+ 
+cd example_webapp
+ 
+mvn package
+ 
+ 
+add the jetty web server information in  the pom.xml file
+ 
+pom.xml
+ 
+<project xmlns=  "http://maven.apache.org/POM/4.0.0"
+   xmlns:xsi=  "http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation=  "http://maven.apache.org/POM/4.0.0
+  http://maven.apache.org/maven-v4_0_0.xsd">
+     <modelVersion>1.0.0</modelVersion>
+     <groupId>com.pv.example</groupId>
+     <artifactId>example_webapp</artifactId>
+     <packaging>war</packaging>
+     <version>1.0-SNAPSHOT</version>
+     <name>example_webapp   Maven Webapp</name>
+     <url>http://maven.apache.org</url>
+     <dependencies>
+       <dependency>
+         <groupId>junit</groupId>
+         <artifactId>junit</artifactId>
+           <version>3.8.1</version>
+         <scope>test</scope>
+       </dependency>
+     </dependencies>
+     <build>
+       <finalName>example_webapp</finalName>
+         <plugins>
+             <plugin>
+                  <groupId>org.mortbay.jetty</groupId>
+                  <artifactId>maven-jetty-plugin</artifactId>
+             </plugin>
+         </plugins>
+   </build>
+ </project>
+ 
+ 
+mvn jetty:run
+ 
+ 
+http://localhost:8080/example_webapp
+ 
+ 
+try to use the example_app inside the example_webapp
+ 
+lest edit the pom.xml
+ 
+ 
+pom.xml
+ 
+<project xmlns=  "http://maven.apache.org/POM/4.0.0"
+ xmlns:xsi=  "http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation=  "http://maven.apache.org/POM/4.0.0
+ http://maven.apache.org/maven-v4_0_0.xsd">
+     <modelVersion>1.0.0</modelVersion>
+     <groupId>com.attainware.maven2example</groupId>
+     <artifactId>maven2example_webapp</artifactId>
+     <packaging>war</packaging>
+     <version>1.0-SNAPSHOT</version>
+     <name>maven2example_webapp   Maven Webapp</name>
+     <url>http://maven.apache.org</url>
+     <dependencies>
+       <dependency>
+         <groupId>junit</groupId>
+         <artifactId>junit</artifactId>
+           <version>3.8.1</version>
+         <scope>test</scope>
+       </dependency>
+       <dependency>
+           <groupId>com.pv.example</groupId>
+            <artifactId>example_app</artifactId>
+           <version>1.0-SNAPSHOT</version>
+       </dependency>
+     </dependencies>
+     <build>
+       <finalName>example_webapp</finalName>
+         <plugins>
+              <plugin>
+                <groupId>org.mortbay.jetty</groupId>
+                <artifactId>maven-jetty-plugin</artifactId>
+              </plugin>
+         </plugins>
+     </build>
+ </project>
+ 
+ 
+Edit the index.jsp file
+ 
+<html>
+ <body>
+ <h2>Example Application</h2>
+ <%= com.pv.example.App.now() %>
+ </body>
+</html>
+ 
+mvn package
+ 
+mvn jetty:run
+ 
+try http://localhost:8080/example_webapp
+ 
+ 
+copy example_app and example_webapp in a single directory example/
+ 
+them edit the pom.xml
+ 
+<project>
+     <name>Maven 2 Multiple Project Example</name>
+         <url>http://www.pv.com/</url>
+     <modelVersion>4.0.0</modelVersion>
+ 
+     <groupId>com.pv.example</groupId>
+        <version>1.0</version>
+     <artifactId>example_package</artifactId>
+     <packaging>pom</packaging>
+ 
+     <modules>
+       <module>example_app</module>
+       <module>example_webapp</module>
+     </modules>
+ </project>
+ 
+ 
+mvn install
+ 
+now try http://localhost:8080/example
+
+-elias hasnat

@@ -1,0 +1,18 @@
+Cassandra has Map Reduce support which is pretty new. You will need a hadoop cluster to run it.
+
+Data will be tranferred from Cassandra cluster to the hadoop cluster. Not suitable for running large data map reduce jobs.    
+
+In HDFS Map Reduce support is native. HBase is built on Hadoop. Data does not get transferred.
+
+Comparatively simpler to maintain if you don't have to have Hadoop.
+
+Comparatively complicated as you have it has many moving pieces such as Zookeeper, Hadoop and HBase itself.
+
+No master server, hence no single point of failure.
+
+Although there exists a concept of a master server, HBase itself does not depend on it heavily. HBase cluster can keep serving data even if the master goes
+
+down. Hadoop namenode is a single point of failure.
+
+-elias hasnat
+

@@ -1,0 +1,112 @@
+MySql Database Backup:
+
+You can use mysqldump to create a simple backup of your database using the following syntax.
+
+
+mysqldump \-u \[username\] \-p \[password\] \[databasename\] > \[backupfile.sql\]
+
+        [username] - this is your database username
+        [password] - this is the password for your database
+        [databasename] - the name of your database
+        [backupfile.sql] - the file to which the backup should be written.
+         
+
+The resultant dump file will contain all the SQL statements needed to create the table and populate the table in a new database server. To backup your database 'Customers' with the username 'sadmin' and password 'pass21' to a file custback.sql, you would issue the command:
+
+   
+mysqldump \-u sadmin \-p pass21 Customers > custback.sql
+
+You can also ask mysqldump to add a drop table command before every create command by using the option --add-drop-table. This option is useful if you would like to create a backup file which can rewrite an existing database without having to delete the older database manually first.
+
+    mysqldump --add-drop-table -u sadmin -p pass21 Customers > custback.sql
+
+Backing up only specified tables:
+
+If you'd like restrict the backup to only certain tables of your database, you can also specify the tables you want to backup. Let's say that you want to backup only customer_master & customer_details from the Customers database, you do that by issuing
+
+   
+mysqldump \--add-drop-table \-u sadmin \-p pass21 Customers customer_master customer_details> custback.sql
+
+So the syntax for the command to issue is:
+
+    mysqldump -u [username] -p [password] [databasename] [table1 table2 ....]
+
+        [tables] - This is a list of tables to backup. Each table is separated by a space.
+        
+        
+Multiple Databases:
+
+If you are a database administrator who has to look after multiple databases, you'll need to back up more than one database at a time. Here's how you can backup multiple databases in one shot.
+
+If you want to specify the databases to backup, you can use the --databases parameter followed by the list of databases you would like to backup. Each database name has to be separated by at least one space when you type in the command. So if you have to backup 3 databases, let say Customers, Orders and Comments, you can issue the following command to back them up. Make sure the username you specify has permissions to access the databases you would like to backup.
+
+    mysqldump -u root -p pass21 --databases Customers Orders Comments > multibackup.sql
+
+This is okay if you have a small set of databases you want to backup. Now how about backing up all the databases in the server? That's an easy one, just use the --all-databases parameter to backup all the databases in the server in one step.
+
+    mysqldump --all-databases> alldatabases.sql
+
+Backing up only the Database Structure
+
+Most developers need to backup only the database structure to while they are developing their applications. You can backup only the database structure by telling mysqldump not to back up the data. You can do this by using the --no-data parameter when you call mysqldump.
+
+   
+mysqldump \--no-data \--databases Customers Orders Comments > structurebackup.sql
+
+Compressing your Backup file on the Fly
+
+Backups of databases take up a lot of space. You can compress the output of mysqldump to save valuable space while you're backing up your databases. Since mysqldump sends its output to the console, we can pipe the output through gzip or bzip2 and send the compressed dump to the backup file. Here's how you would do that with bzip2 and gzip respectively.
+
+   
+mysqldump \--all-databases \| bzip2 \-c >databasebackup.sql.bz2
+ 
+mysqldump \--all-databases \| gzip >databasebackup.sql.gz
+
+A Shell Script for Automating Backups:
+
+You can automate the backup process by making a small shell script which will create a daily backup file.
+How do you get cron to back up your database without overwriting the older backup?
+You can use a tiny shell script to add the date to your backup file.
+An example of a shell script you could use is shown below.
+\#\!/bin/sh
+date='date \-I'
+mysqldump --all-databases \| gzip > /var/backup/backup-$date.sql.gz
+
+Restore using mysql
+
+If you have to re-build your database from scratch, you can easily restore the mysqldump file by using the mysql command. This method is usually used to recreate or rebuild the database from scratch.
+
+Here's how you would restore your custback.sql file to the Customers database.
+
+   
+mysql \-u sadmin \-p pass21 Customers < custback.sql
+
+Easy isn't it ? Here's the general format you would follow:
+
+    mysql -u [username] -p [password] [database_to_restore] < [backupfile]
+
+Now how about those zipped files? You can restore your zipped backup files by first uncompressing its contents and then sending it to mysql.
+
+   
+gunzip < custback.sql.sql.gz \| mysql \-u sadmin \-p pass21 Customers
+
+You can also combine two or more backup files to restore at the same time, using the cat command. Here's how you can do that.
+
+   
+cat backup1.sql backup.sql \| mysql \-u sadmin \-p pass21
+
+Moving Data Directly Between Databases
+
+How would you like to replicate your present database to a new location?
+When you are shifting web hosts or database servers, you can directly copy data to the new database without having
+to create a database backup on your machine and restoring the same on the new server.
+mysql allows you to connect to a remote database server to run sql commands. Using this feature,
+we can pipe the output from mysqldump and ask mysql to connect to the remote database server to populate the new database.
+Let's say we want to recreate the Customers database on a new database server located at 202.32.12.32, we can run the
+following set of commands to replicate the present database at the new server.
+
+   
+mysqldump \-u sadmin \-p pass21 Customers \| mysql \--host=202.32.12.32 \-C Customers
+
+
+-elias hasnat

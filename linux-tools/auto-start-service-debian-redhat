@@ -1,0 +1,52 @@
+Debian based:  
+#! /bin/sh
+# /etc/init.d/service_name
+#
+ 
+# Some things that run always
+touch /var/lock/service_name
+ 
+# Carry out specific functions when asked to by the system
+case "$1" in
+  start)
+    echo "Starting script service_name "
+    echo "Could do more here"
+    ;;
+  stop)
+    echo "Stopping script service_name"
+    echo "Could do more here"
+    ;;
+  *)
+    echo "Usage: /etc/init.d/service_name{start|stop}"
+    exit 1
+    ;;
+esac
+ 
+exit 0
+
+Adding in auto start
+update-rc.d service_name defaults
+
+Removing from auto start
+update-rc.d -f  service_name remove
+
+Add this command in the file
+vi /etc/rc.local
+#/etc/init.d/mysql restart
+#/etc/init.d/httpd restart
+
+RedHat based:
+write the service script:
+#vi /etc/init.d/service_name
+#chmod +x /etc/init.d/service_name
+#chkconfig --add service_name
+ 
+#chkconfig service_name on
+
+Add this command in the file  
+/etc/rc.d/rc.local
+#service mysqld restart
+#service httpd restart
+
+-elias hasnat
+

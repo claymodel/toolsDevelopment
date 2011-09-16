@@ -1,0 +1,31 @@
+Configuring DHCP address for your network card
+-----------------------------------------------------
+If you want to configure DHCP address you need to edit the /etc/network/interfaces and you need to enter the following lines replace eth0 with your network interface card
+
+    sudo vi /etc/network/interfaces
+
+    # The primary network interface - use DHCP to find our address
+    auto eth0
+    iface eth0 inet dhcp
+
+Configuring Static IP address for your network card
+---------------------------------------------------
+If you want to configure Static IP address you need to edit the /etc/network/interfaces and you need to enter the following lines replace eth0 with your network interface card
+
+    sudo vi /etc/network/interfaces
+
+    # The primary network interface
+
+    auto eth0
+    iface eth0 inet static
+    address 192.168.3.90
+    gateway 192.168.3.1
+    netmask 255.255.255.0
+    network 192.168.3.0
+    broadcast 192.168.3.255
+
+After entering all the details you need to restart networking services using the following command
+
+    sudo /etc/init.d/networking restart
+
+-elias hasnat

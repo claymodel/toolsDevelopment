@@ -1,0 +1,11 @@
+^M is DOS line break character which shows up in UNIX files when uploaded from a windows file system in ASCII format.
+
+To remove this, open your file in vi editor and type
+
+:%s/(ctrl-v)(ctrl-m)//g
+
+and press Enter key.
+	Important!! – press (Ctrl-v) (Ctrl-m) combination to enter ^ M character, don't use “^” and M.
+
+-elias hasnat
+

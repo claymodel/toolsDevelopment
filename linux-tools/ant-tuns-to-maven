@@ -1,0 +1,10 @@
+I am using maven, why?The main reason is, it has the most standard stuff which works automatically once you do
+things the maven way. For a simple webapplication
+
+    Step1: Create a pom with groupId, artifactId and version (packaging: war)
+    Step2: Add the required dependencies to the pom
+    Step3: move the java sources to src/main/java,resources to src/main/recources and  webapp content to src/main/webapp, test content to src/test/java and src/test/resources
+    Step4: set the compiler compliance version using the maven compiler plugin
+
+-elias hasnat
+

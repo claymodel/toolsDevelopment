@@ -1,0 +1,34 @@
+What to use when? It depends on your topology.
+
+In case you already have or need Apache 2.2 functionality you have the choice to choose between mod_proxy and mod_jk.
+
+Mod_jk works very well on Apache 2.2, so it all depends on the functionality needed:
+
+mod_proxy
+
+    Pros:
+
+      No need for a separate module compilation and maintenance. mod_proxy, mod_proxy_http, mod_proxy_ajp and mod_proxy_balancer comes as part of standard Apache 2.2+ distribution
+      Ability to use http https or AJP protocols, even within the same balancer.
+
+    Cons:
+
+      mod_proxy_ajp does not support large 8K+ packet sizes.
+      Basic load balancer
+      Does not support Domain model clustering
+
+mod_jk
+
+    Pros:
+
+      Advanced load balancer
+      Advanced node failure detection
+      Support for large AJP packet sizes
+
+    Cons:
+
+      Need to build and maintain a separate module
+
+
+
+-elias hasnat

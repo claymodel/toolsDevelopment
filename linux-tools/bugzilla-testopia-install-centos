@@ -1,0 +1,85 @@
+Install Dependencies
+yum install mysql-server mysql perl httpd mod_perl gcc mysql-devel -y
+
+service mysqld start
+
+service httpd start
+
+Download latest stable version
+Extract bugzilla to /var/www/html
+tar zxvf bugzilla-3.6.3.tar.gz
+cd bugzilla-3.6.3/
+mv * /var/www/html/
+
+usr/bin/perl install-module.pl --all
+
+Check required/installed modules
+
+./checksetup.pl --check-modules
+
+To create localconfig under web
+./checksetup.pl
+
+Create database
+
+mysql -u root -p
+CREATE DATABASE bugs;
+GRANT ALL ON bugs.*
+TO bugs@localhost IDENTIFIED BY 'bugs';
+
+Mention db details in /var/www/html/localconfig
+here we have mentioned bugs as db,user & passwd
+
+Run following to create tables, & to enter admin related info
+./checksetup.pl
+
+Configure apache
+vi /etc/httpd/conf/httpd.conf
+
+<Directory "/var/www/html">
+   Options +ExecCGI
+   AllowOverride Limit
+   DirectoryIndex index.cgi
+    AddHandler cgi-script .cgi
+</Directory>
+
+service httpd restart
+
+access bugzilla using http://webserver/
+
+if error
+
+/usr/bin/perl install-module.pl List::MoreUtils
+/usr/bin/perl install-module.pl DateTime::Locale
+
+after that ./checksetup.pl was running successful
+
+Testopia
+--------
+Untar the Testopia 2.4 tarball inside your Bugzilla directory.
+Patch the Bugzilla files.
+On Linux systems it should look something like:
+
+patch -p0 -i extensions/testopia/patch-3.6
+Run checksetup.pl
+
+If XML parsing error encountered
+
+----------------------------------------
+
+cd bugzilla_folder
+
+yum -y install perl-XML-Parser.i386
+
+perl install-module.pl --all
+
+./checksetup.pl
+
+Restart mysql and httpd services
+
+service mysqld restart
+
+service httpd restart
+
+-elias hasnat
+
