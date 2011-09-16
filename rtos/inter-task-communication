@@ -1,0 +1,47 @@
+In RTOS there are 5 types of ITCs available,
+1. Queues
+2. Binary Semaphores
+3. Counting Semaphores
+4. Mutexes and
+5. Recursive Mutexes
+
+1. Queues:
+FIFO 
+
+Queue Management
+-------------------
+uxQueueMessagesWaiting
+queue.h
+
+unsigned portBASE_TYPE uxQueueMessagesWaiting( xQueueHandle xQueue );
+
+Return the number of messages stored in a queue.
+
+Parameters:
+    xQueue 	A handle to the queue being queried.
+
+Returns:
+    The number of messages available in the queue.
+
+vQueueDelete
+queue.h
+
+void vQueueDelete( xQueueHandle xQueue );
+
+Delete a queue - freeing all the memory allocated for storing of items placed on the queue.
+
+Parameters:
+    xQueue 	A handle to the queue to be deleted.
+
+
+2. Binary Semaphores:
+
+3. Counting Semaphores:
+	Counting Event
+	Resource Management
+
+4. Mutexes
+Mutexes are binaryy semaphore that include a priority inheritance mechanism
+
+5. Recursive Mutexes
+A mutex used recursively can be taken repeatedly by the owner 

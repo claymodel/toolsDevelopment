@@ -1,0 +1,33 @@
+1.Install the SSL for apache
+yum install mod_ssl
+
+and make sure that the default https is listening in the port 443 (/etc/httpd/conf.d/ssl.conf)
+
+2.Edit the Re-Write rules
+/etc/httpd/conf/httpd.conf
+
+At the end of the file write 
+<IfModule mod_rewrite.c>
+</IfModule>
+
+block
+3.Inside the <IfModule mod_rewrite.c>  </IfModule>  block enable the re-write engine
+# mod_rewrite
+<IfModule mod_rewrite.c>
+# Enable mod_rewrite engine
+RewriteEngine on
+</IfModule>
+
+4.Write the re-write rules inside the IfModule block after enabling the engine
+
+Forwarding the url to the ssl enabled latest updated Jira4.3.4  ( http://srvjira.cloudholon.com/jira/; --> https://srvjira.cloudholon.com/jira/)
+
+RewriteCond %{HTTP_HOST}  ^srvjira$
+RewriteCond %{REQUEST_URI} ^/jira/$
+RewriteRule ^(.*)  $https://srvjira.cloudholon.com/jira/ [L]
+RewriteCond %{HTTP_HOST} ^srvjira\.cloudholon\.com$
+RewriteCond %{REQUEST_URI} ^/jira/$
+RewriteRule ^(.*)$ https://srvjira.cloudholon.com/jira/ [L]
+
+
+-elias hasnat
