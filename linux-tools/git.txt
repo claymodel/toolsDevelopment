@@ -1,0 +1,63 @@
+git installation in centos
+
+Setup EPEL
+ 
+vi /etc/yum.repos.d/epel.repo 
+
+
+[epel]
+name=Extra Packages for Enterprise Linux 5 - $basearch
+#baseurl=http://download.fedoraproject.org/pub/epel/5/$basearch
+mirrorlist=http://mirrors.fedoraproject.org/mirrorlist?repo=epel-5&arch=$basearch
+failovermethod=priority
+enabled=1
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL
+
+[epel-debuginfo]
+name=Extra Packages for Enterprise Linux 5 - $basearch - Debug
+#baseurl=http://download.fedoraproject.org/pub/epel/5/$basearch/debug
+mirrorlist=http://mirrors.fedoraproject.org/mirrorlist?repo=epel-debug-5&arch=$basearch
+failovermethod=priority
+enabled=0
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL
+gpgcheck=1
+
+[epel-source]
+name=Extra Packages for Enterprise Linux 5 - $basearch - Source
+#baseurl=http://download.fedoraproject.org/pub/epel/5/SRPMS
+mirrorlist=http://mirrors.fedoraproject.org/mirrorlist?repo=epel-source-5&arch=$basearch
+failovermethod=priority
+enabled=0
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL
+gpgcheck=1
+
+
+cd /etc/pki/rpm-gpg
+
+wget http://download.fedora.redhat.com/pub/epel/RPM-GPG-KEY-EPEL
+
+
+
+Now you can install using:
+
+yum install git git-daemon
+
+Creating and sharing a repository
+
+Creating a repository is easy! Simply create a folder and type git init.
+
+mkdir newrepo
+cd newrepo
+git init
+
+Once created, we can copy/create our files (think svn import) and then do:
+
+git add .
+git commit
+
+
+git daemon --reuseaddr --base-path=/path/to/repos --export-all --verbose --enable=receive-pack
+
+git clone git://remote.computer.hostname/newrepo
+

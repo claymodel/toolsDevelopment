@@ -1,0 +1,49 @@
+Puppet Manifest/ Module Script for Accurev Installation
+
+CPAN Module Installation Automation
+
+
+?
+vi /etc/puppet/manifests/site.pp import "classes/*" node 'accurev1.cloudholon.com' {    include sudo    include hostconfig    include ntpconfig    include ldapconfig    include installaccurev} 
+vi /etc/puppet/manifests/classes/sudo.pp
+
+?
+class sudo {    file { "/etc/sudoers":        owner => "root",        group => "root",        mode  => 644,    }} 
+vi /etc/puppet/manifests/classes/hostconfig.pcloudholoni /etc/puppet/manifests/classes/hostconfig.pp
+
+?
+command => "/bin/echo 'acuserver1.cloudholon.com' >> /etc/hostname", command => "/bin/echo '127.0.0.1    localhost' >> /etc/hosts",command => "/bin/echo '127.0.0.1        localhost.localdomain' >> /etc/hosts",command => "/bin/echo '127.0.0.1        acuserver1' >> /etc/hosts",command => "/bin/echo '127.0.0.1        acuserver1.cloudholon.com' >> /etc/hosts",command => "/bin/echo '172.16.211.133    acuserver1' >> /etc/hosts",command => "/bin/echo '172.16.211.133    acuserver1.cloudholon.com' >> /etc/hosts", command => "/bin/hostname -F /etc/hostname", 
+vi /etc/puppet/manifests/classes/ntpconfig.pp
+
+?
+yum update hostname --fqdn chkconfig sendmail offchkconfig iptables offchkconfig ip6tables offchkconfig cups offchkconfig bluetooth off  hostname yum install ntp ----------vi /etc/ntp.conf----------restrict default ignorerestrict 127.0.0.1driftfile /var/lib/ntp/driftbroadcastdelay 0.008authenticate yeskeys /etc/ntp/keysrestrict localserver nomodify notrap noqueryserver localserver------------------------------------- /etc/init.d/ntpd start chkconfig --add ntpdchkconfig --level 2345 ntpd onservice ntpd restart 
+vi /etc/puppet/manifests/classes/ldapconfig.pp
+
+?
+PERL_MM_USE_DEFAULT=1 perl -MCPAN -e "install Bundle::CPAN"PERL_MM_USE_DEFAULT=1 perl -MCPAN -e "install XML::Simple"PERL_MM_USE_DEFAULT=1 perl -MCPAN -e "install Net::LDAP" 
+vi /etc/puppet/manifests/classes/installaccurev.pp
+
+?
+useradd --c "User to run Accurev server process" acserverpasswd acserver  (passwords are kept by IT)  mkdir /opt/accurev chown -R acserver.acserver /opt/accurev Copy the keys.txt file to the server /opt/accurev Copy preferences.xml from the master /opt/accurev/storage/site_slice to /opt/accurev/storage/site_slice chmod +x /opt/accurev/releases/AccuRev_x_x_x_Linux_x86_2_2.bin ----------SCILENT-install-config-file-------###### AccuRev InstallAnywhere SILENT installation config file##### UNIX/Linux usage: sh AccuRevInstall.bin -i SILENT -f <config-file># Enables use of this config file; do not change.INST_ROOT=true# Location of AccuRev installation directory (OK to already exist).# Installer creates subdirectories bin, doc, jre, etc.USER_INSTALL_DIR=/opt/accurev# Type of installation to perform:# Client: Installs AccuRev Client software on this machine.# Server: Installs AccuRev Client and Server software on this machine.# Un-comment exactly one of the following lines.#CHOSEN_INSTALL_SET=ClientCHOSEN_INSTALL_SET=Full# Client install: hostname of machine to run AccuRev Server process.# Full install: this setting ignored, hostname of local machine used.  SERVER_HOSTNAME=master.cloudholon.com# The traditional port for the AccuRev Server is 5050. But you can# change it to any number. We recommend the range 5000 - 6000.SERVER_PORT=5050# Full install: full pathname of a valid license key file.# installer copies this file into site_slice dir, as "keys.txt".LICENSE_KEY_FILE=/opt/accurev----------------------------------- 
+./AccuRev_5_2_0c_Linux_x86_2_4.bin -i SCILENT -f config-file
+
+cp key.txt /opt/accurev/storage/site_slice
+
+ln -s /opt/accurev/bin/accurev /usr/bin/accurev
+
+su acserver
+
+mkdir /opt/accurev/storage/site_slice/triggers
+
+cp ldapsearch server_admin_trig server-auth_trig  /opt/accurev/storage/site_slice/triggers
+
+chmod 771 server_auth_trig
+
+/opt/accurev/bin/acserverctl start
+
+accurev login -n acserver password
+
+accurev info
+
+[updating....]
+

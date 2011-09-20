@@ -1,0 +1,64 @@
+vi /etc/puppet/manifests/site.pp
+
+?
+import "classes/*" 
+node 'puppet1.cloudholon.com' {    
+	include sudo    
+	include jdk
+} 
+Prior executing this jdk script make sure you have copied all the required jdk rpm in the files folder as follows
+
+
+/var/lib/puppet/files/jdk6u27.tar.gz 
+
+jdk6u27.tar.gz archive file could be prepared by downloading the self extracting rpm from the oracle website which consists of
+
+jdk-6u27-linux-i586.rpm
+sun-javadb-client-10.6.2-1.1.i386.rpm
+sun-javadb-common-10.6.2-1.1.i386.rpm
+sun-javadb-core-10.6.2-1.1.i386.rpm
+sun-javadb-demo-10.6.2-1.1.i386.rpm
+sun-javadb-docs-10.6.2-1.1.i386.rpm
+sun-javadb-javadoc-10.6.2-1.1.i386.rpm
+ 
+vi /etc/puppet/manifests/classes/sudo.pp
+
+
+class sudo {    
+	file { "/etc/sudoers":        
+		owner => "root",        
+		group => "root",       
+		mode  => 644,    }
+} 
+
+vi /etc/puppet/manifests/classes/jdk.pp
+
+
+class jdk {    
+	File["/usr/local/src/jdk6u27.tar.gz"] -> Exec["Untar-RPM"]    
+	Exec["Untar-RPM"] -> Exec["install-RPM"]    
+	Exec["install-RPM"] -> Exec["set-JAVA-HOME"]     
+	
+	file {"/usr/local/src/jdk6u27.tar.gz" :        
+		ensure => file,        
+		owner => "root",        
+		group => "root",        
+		mode => "644",        
+		source => "puppet:///files/jdk6u27.tar.gz",    
+	}     
+
+	exec { "Untar-RPM":        
+		cwd => "/usr/local/src",        
+		command => "/bin/tar -zxvf /usr/local/src/jdk6u27.tar.gz",            
+		creates => "/usr/local/src/jdk6u27",    
+	}     
+
+	exec { "install-RPM":        
+		cwd => "/usr/local/src/jdk6u27",        
+		command => "/bin/rpm -ivh /usr/local/src/jdk6u27/*.rpm",    
+	}     
+
+	exec { "set-JAVA-HOME":        
+		command => "/bin/echo 'export JAVA_HOME=/usr/java/latest/bin' >> ~/.bash_profile",    
+	} 
+} 

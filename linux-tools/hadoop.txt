@@ -1,0 +1,19 @@
+cd /usr/local/src/
+wget http://archive.cloudera.com/redhat/cdh/cdh3-repository-1.0-1.noarch.rpm
+sudo yum --nogpgcheck localinstall cdh3-repository-1.0-1.noarch.rpm
+
+sudo rpm --import http://archive.cloudera.com/redhat/cdh/RPM-GPG-KEY-cloudera
+
+yum search hadoop
+
+sudo yum install hadoop-0.20
+
+master
+sudo yum install hadoop-0.20-namenode
+sudo yum install hadoop-0.20-secondarynamenode
+sudo yum install hadoop-0.20-jobtracker
+
+
+Slave
+sudo yum install hadoop-0.20-tasktracker
+sudo yum install hadoop-0.20-datanode

@@ -1,0 +1,266 @@
+Puppet Master and Puppet Installation CentOS 5.6 64bit
+Puppet Master and Puppet Configuration for Both
+
+
+rpm -Uvh http://download.fedora.redhat.com/pub/epel/5Server/x86_64/epel-release-5-4.noarch.rpm 
+
+Disable non-standard repos. In the YUM configuration files on both Puppet Master and Puppet edit the EPEL configuration files. 
+
+vi /etc/yum.repos.d/epel.repo
+[epel]
+enabled=0 
+
+Enable epel-testing for puppet 2.6.6 installation 
+
+vi /etc/yum.repos.d/epel-testing.repo
+
+[epel-testing]
+enabled=1 
+yum update 
+
+
+Puppet Master Installation:
+
+Install the puppet server on Puppet Master 
+
+yum install puppet-server --enablerepo=epel (Optional) 
+
+If you want the help command yum install ruby-rdoc 
+
+Puppet Installation:
+
+Install the puppet client on Puppet 
+
+yum install puppet --enablerepo=epel (Optional) 
+
+If you want the help command yum install ruby-rdoc 
+
+Puppet Master Hostname Configuration:
+
+
+vi /etc/hostname 
+ppmaster.cloudholon.com 
+
+Puppet Master Hosts Configuration
+
+
+vi /etc/hosts
+127.0.0.1              localhost
+127.0.0.1              localhost.localdomain
+127.0.0.1              ppmaster
+127.0.0.1              ppmaster.cloudholon.com
+172.16.211.133         ppmaster
+172.16.211.133         ppmaster.cloudholon.com
+172.16.211.63         puppet1.cloudholon.com
+172.16.211.64         puppet2.cloudholon.com
+172.16.211.65         puppet3.cloudholon.com
+172.16.211.66         puppet4.cloudholon.com
+172.16.211.67         puppet5.cloudholon.com 
+
+hostname -F /etc/hostname 
+
+Puppet Master with a Simple Manifest:
+
+
+Step1:
+vi /etc/puppet/manifests/site.pp 
+
+import "classes/*" 
+
+node default {    
+	include sudo
+}  
+
+Step2:
+mkdir -P /etc/puppet/manifests/classes 
+
+vi /etc/puppet/manifests/classes/sudo.pp 
+
+class sudo {    
+	file { "/etc/sudoers":        
+		owner => "root",        
+		group => "root",        
+		mode  => 440,    }
+}  
+
+Step3:
+file Server config 
+vi /etc/puppet/fileserver.conf 
+
+[files]
+path /var/lib/puppet/filesallow *  
+
+Step4:
+
+vi /etc/puppet/puppet.conf add these lines
+
+[master]
+reports = store, 
+httpreporturl = http://ppmaster.cloudholon.com:3000/reports/upload 
+
+Step5: 
+
+/etc/init.d/puppetmaster 
+
+start chkconfig puppetmaster on 
+
+Puppet Hostname Configuration
+
+
+vi /etc/hostname 
+
+puppet1.cloudholon.com 
+
+Puppet Hosts Configuration
+
+
+vi /etc/hosts
+127.0.0.1               localhost
+127.0.0.1               localhost.localdomain
+127.0.0.1               puppet1
+127.0.0.1               puppet1.cloudholon.com
+172.16.211.133          ppmaster
+172.16.211.133          ppmaster.cloudholon.com 
+
+hostname -F /etc/hostname 
+
+Puppet Configuration for Puppet Master Inter Communication
+
+
+vi /etc/sysconfig/puppet 
+
+# The puppetmaster server
+
+PUPPET_SERVER=PuppetMaster 
+
+# If you wish to specify the port to connect to do so here
+
+#PUPPET_PORT=8140 
+# Where to log to. Specify syslog to send log messages to the system log.
+
+PUPPET_LOG=/var/log/puppet/puppet.log 
+# You may specify other parameters to the puppet client here
+#PUPPET_EXTRA_OPTS=--waitforcert=500 
+
+The client will automatically pull configuration from the server every 30 minutes, start it as a service and enable start on boot
+
+Puppet Configuration
+
+vi /etc/puppet/puppet.conf (on each agent)
+[agent]report = true 
+Puppet Auto Startup
+
+
+/etc/init.d/puppet start 
+chkconfig puppet on 
+
+Mcollective Installation in Both Puppet Master and Puppet
+
+
+yum install jpackage-utils 
+rpm -Uvh  http://downloads.puppetlabs.com/mcollective/tanukiwrapper-3.2.3-1jpp.x86_64.rpm  
+
+Enable ELFF: 
+rpm -Uvh http://download.elff.bravenet.com/5/i386/elff-release-5-3.noarch.rpm 
+
+Install ruby and dependencies: 
+yum install rubygems rubygem-stomp rpm -Uvh http://mcollective.googlecode.com/files/mcollective-common-0.4.4-1.el5.noarch.rpm 
+
+Mcollective Installation in Puppet Master
+
+
+rpm -Uvh  http://mcollective.googlecode.com/files/mcollective-0.4.4-1.el5.noarch.rpm 
+Mcollective Installation in Puppet
+
+
+rpm -Uvh  http://mcollective.googlecode.com/files/mcollective-client-0.4.4-1.el5.noarch.rpm 
+Puppet-Dashboard Installation in Puppet Master
+
+
+yum install mysql-server 
+
+service mysqld start 
+
+chkconfig mysqld on 
+
+rpm -Uvh http://mirrors.tummy.com/pub/fedora.redhat.com/epel/5/x86_64/ruby-mysql-2.7.3-1.el5.x86_64.rpm  
+
+yum install gettext-devel expat-devel curl-devel zlib-devel openssl-devel gcc  
+
+vi /etc/yum.repos.d/puppetlabs.repo
+
+[puppetlabs]
+name=Puppet Labs 
+Packagesbaseurl=http://yum.puppetlabs.com/base/
+enabled=1
+gpgcheck=1
+gpgkey=http://yum.puppetlabs.com/RPM-GPG-KEY-puppetlabs 
+
+Install Puppet Dashboard via Yum: 
+
+yum install puppet-dashboard  
+
+mysql>CREATE DATABASE dashboard CHARACTER SET utf8;
+
+CREATE USER 'dashboard'@'localhost' IDENTIFIED BY 'hasnat';
+
+GRANT ALL PRIVILEGES ON dashboard.* TO 'dashboard'@'localhost'; 
+
+mysql> set max_allowed_packet = 33554432;  
+
+cd /usr/share/puppet-dashboard 
+
+vi config/database.yml 
+
+Production purpose:rake 
+RAILS_ENV=production 
+db:migrate 
+
+Developing 
+purpose:rake 
+db:migrate 
+db:test:prepare 
+
+Starting Dashboard.
+/script/server -e production 
+
+Configuring Reports on Puppet 2.6.0 and Newer
+
+
+Make sure that all agents have reporting turned on: 
+# puppet.conf (on each agent)
+[agent]
+report = true 
+
+Add the http report handler to your puppet masterÅfs reports setting and set reporturl to your Dashboard instanceÅfs reports/upload URL: 
+
+# puppet.conf (on puppet master)
+[master]
+reports = store, 
+httpreporturl = http://ppmaster.cloudholon.com:3000/reports/upload 
+Puppet Certificate Management in Puppet Master
+
+
+Puppet Master
+----------------
+
+puppetca --clean <hostname or certname>  
+Puppet
+----------
+Stop puppet agent Remove Puppet agent files
+
+rm -rf /var/lib/puppet 
+
+Run Puppet agent 
+puppetca --list 
+
+puppetca --sign puppet1.cloudholon.com 
+
+puppetca -la 
+
+Puppet Manifests or Modules scripts are automatically called from each Puppet Agents
+
+Manual installation command from Puppet Agent
+
+
+puppet agent --server ppmaster.cloudholon.com --waitforcert 60 --test 
