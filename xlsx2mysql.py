@@ -425,3 +425,36 @@ if __name__ == "__main__":
                 outfile.close()
             else:
                 xlsx2mysql(args[0], sys.stdout, **kwargs)
+
+
+#--------------------------------------------------------------
+xlsx to mysql upload (http://github.com/claymodel/toolsDevelopment/)
+
+Converts xslx xml excel files to mysql upload.
+It is fast, and works for huge xlsx files.
+
+Usage: xlsx2mysql.py [options] infile [outfile] [mysql-credential]
+
+Options:
+  --version             show program's version number and exit
+  -h, --help            show this help message and exit
+  -s SHEETID, --sheet=SHEETID
+                        sheet no to convert (0 for all sheets)
+  -d DELIMITER, --delimiter=DELIMITER
+                        delimiter - csv columns delimiter, 'tab' or 'x09' for
+                        tab (comma is default)
+  -p SHEETDELIMITER, --sheetdelimiter=SHEETDELIMITER
+                        sheets delimiter used to separate sheets, pass '' if
+                        you don't want delimiters (default '--------')
+  -f DATEFORMAT, --dateformat=DATEFORMAT
+                        override date/time format (ex. %Y/%m/%d)
+
+
+LOAD DATA INFILE "/home/paul/clientdata.csv"
+INTO TABLE CSVImport
+COLUMNS TERMINATED BY ','
+OPTIONALLY ENCLOSED BY '"'
+ESCAPED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 LINES;
+#-------------------------------------------------------------------------------
