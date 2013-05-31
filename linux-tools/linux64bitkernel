@@ -1,0 +1,72 @@
+
+64bit版 Linux kernelの作り方
+　
+
+  
+	はじめに
+このWeb siteはD945GCLFマザーボードIntek Atom CPU 230@1.66GHzMemory 2GBで運用しています。
+OSはDebian squeezeを使ってますが、KernetはソースからBuildしています。
+Atom 230は64 bit Architictureですが、普通にmake menuconfigしても64 bit版のカーネルは作れません。
+64bit版の情報が少ないことに驚き、私が行った方法をまとめておきます。
+
+
+
+	
+	用意するもの
+
+    kernel source: kernel
+    kernel.orgから安定最新版を入手します。この記事を書いている時点では2.6.32です。
+    Build用に速いマシンを用意しました。
+    まあゆっくりやれば良いのでしょうが私はCore i5 Mem 4GBのマシンを使いました。
+    ネットワーク
+    kernelを入手するのに必要なのはもちろん、buildしたオブジェクトを移動するのにnfsを張りました。
+
+
+	
+	手順
+
+    まずkernel sourceを取得解凍します。
+    cd /usr/src
+    wget http://www.kernel.org/pub/linux/kernel/v2.6/linux-2.6.37.tar.bz2
+    tar jxvf linux-2.6.32.tar.bz2
+    リネームしてリンクを張ります。
+    mv inux-2.6.32 inux-2.6.32-atom64
+    rm linux
+    ln -s inux-2.6.32-atom64
+    cd linux
+    Makefileを編集します。
+    AARCH=x86_64XTRAVERSION = -atom64
+    EXTRAVERSION = -atom64
+    を書き加えてください。
+    make mrproperします。
+    make mrproper
+    /bootにある最新版configをコピーします。
+    cp /boot/config-2.6.32 .config
+    make oldconfig
+    make menuconfig
+    Processor family (Intel Atom)
+    Executable file formats / Emulationsの
+    IA32 Emulationは必ず選択してください。
+    Makeします。
+    make -j 8 bzImage
+    make -j 8 modules
+
+
+	
+	移植
+
+    nfsを張ります。
+    mount -t nfs terget:/usr/src /target
+    copyします。
+    cd ..
+    cp -rp inux-2.6.32-atom64 /target
+    targetマシンにログインしてブートできるようにします。
+    ssh -l foo target
+    su
+    cd /usr/src/inux-2.6.32-atom64
+    make modules_install
+    make install
+    cd /boot
+    mkinitramfs -o initrd.img-2.6.37-atom64 2.6.37-atom64
+    dpkg-reconfigure grub-pc
+    reboot
