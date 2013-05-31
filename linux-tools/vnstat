@@ -1,0 +1,34 @@
+#!/bin/bash
+# A shell script to build dnstop utility to displays various tables
+# of DNS traffic on your network including bind 9 server stats.
+VERSION="-20090128"
+URL="http://dns.measurement-factory.com/tools/dnstop/src/dnstop${VERSION}.tar.gz"
+FILE="${URL##*/}"
+DLHOME="/opt"
+SOFTWARE="dnstop"
+DEST="${FILE%.tar.gz}"
+ETH="eth0"
+     
+[[ "$2" != "" ]] && ETH="$2"
+     
+[[ `id -u` -ne 0 ]] && { echo "$0: You must be root user to run this script. Run it as 'sudo $0'"; exit 1; }
+     
+case "$1" in
+  download)
+		wget $URL -O "${DLHOME}/$FILE"
+		;;
+	build)
+		echo "Building ${SOFTWARE}...."
+		yum -y install libpcap-devel ncurses-devel &>/dev/null
+		[[ ! -f "${DLHOME}/$FILE" ]] && wget $URL -O "${DLHOME}/$FILE"
+		cd "${DLHOME}"
+		tar -zxvf $FILE
+		cd "$DEST"
+		./configure
+		make
+		make install
+		grep -q 'alias dnstop' $HOME/.bashrc
+		[ $? -ne 0 ] && echo "alias dnstop='/usr/local/bin/dnstop -l 6 ${ETH}'" >> $HOME/.bashrc
+		;;
+	*) echo "Usage: $0 {download|build} [eth0|eth1]"
+esac
