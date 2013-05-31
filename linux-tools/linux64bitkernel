@@ -1,17 +1,14 @@
-
 64bit版 Linux kernelの作り方
 　
+D945GCLFマザーボードIntek Atom CPU 230@1.66GHzMemory 2GBで運用しています。
 
-  
-	はじめに
-このWeb siteはD945GCLFマザーボードIntek Atom CPU 230@1.66GHzMemory 2GBで運用しています。
 OSはDebian squeezeを使ってますが、KernetはソースからBuildしています。
+
 Atom 230は64 bit Architictureですが、普通にmake menuconfigしても64 bit版のカーネルは作れません。
+
 64bit版の情報が少ないことに驚き、私が行った方法をまとめておきます。
 
 
-
-	
 	用意するもの
 
     kernel source: kernel
