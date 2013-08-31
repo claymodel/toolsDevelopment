@@ -18,7 +18,7 @@ class mariadb (
     url => $distro_url,
     distro => $::lsbdistcodename,
     repository=> 'main',
-    key => 'dbart@askmonty.org',
+    key => '',
     key_url => '"http://keyserver.ubuntu.com:11371/pks/lookup?op=get&search=0xCBCB082A1BB943DB"',
  }
 
