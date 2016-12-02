@@ -4,7 +4,7 @@ CPAN Module Installation Automation
 
 
 ?
-vi /etc/puppet/manifests/site.pp import "classes/*" node 'accurev1.cloudholon.com' {    include sudo    include hostconfig    include ntpconfig    include ldapconfig    include installaccurev} 
+vi /etc/puppet/manifests/site.pp import "classes/*" node 'accurev1.domain.com' {    include sudo    include hostconfig    include ntpconfig    include ldapconfig    include installaccurev} 
 vi /etc/puppet/manifests/classes/sudo.pp
 
 ?
